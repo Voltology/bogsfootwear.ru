@@ -1,0 +1,345 @@
+html, body {
+	color: #333333;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	font-family: arial, helvetica, verdana, sans-serif
+}
+
+a {
+  color: #f38401;
+}
+
+.logoCell, .headerCell {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.headerCell {
+  padding: 5px;
+}
+
+.headerlogo {
+  padding: 20px 0 5px 14px;
+}
+
+.logoCell {
+  padding: 10px;
+  height: 60px;
+}
+
+.sidebarCell {
+  background-color:	#dedcd0;
+  border-right: 1px solid #CCCCCC;
+  width: 12px;
+}
+
+#sidebar {
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 156px;
+}
+
+.sidebar {
+  width: 156px;
+  padding: 10px;
+}
+
+#sidebar .menuitem a {
+  display: block;
+  line-height: 25px;
+  padding-left: 20px;
+  text-decoration: none;
+  color: #636363;
+}
+#sidebar .submenuitem a {
+  background-color: #FFFFFF;
+  display: block;
+  line-height: 25px;
+  padding-left: 38px;
+  text-decoration: none;
+  color: #333333;
+}
+#sidebar .activesubmenuitem a {
+  background-color:   #eee;
+  display:			block;
+  line-height:        25px;
+  padding-left:		38px;
+  text-decoration:	none;
+  color:				#333333;
+}
+#sidebar .activesubmenuitem a:before {
+  content: "\00BB";
+  padding-right: 6px;
+}
+#sidebar .submenuitem a:hover {
+  background-color: #eee;
+}
+
+#sidebar .menuitem:hover, #sidebar .menuitemhover {
+  background-color:	#eeece0;
+}
+
+#sidebar .activemenuitem a {
+  background-color:   #fff;
+  display:			block;
+  line-height:        25px;
+  padding-left:		20px;
+  text-decoration:	none;
+  color:				#333333;
+}
+
+#sidebar .logout {
+  display:			block;
+  font-weight:        400;
+  line-height:        25px;
+  padding-left:		20px;
+  text-decoration:	none;
+  color:				#636363;
+}
+.page {
+padding:			10px;
+}
+#footer {
+font-size:          11px;
+padding:			10px;
+border-top:			1px solid #CCCCCC;
+}
+
+hr {
+color:				#CCCCCC;
+background-color:	#CCCCCC;
+padding:			0;
+margin-bottom:		5px;
+height:				1px;
+border:				0;
+display:			block;
+}
+
+.headertext{
+position:           absolute;
+color:              #636363;
+display:            block;
+font-size:			28px;
+font-weight:		400;
+left:               280px;
+top:                54px;
+}
+
+h2 {
+color:              #333333;
+margin-top:			0;
+margin-bottom:		5px;
+font-size:			15px;
+font-weight:		bold;
+}
+
+h3 {
+color:              #333333;
+margin-top:			0;
+margin-bottom:		5px;
+font-size:			14px;
+font-weight:		bold;
+}
+
+img {
+border:				0;
+}
+
+table.borderTable {
+border-collapse:	collapse;
+}
+table.borderTable th {
+text-align:			left;
+padding:			3px;
+background-color:	#C0D8EA;
+border-top:			1px solid #999999;
+border-bottom:		1px solid #999999;
+}
+table.borderTable td {
+padding:			3px;
+border-bottom:		1px solid #CCCCCC;
+vertical-align:		top;
+}
+table.borderTable tr.odd {
+}
+table.borderTable tr.even {
+background-color:			#EEEEEE;
+}
+
+div.pagelist {
+padding:			3px;
+}
+div.pagebuttons {
+float:				right;
+}
+span.nextpage {
+background:			url(/admin/includes/images/blue_right_arrow.png) right center no-repeat;
+padding-right:		12px;
+}
+span.prevpage {
+background:			url(/admin/includes/images/blue_left_arrow.png) left center no-repeat;
+padding-left:		12px;
+}
+.disabled {
+color:				gray;
+}
+
+table.editTable {
+border-collapse:	collapse;
+margin: 5px;
+}
+
+table.editTable td.editLabel {
+font-size:          13px;
+padding:			3px;
+font-weight:		bold;
+vertical-align:		top;
+background-color:	#dedcd0;
+border-top:			1px solid #CCCCCC;
+border-bottom:		1px solid #CCCCCC;
+}
+
+table.editTable tr.editHeader {
+font-weight: bold;
+padding:			3px;
+}
+
+table.editTable tr.editHeader a {
+color: #000000;
+text-decoration: none;
+}
+
+table.editTable tr.editHeader a:hover {
+text-decoration: underline;
+}
+
+table.editTable tr.odd{
+background-color: #FFFFFF;
+}
+
+table.editTable tr.even{
+background-color: #EEEEEE;
+}
+
+
+table.editTable td.editField {
+border-top:			1px solid #CCCCCC;
+border-bottom:		1px solid #CCCCCC;
+padding:			3px;
+vertical-align:		top;
+}
+
+table.editTable input.editInput {
+
+}
+
+table.editTable input.uneditableInput {
+background-color: #DDDDDD;
+}
+
+input[type="text"], input[type="password"], input[type="file"], textarea, select {
+border: 1px solid #999999;
+color: #333333;
+font-size: 13px;
+padding: 3px;
+}
+
+.leftimage {
+float:				left;
+margin-right:		5px;
+border:				0;
+}
+
+/* Autocomplete box */
+ul.autocomplete {
+padding:			0;
+margin:				0;
+list-style:			none;
+background-color:	#FFFFFF;
+border:				1px solid #999999;
+}
+ul.autocomplete li {
+padding:			2px;
+cursor:				default;
+}
+ul.autocomplete li.selected {
+background-color:	#C0D8EA;
+}
+
+/* Dialog boxes */
+
+.tmDialog td, .tmDialog input, .tmDialog select {
+font-size:					8pt;
+}
+
+.highlight {
+background-color:			#C0D8EA;
+}
+
+.sticky {
+background-color:			#FFFFCC;
+}
+.legendbox {
+float: left;
+width: 14px;
+height: 14px;
+border: 1px solid #999999;
+margin-right: 10px;
+}
+
+.hidden {
+display:					none;
+}
+
+.expander {
+cursor:						pointer;
+}
+
+ul.boxlines {
+  margin:						0;
+  padding:					0;
+  list-style:					none;
+}
+
+ul.boxlines li {
+  border:						1px solid #999999;
+  background-color:			#EEEEEE;
+  padding:					3px;
+  margin:						2px;
+  cursor:						pointer;
+  overflow:					hidden;
+}
+
+ul.sortable li, ul.prioritizable li {
+  cursor:						pointer;
+}
+
+.selected {
+  background-color:	#C0D8EA;
+}
+
+.notice {
+  background-color: 		#FFFF99;
+  border:					1px solid #999999;
+  padding:				10px;
+}
+
+.error {
+  background-color: 		#FFFFDD;
+  border:					1px solid #FF0000;
+  margin:                 5px;
+  padding:				5px;
+  width:                  300px;
+}
+
+.success {
+  background-color: 		#FFFFDD;
+  border:					1px solid #76BB22;
+  margin:                 5px;
+  padding:				5px;
+  width:                  350px;
+}
+
+.required {
+  color:					#FF0000;
+}

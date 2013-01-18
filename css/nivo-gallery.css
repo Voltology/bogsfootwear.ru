@@ -1,0 +1,61 @@
+/*
+ * jQuery Nivo Gallery v0.7.1
+ * http://dev7studios.com
+ *
+ * Copyright 2011, Gilbert Pellegrom
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * October 2011
+ */
+ 
+.nivoGallery {
+    position:relative;
+    width:1000px; /* Width can be fixed px or dynamic % value */
+    height:300px; /* Height must be fixed px value */
+}
+.nivoGallery.loaded {
+    background:#000; /* Remove the loading gif */
+}
+.nivoGallery ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.nivoGallery ul li {
+    position:absolute;
+    top:0;
+    left:0;
+    width:1000px;
+    display:none;
+}
+.nivoGallery ul img {
+    display: block;
+    width:1000px;
+    position:absolute; 
+    top:0 ; 
+    bottom:0; 
+    left:0; 
+    right:0;
+	margin:0;
+    -ms-interpolation-mode:bicubic;
+}
+
+.nivoGallery-slides {
+    position:relative;
+    height:100%;
+    top: 0;
+    overflow:hidden;
+}
+
+.nivoGallery-progress {
+    position:absolute;
+    top:0;
+    left:0;
+    background:#fff;
+    opacity:0.5;
+    width:1000px;
+    height:2px;
+    z-index:5;
+}
+
