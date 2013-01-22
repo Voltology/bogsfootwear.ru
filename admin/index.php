@@ -1,5 +1,6 @@
 <?php
 require("../.local.inc.php");
+require("../lib/Admin.class.php");
 $page = $_GET['p'] ? $_GET['p'] : "home";
 $subpage = $_GET['s'] ? $_GET['s'] : "";
 ?>
@@ -34,7 +35,7 @@ $subpage = $_GET['s'] ? $_GET['s'] : "";
             <div class="<?php if ($page === "users") { ?>active<?php } ?>menuitem"><a href="?p=users">Users</a></div>
             <div class="<?php if ($page === "settings") { ?>active<?php } ?>menuitem"><a href="?p=settings">Settings</a></div>
             <br />
-            <div class="logout"><a href="../logout.php?admin=true">Log Out</a></div>
+            <div class="logout"><a href="../logout?admin=true">Log Out</a></div>
             <br />
           <?php
           }
@@ -46,7 +47,7 @@ $subpage = $_GET['s'] ? $_GET['s'] : "";
           if (!$user->isLoggedIn()) {
           ?>
           <h3>Log In</h3>
-          <form method="post" action="../login.php">
+          <form method="post" action="../login-redirect.php">
             <table class="editTable">
               <tr><td class="editLabel">Username</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
               <tr><td class="editLabel">Password</td><td class="editField"><input type="password" name="password" /></td></tr>

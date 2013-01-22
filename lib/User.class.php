@@ -92,8 +92,14 @@ class User {
 
   public function validate($email, $password1, $password2, $firstname, $lastname) {
     $errors = array();
+    $query = sprintf("SELECT id FROM cart_users WHERE email='%s' LIMIT 1",
+      mysql_real_escape_string($email));
+    $query = mysql_query($query);
     if ($email === "" || $password1 === "" || $firstname === "" || $lastname === "") {
       array_push($errors, "You must make sure to fill out all fields.");
+    }
+    if (mysql_num_rows($query) > 0) {
+      array_push($errors, "That email address is already tied to another account.");
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       array_push($errors, "You must enter a valid email address.");

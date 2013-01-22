@@ -53,6 +53,7 @@ left: 10px;
 }
 
 #navigation .cart-icon {
+  margin-bottom: 1px;
   vertical-align: bottom;
 }
 #navigation a {

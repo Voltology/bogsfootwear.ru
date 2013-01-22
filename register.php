@@ -44,7 +44,7 @@ require("inc/header.php");
                         <td colspan="2">Welcome! Complete the form below to register for your free account.</td>
                       </tr>
                       <?php
-                      if (count($errors > 0)) {
+                      if (count($errors) > 0) {
                         echo "<tr><td colspan=\"2\" align=\"center\" class=\"register-errors\">";
                         foreach ($errors as $error) {
                           echo $error . "<br />";

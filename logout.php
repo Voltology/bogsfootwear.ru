@@ -5,5 +5,9 @@ setcookie("email", "");
 setcookie("password", "");
 unset($_SESSION['cart']);
 unset($_SESSION['user']);
-header("Location: /");
+if ($_GET['admin'] === "true") {
+  header("Location: /admin");
+} else {
+  header("Location: /");
+}
 ?>
