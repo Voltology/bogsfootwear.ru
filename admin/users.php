@@ -2,14 +2,15 @@
 $userlist = Admin::getUsers();
 ?>
 <h3>Users</h3>
+<p class="addnew"><a href=""><img src="/img/add.png" />&nbsp;Add New User</a></p>
 <table cellpadding="2" cellspacing="0" width="100%">
-  <tr>
-    <td>#</td>
+  <tr class="table-header">
+    <td width="28">#</td>
     <td>Email</td>
     <td>First Name</td>
     <td>Last Name</td>
     <td>Role</td>
-    <td>Registration</td>
+    <td>Joined</td>
     <td align="right">Operations</td>
   </tr>
   <?php
@@ -17,7 +18,7 @@ $userlist = Admin::getUsers();
   $bgcolor = array("#efefef", "#ffffff");
   foreach ($userlist as $userrow) {
     echo "<tr bgcolor=\"" . $bgcolor[$count % 2] . "\">";
-    echo "<td>" . $count . "</td>";
+    echo "<td><strong>" . $count . "</strong></td>";
     echo "<td>" . $userrow['email'] . "</td>";
     echo "<td>" . $userrow['firstname'] . "</td>";
     echo "<td>" . $userrow['lastname'] . "</td>";
@@ -29,3 +30,4 @@ $userlist = Admin::getUsers();
   }
   ?>
 </table>
+<p class="addnew"><a href=""><img src="/img/add.png" />&nbsp;Add New User</a></p>

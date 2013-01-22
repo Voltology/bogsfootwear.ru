@@ -9,7 +9,12 @@ html, body {
 a {
   color: #f38401;
 }
-
+p.addnew {
+  float: right;
+}
+p.addnew img {
+  vertical-align: bottom;
+}
 .logoCell, .headerCell {
   border-bottom: 1px solid #CCCCCC;
 }
@@ -126,19 +131,19 @@ top:                54px;
 }
 
 h2 {
-color:              #333333;
-margin-top:			0;
-margin-bottom:		5px;
-font-size:			15px;
-font-weight:		bold;
+  color:              #333333;
+  margin-top:			0;
+  margin-bottom:		5px;
+  font-size:			15px;
+  font-weight:		bold;
 }
 
 h3 {
-color:              #333333;
-margin-top:			0;
-margin-bottom:		5px;
-font-size:			14px;
-font-weight:		bold;
+  color: #333333;
+  margin-top:			0;
+  margin-bottom:		0px;
+  font-size:			18px;
+  font-weight:		bold;
 }
 
 img {
@@ -164,6 +169,15 @@ table.borderTable tr.odd {
 }
 table.borderTable tr.even {
 background-color:			#EEEEEE;
+}
+table.datatable {
+  margin-top: 14px;
+}
+table .table-header td {
+  background-color: #dedcd0;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  padding: 4px 4px;
 }
 
 div.pagelist {

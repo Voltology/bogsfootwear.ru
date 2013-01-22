@@ -92,27 +92,54 @@ if ($subpage === "upload") {
 <?php
     }
 } else {
-  echo "<h2>Inventory</h2>";
-  $query = "SELECT * FROM cart_inventory";
-  $query = mysql_query($query);
-  $count = 1;
-  $bgcolor = array('ffffff','efefef');
-  echo "<table cellpadding=\"4\" cellspacing=\"0\" width=\"100%\" class=\"inventory-table\">";
-  echo "<tr class=\"table-header\">";
-  echo "<td>#</td><td>Product Name (sku)</td><td>Color</td><td>Group</td><td>Gender</td><td>Active</td><td align=\"right\">Operations</td>";
-  echo "</tr>";
-  while ($row = mysql_fetch_assoc($query)) {
-    echo "<tr bgcolor=\"" . $bgcolor[$count % 2] . "\">";
-    echo "<td><strong>" . $count . "</strong></td>";
-    echo "<td><strong>" . ucwords($row['name']) . "</strong> (" . $row['sku'] . ")</td>";
-    echo "<td>" . ucwords($row['color']) . "</td>";
-    echo "<td>" . ucwords($row['group']) . "</td>";
-    echo "<td>" . ucwords($row['gender']) . "</td>";
-    echo "<td>No</td>";
-    echo "<td align=\"right\"><img src=\"/img/pencil.png\" alt=\"Edit Item\" title=\"Edit Item\" />&nbsp;&nbsp;&nbsp;<img src=\"/img/cross.png\" alt=\"Delete Item\" title=\"Delete Item\" /></td>";
+  $action = $_GET['a'];
+  if (!isset($action)) {
+    echo "<h3>Inventory</h3>";
+    echo "<p class=\"addnew\"><a href=\"?p=inventory&a=add\"><img src=\"/img/add.png\" />&nbsp;Add New Item</a></p>";
+    $query = "SELECT * FROM cart_inventory";
+    $query = mysql_query($query);
+    $count = 1;
+    $bgcolor = array('#efefef','#ffffff');
+    echo "<table cellpadding=\"4\" cellspacing=\"0\" width=\"100%\" class=\"inventory-table\">";
+    echo "<tr class=\"table-header\">";
+    echo "<td width=\"24\">#</td><td>Product Name (sku)</td><td>Color</td><td>Group</td><td>Gender</td><td>Active</td><td align=\"right\">Operations</td>";
     echo "</tr>";
-    $count++;
+    while ($row = mysql_fetch_assoc($query)) {
+      echo "<tr bgcolor=\"" . $bgcolor[$count % 2] . "\">";
+      echo "<td><strong>" . $count . "</strong></td>";
+      echo "<td><strong>" . ucwords($row['name']) . "</strong> (" . $row['sku'] . ")</td>";
+      echo "<td>" . ucwords($row['color']) . "</td>";
+      echo "<td>" . ucwords($row['group']) . "</td>";
+      echo "<td>" . ucwords($row['gender']) . "</td>";
+      echo "<td>No</td>";
+      echo "<td align=\"right\">";
+      echo "<a href=\"?p=inventory&a=edit&id=" . $row['id'] . "\"><img src=\"/img/pencil.png\" alt=\"Edit Item\" title=\"Edit Item\" /></a>&nbsp;&nbsp;&nbsp;";
+      echo "<a href=\"javascript:\"><img src=\"/img/cross.png\" alt=\"Delete Item\" title=\"Delete Item\" /></a></td>";
+      echo "</tr>";
+      $count++;
+    }
+    echo "</table>";
+    echo "<p class=\"addnew\"><a href=\"?p=inventory&a=add\"><img src=\"/img/add.png\" />&nbsp;Add New Item</a></p>";
+  } else if ($action === "edit") {
+?>
+  <h3>Inventory - Edit Item</h3>
+  <form method="post" action="?p=inventory&a=save">
+    <table class="editTable">
+      <tr><td class="editLabel">Product Name</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Sku</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Description</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Color</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Group</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Gender</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Price</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Image</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Thumbnail</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+      <tr><td class="editLabel">Active</td><td class="editField"><input type="checkbox" name="" value="" /></td></tr>
+    </table>
+    <input type="submit" value="Save Item" />
+  </form>
+<?php
+  } else if ($action === "save") {
   }
-  echo "</table>";
 }
 ?>

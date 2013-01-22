@@ -42,7 +42,7 @@ class User {
   }
 
   public function getRole() {
-    return $role;
+    return $this->_role;
   }
 
   public function getToken() {

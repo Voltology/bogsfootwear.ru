@@ -47,9 +47,14 @@ $subpage = $_GET['s'] ? $_GET['s'] : "";
           if (!$user->isLoggedIn()) {
           ?>
           <h3>Log In</h3>
-          <form method="post" action="../login-redirect.php">
+          <form method="post" action="/login-redirect.php">
+            <?php
+            if ($_GET['fail'] === "true") {
+              echo "<div class=\"error\">Username/password incorrect.</div>";
+            }
+            ?>
             <table class="editTable">
-              <tr><td class="editLabel">Username</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
+              <tr><td class="editLabel">Email</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
               <tr><td class="editLabel">Password</td><td class="editField"><input type="password" name="password" /></td></tr>
               <tr><td class="editLabel">Keep me logged in</td><td class="editField"><input type="checkbox" name="remme" value="true" /></td></tr>
             </table>
