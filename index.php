@@ -2,54 +2,6 @@
 require(".local.inc.php");
 require("inc/header.php");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-<title>Bogs Footwear Russia | ДЛЯ ЛЮБОЙ НЕПОГОДЫ</title>
-
-<script type="text/javascript" src="/js/jquery-1.3.2.js" language="javascript"></script>
-<script type="text/javascript" src="/js/jquery-ui-1.7.2.min.js" language="javascript"></script>
-<script type="text/javascript" src="/js/home.js" language="javascript"></script>
-
-<link rel="stylesheet" href="/css/nivo-gallery.css" type="textcss" media="screen" />
-    
-<!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <script type="text/javascript" src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-<script src="/js/modernizr-1.7.min.js"></script>
-
-<link rel="shortcut icon" href="favicon.ico" >
-<link rel="stylesheet" type="textcss" href="css/style.css" />
-
-    <script src="/js/jquery.nivo.gallery.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#gallery').nivoGallery();
-    });
-    </script>
-
-</head>
-<body>
-
-<div id="maincontainer">
-
-<span id="logo"><a href="<?php echo BASE_URL; ?>"><img src="/img/transparent.gif" width="211" height="64" vspace="0" hspace="0" border="0"></a></span>
-
-<span id="navarea">
-
-<span id="navigation"><a href="/about-us/">ДЛЯ ЛЮБОЙ НЕПОГОДЫ</a>
-<a href="/catalog/womens-collections/womens-plimsoll">КАТАЛОГ</a>
-<a href="/contact-us/">Эксклюзивный дистрибьютор в России</a>
-<a href="/where-to-buy/">Где купить</a></span>
-
-</span>
-
-<div class="clear"></div>
-
-
 <div id="maincontent2">
 <div id="contentarea3">
 <span id="content3">

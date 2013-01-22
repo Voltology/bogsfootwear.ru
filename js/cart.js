@@ -32,7 +32,6 @@ var cart = {
         var itemcount = parseInt($('#item-count').html()) - 1;
         $('#item-count').html(itemcount);
         cart.removerow(row);
-        alert('Item has been removed from your cart!');
       } else {
         alert('errors');
       }
@@ -41,9 +40,10 @@ var cart = {
   removerow : function(id) {
     $('#cart-table #item-' + id).remove();
   },
-  update : function() {
-    ajax.get('/cartapi.php', '&a=update', function(json) {
+  update : function(id, quantity) {
+    ajax.get('/cartapi.php', '&a=update&id=' + id + '&quantity=' + quantity, function(json) {
       if (json.success === 'true') {
+        alert('Item quantity has been updated!');
       } else {
         alert('errors');
       }

@@ -10,76 +10,32 @@ require("inc/header.php");
           <span id="content2">
         <div>
       <div>
-        <div id="cart">
-        <table border="0" width="100%">
-          <tr>
-            <td>
-              <fieldset>
-                <legend>&raquo; Your Shopping Cart</legend>
-                <table width="100%" cellpadding="4" cellspacing="0" border="0" class="cart-table" id="cart-table">
-                  <thead>
+        <div id="login">
+          <table border="0" width="500">
+            <tr>
+              <td>
+                <fieldset>
+                  <legend>&raquo; My Account</legend>
+                  <table cellpadding="2" cellspacing="0" border="0" class="login-table">
                     <tr>
-                      <th>Products</th>
-                      <th>Description</th>
-                      <th>Price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
+                      <td><a href="">View Previous Orders</a></td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $items = $cart->getCart();
-                    $count = 0;
-                    $subtotal = 0;
-                    foreach ($items as $item) {
-                    ?>
-                    <tr id="item-<?php echo $count; ?>" class="item-row">
-                      <td width="30%">
-                        <span><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71111-009.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
-                        <img src="/img/cross.png" class="item-remove" alt="Remove Item" title="Remove Item" onclick="cart.remove('<?php echo $item['id']; ?>', '<?php echo $count; ?>');" />
-                      </td>
-                      <td valign="top" width="30%">ds<?php echo $item['description']; ?></td>
-                      <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>
-                      <td valign="top" width="13%">
-                        <select onchange="cart.update('<?php echo $item['id']; ?>', this.options[this.selectedIndex].value)">
-                          <?php
-                          for ($i = 1; $i <= 20; $i++) {
-                            echo "<option";
-                            if ($item['quantity'] == $i) { echo " selected"; }
-                            echo ">" . $i . "</option>";
-                          }
-                          ?>
-                        </select>
-                      </td>
-                      <td valign="top" width="*"><?php echo "\$<span class=\"total-price\">" . number_format($item['price'] * $item['quantity'], 2) . "</span>"; ?></td>
+                    <tr>
+                      <td><a href="">Track Package</a></td>
                     </tr>
-                    <?php
-                      $subtotal += ($item['price'] * $item['quantity']);
-                      $count++;
-                    }
-                    if ($count == 0) {
-                      echo "<tr><td align=\"center\" colspan=\"5\">No items in cart.</td></tr>";
-                    }
-                    ?>
-                    <tr class="subtotal">
-                      <td colspan="4">Subtotal:</td>
-                      <td><?php echo "\$<span class=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>
+                    <tr>
+                      <td><a href="">Change Account Information</a></td>
                     </tr>
-                  </tbody>
-                </table>
-              </fieldset>
-            </td>
-          </tr>
-          <tr>
-            <td align="right">
-              <input type="button" value="Continue Shopping" onclick="document.location='/catalog/'" />
-              <input type="button" value="Checkout" />
-            </td>
-          </tr>
-        </table>
-    </div>
-    </div>
-
+                    <tr>
+                      <td><a href="">Change Password</a></td>
+                    </tr>
+                  </table>
+                </fieldset>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
 
     </div>

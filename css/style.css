@@ -12,6 +12,7 @@ font-family: arial, helvetica, verdana, sans-serif;
 width: 1000px;
 margin: 0 auto;
 padding: 0 auto;
+position: relative;
 }
 
 #logo {
@@ -33,12 +34,27 @@ padding: 0;
 float: left;
 }
 
+#maincontainer .account-links {
+  font-size: 9pt;
+  position: absolute;
+  right: 10px;
+  top: 14px;
+}
+#maincontainer .account-links a {
+  color: #000;
+}
+#maincontainer .account-links a:hover {
+  text-decoration: underline;
+}
 #navigation {
 position: relative;
 top: 40px;
 left: 10px;
 }
 
+#navigation .cart-icon {
+  vertical-align: bottom;
+}
 #navigation a {
 text-transform: uppercase;
 color: #000000;
@@ -175,7 +191,18 @@ left: 0;
   background-color: #ccc;
   height: 1px;
 }
-
+#cart .cart-table .item-thumbnail {
+  height: 75px;
+  overflow: hidden;
+  width: 75px;
+}
+#cart .cart-table .item-remove {
+  cursor: pointer;
+}
+#cart .cart-table .item-row td {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+}
 #cart .cart-table .subtotal {
   background-color: #dcdace;
   font-weight: bold;
@@ -183,7 +210,90 @@ left: 0;
 #cart .cart-table .subtotal td {
   border-bottom: 1px solid #ccc;
 }
-
+#login fieldset {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+#login fieldset legend {
+  color: #f38401;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+#login .login-table {
+  font-size: 10pt;
+}
+#login .login-table a {
+  color: #f38401;
+}
+#login .login-table input[type='text'], input[type='password'] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 10pt;
+  padding: 2px;
+  width: 200px;
+}
+#login .login-table input[type='submit'] {
+  background-color: #333333;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: auto !important;
+}
+#login .login-table .error {
+  color: #ff0000;
+}
+#login .login-reset-table {
+  font-size: 10pt;
+}
+#login .login-reset-table input[type='text'], input[type='password'] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 10pt;
+  padding: 2px;
+  width: 200px;
+}
+#login .login-reset-table input[type='submit'] {
+  background-color: #333333;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: auto !important;
+}
+#register fieldset {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+#register fieldset legend {
+  color: #f38401;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+#register .register-table {
+  font-size: 10pt;
+}
+#register .register-table .register-errors {
+  color: #ff0000;
+}
+#register .register-table a {
+  color: #f38401;
+}
+#register .register-table input[type='text'], input[type='password'] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 10pt;
+  padding: 2px;
+  width: 200px;
+}
+#register .register-table input[type='submit'] {
+  background-color: #333333;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: auto !important;
+}
 #breadcrumb {
 font-size: 8pt;
 }

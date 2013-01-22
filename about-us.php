@@ -2,42 +2,6 @@
 require(".local.inc.php");
 require("inc/header.php");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-<title>Bogs Footwear Russia | ДЛЯ ЛЮБОЙ НЕПОГОДЫ</title>
-
-<link rel="shortcut icon" href="favicon.ico" >
-<link rel="stylesheet" type="textcss" href="/css/style.css" />
-<link rel="stylesheet" href="/css/galleriffic-2.css" type="textcss" />
-<script type="text/javascript" src="/js/jquery-1.3.2.js"></script>
-<script type="text/javascript" src="/js/jquery.galleriffic.js"></script>
-<script type="text/javascript" src="/js/jquery.opacityrollover.js"></script>
-<!-- We only want the thunbnails to display when javascript is disabled -->
-<script type="text/javascript">
-document.write('<style>.noscript { display: none; }</style>');
-</script>
-
-</head>
-<body>
-
-<div id="maincontainer">
-
-<span id="logo"><a href="<?php echo BASE_URL; ?>"><img src="/img/transparent.gif" width="211" height="64" vspace="0" hspace="0" border="0"></a></span>
-
-<span id="navarea">
-
-<span id="navigation"><a href="/about-us/">ДЛЯ ЛЮБОЙ НЕПОГОДЫ</a>
-<a href="/catalog/womens-collections/womens-plimsoll/">КАТАЛОГ</a>
-<a href="/contact-us/">Эксклюзивный дистрибьютор в России</a>
-<a href="/where-to-buy/">Где купить</a></span>
-
-</span>
-
-<div class="clear"></div>
-
 <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>
 
 <div class="clear"></div>

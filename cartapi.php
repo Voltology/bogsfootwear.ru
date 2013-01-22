@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $cart->clearCart();
   } else if ($action === "remove") {
     $cart->removeItem($_POST['id']);
+  } else if ($action === "update") {
+    $cart->updateQuantity($_POST['id'], $_POST['quantity']);
   }
 } else {
   $json['success'] = "false";

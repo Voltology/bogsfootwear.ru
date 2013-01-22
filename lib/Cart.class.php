@@ -20,19 +20,22 @@ class Cart  {
     }
     */
     $query = sprintf("INSERT INTO cart_sessions SET token='%s', item_id='%s', quantity='1', timestamp='%s'",
-      mysql_real_escape_string($token),
+      mysql_real_escape_string($this->_token),
       mysql_real_escape_string($id),
       mysql_real_escape_string(time()));
     mysql_query($query);
     $item['id'] = mysql_insert_id();
     $item['quantity'] = 1;
+    $item['price'] = 100;
     array_push($this->_items, $item);
+    return true;
   }
 
   public function clearCart() {
     $query = sprintf("DELETE FROM cart_sessions WHERE token='%s'",
       mysql_real_escape_string($this->_token));
     mysql_query($query);
+    return true;
   }
 
   public function getCart() {
@@ -55,6 +58,7 @@ class Cart  {
       }
       $count++;
     }
+    return true;
   }
 
   public function setCart() {
@@ -68,13 +72,30 @@ class Cart  {
       }
       array_push($this->_items, $item);
     }
+    return true;
   }
 
   public function setToken($token) {
     $this->_token = $token;
   }
 
-  public function updateCart() {
+  public function updateQuantity($id, $quantity) {
+    if ($quantity > 20) {
+      $quantity = 20;
+    }
+    $query = sprintf("UPDATE cart_sessions SET quantity='%s' WHERE token='%s' AND id='%s'",
+      mysql_real_escape_string($quantity),
+      mysql_real_escape_string($this->_token),
+      mysql_real_escape_string($id));
+    mysql_query($query);
+    $count = 0;
+    foreach ($this->_items as $item) {
+      if ($item['id'] == $id) {
+        $this->_items[$count]['quantity'] = $quantity;
+      }
+      $count++;
+    }
+    return true;
   }
 }
 ?>

@@ -1,85 +1,86 @@
 <?php
 require(".local.inc.php");
+if ($user->isLoggedIn()) {
+  header("Location: /");
+} else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  $errors = $user->validate($_POST['email'], $_POST['password1'], $_POST['password2'], $_POST['firstname'], $_POST['lastname']);
+  if (count($errors) == 0) {
+    $user->register($_POST['email'], md5($_POST['password1']), $_POST['firstname'], $_POST['lastname']);
+    setcookie("email", $_POST['email']);
+    setcookie("password", md5($_POST['password1']));
+  }
+}
 require("inc/header.php");
 ?>
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>
-
-
       <div id="maincontent">
         <div id="contentarea2">
           <span id="content2">
         <div>
       <div>
-        <div id="cart">
-        <table border="0" width="100%">
-          <tr>
-            <td>
-              <fieldset>
-                <legend>&raquo; Your Shopping Cart</legend>
-                <table width="100%" cellpadding="4" cellspacing="0" border="0" class="cart-table" id="cart-table">
-                  <thead>
-                    <tr>
-                      <th>Products</th>
-                      <th>Description</th>
-                      <th>Price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $items = $cart->getCart();
-                    $count = 0;
-                    $subtotal = 0;
-                    foreach ($items as $item) {
-                    ?>
-                    <tr id="item-<?php echo $count; ?>" class="item-row">
-                      <td width="30%">
-                        <span><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71111-009.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
-                        <img src="/img/cross.png" class="item-remove" alt="Remove Item" title="Remove Item" onclick="cart.remove('<?php echo $item['id']; ?>', '<?php echo $count; ?>');" />
-                      </td>
-                      <td valign="top" width="30%">ds<?php echo $item['description']; ?></td>
-                      <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>
-                      <td valign="top" width="13%">
-                        <select onchange="cart.update('<?php echo $item['id']; ?>', this.options[this.selectedIndex].value)">
-                          <?php
-                          for ($i = 1; $i <= 20; $i++) {
-                            echo "<option";
-                            if ($item['quantity'] == $i) { echo " selected"; }
-                            echo ">" . $i . "</option>";
-                          }
-                          ?>
-                        </select>
-                      </td>
-                      <td valign="top" width="*"><?php echo "\$<span class=\"total-price\">" . number_format($item['price'] * $item['quantity'], 2) . "</span>"; ?></td>
-                    </tr>
-                    <?php
-                      $subtotal += ($item['price'] * $item['quantity']);
-                      $count++;
-                    }
-                    if ($count == 0) {
-                      echo "<tr><td align=\"center\" colspan=\"5\">No items in cart.</td></tr>";
-                    }
-                    ?>
-                    <tr class="subtotal">
-                      <td colspan="4">Subtotal:</td>
-                      <td><?php echo "\$<span class=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </fieldset>
-            </td>
-          </tr>
-          <tr>
-            <td align="right">
-              <input type="button" value="Continue Shopping" onclick="document.location='/catalog/'" />
-              <input type="button" value="Checkout" />
-            </td>
-          </tr>
-        </table>
-    </div>
-    </div>
-
+        <div id="register">
+          <table border="0" width="500">
+            <tr>
+              <td>
+              <?php
+              if ($_SERVER['REQUEST_METHOD'] == "POST" && count($errors) == 0) {
+              ?>
+                <fieldset>
+                  <legend>&raquo; Registration Complete</legend>
+                    <table cellpadding="2" cellspacing="0" border="0" class="register-table">
+                      <tr>
+                        <td>Thank you for registering!  You will now be able to view your account and order history.</td>
+                      </tr>
+                    </table>
+                </fieldset>
+              <?php
+              } else {
+              ?>
+                <fieldset>
+                  <legend>&raquo; Register for an Account</legend>
+                  <form action="/register" method="post">
+                    <table cellpadding="2" cellspacing="0" border="0" class="register-table">
+                      <tr>
+                        <td colspan="2">Welcome! Complete the form below to register for your free account.</td>
+                      </tr>
+                      <?php
+                      if (count($errors > 0)) {
+                        echo "<tr><td colspan=\"2\" align=\"center\" class=\"register-errors\">";
+                        foreach ($errors as $error) {
+                          echo $error . "<br />";
+                        }
+                        echo "</td></tr>";
+                      }
+                      ?>
+                      <tr>
+                        <td width="120">First Name</td><td><input type="text" name="firstname" value="<?php echo $_POST['firstname']; ?>" /></td>
+                      </tr>
+                      <tr>
+                        <td width="120">Last Name</td><td><input type="text" name="lastname" value="<?php echo $_POST['lastname']; ?>" /></td>
+                      </tr>
+                      <tr>
+                        <td width="120">Email</td><td><input type="text" name="email" value="<?php echo $_POST['email']; ?>" /></td>
+                      </tr>
+                      <tr>
+                        <td width="120">Password</td><td><input type="password" name="password1" /></td>
+                      </tr>
+                      <tr>
+                        <td width="120">Re-enter Password</td><td><input type="password" name="password2" /></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td><td><input type="submit" value="Register" /></td>
+                      </tr>
+                    </table>
+                  </form>
+                </fieldset>
+              <?php
+              }
+              ?>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
 
     </div>

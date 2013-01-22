@@ -7,7 +7,7 @@ $subpage = $_GET['s'] ? $_GET['s'] : "";
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><?php echo COMPANY_NAME; ?> &raquo; Admin</title>
-    <link rel="stylesheet" href="admin.css"/>
+    <link rel="stylesheet" href="/css/admin.css"/>
     <script type="text/javascript" src="/js/main.js"></script>
   </head>
   <body>
@@ -15,7 +15,7 @@ $subpage = $_GET['s'] ? $_GET['s'] : "";
       <tr>
         <td colspan="2" valign="middle">
           <div class="headerlogo">
-            <a href="http://www.bogsfootwear.ru/"><img src="../img/admin/<?php echo ADMIN_LOGO; ?>" /></a><div class="headertext">Administration Area</div>
+            <a href="<?php echo BASE_URL; ?>"><img src="/img/admin/<?php echo ADMIN_LOGO; ?>" /></a><div class="headertext">Administration Area</div>
           </div>
         </td>
       </tr>
