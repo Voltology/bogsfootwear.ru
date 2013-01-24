@@ -46,6 +46,18 @@ class Cart  {
     return count($this->getCart());
   }
 
+  public function getItemsByGenderAndGroup($gender, $group) {
+    $items = array();
+    $query = sprintf("SELECT * FROM cart_inventory WHERE `gender`='%s' AND `group`='%s'",
+      mysql_real_escape_string($gender),
+      mysql_real_escape_string($group));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_assoc($query)) {
+      array_push($items, $row);
+    }
+    return $items;
+  }
+
   public function removeItem($id) {
     $query = sprintf("DELETE FROM cart_sessions WHERE token='%s' AND id='%s'",
       mysql_real_escape_string($this->_token),

@@ -179,6 +179,10 @@ table .table-header td {
   font-weight: bold;
   padding: 4px 4px;
 }
+table .table-operations img {
+  border: 0;
+  cursor: pointer;
+}
 
 div.pagelist {
 padding:			3px;
@@ -256,6 +260,14 @@ border: 1px solid #999999;
 color: #333333;
 font-size: 13px;
 padding: 3px;
+width: 280px;
+}
+input[type="text"].number_value {
+  text-align: right;
+  width: 50px;
+}
+textarea {
+  height: 80px;
 }
 
 .leftimage {
@@ -343,14 +355,16 @@ ul.sortable li, ul.prioritizable li {
   border:					1px solid #FF0000;
   margin:                 5px;
   padding:				5px;
+  text-align: center;
   width:                  300px;
 }
 
 .success {
   background-color: 		#FFFFDD;
   border:					1px solid #76BB22;
-  margin:                 5px;
+  margin: 5px auto;
   padding:				5px;
+  text-align: center;
   width:                  350px;
 }
 

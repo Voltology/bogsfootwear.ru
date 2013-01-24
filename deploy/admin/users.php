@@ -24,7 +24,9 @@ $userlist = Admin::getUsers();
     echo "<td>" . $userrow['lastname'] . "</td>";
     echo "<td>" . $userrow['role'] . "</td>";
     echo "<td>" . date("M j, Y, g:i a", $userrow['timestamp']) . "</td>";
-    echo "<td align=\"right\"><img src=\"/img/pencil.png\" />&nbsp;&nbsp;<img src=\"/img/cross.png\" /></td>";
+    echo "<td align=\"right\" class=\"table-operations\">";
+    echo "<a href=\"?p=users&a=edit&id=" . $userrow['id'] . "\"><img src=\"/img/pencil.png\" /></a>&nbsp;&nbsp;<img src=\"/img/cross.png\" onclick=\"admin.delete('?p=users&a=delete&id=" . $userrow['id'] . "')\" />";
+    echo "</td>";
     echo "</tr>";
     $count++;
   }

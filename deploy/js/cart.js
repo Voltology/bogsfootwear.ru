@@ -7,6 +7,14 @@ var ajax = {
   }
 };
 
+var admin = {
+  delete : function(path) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      document.location = path;
+    }
+  }
+};
+
 var cart = {
   add : function(id) {
     ajax.get('/cartapi.php', '&a=add&size=&id=' + id, function(json) {

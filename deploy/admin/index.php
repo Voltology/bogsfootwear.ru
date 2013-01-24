@@ -2,14 +2,15 @@
 require("../.local.inc.php");
 require("../lib/Admin.class.php");
 $page = $_GET['p'] ? $_GET['p'] : "home";
-$subpage = $_GET['s'] ? $_GET['s'] : "";
+$subpage = $_GET['s'] ? $_GET['s'] : null;
+$action = $_GET['a'] ? $_GET['a'] : null;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><?php echo COMPANY_NAME; ?> &raquo; Admin</title>
     <link rel="stylesheet" href="/css/admin.css"/>
-    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/cart.js"></script>
   </head>
   <body>
     <table width="100%" cellspacing="0" cellpadding="0">
@@ -28,10 +29,8 @@ $subpage = $_GET['s'] ? $_GET['s'] : "";
           ?>
             <div class="<?php if ($page === "home") { ?>active<?php } ?>menuitem"><a href="?p=">Home</a></div>
             <div class="<?php if ($page === "inventory") { ?>active<?php } ?>menuitem"><a href="?p=inventory">Inventory</a></div>
-            <?php if ($page === "inventory") { ?>
-            <div class="<?php if ($subpage === "modify") { ?>active<?php } ?>submenuitem"><a href="?p=inventory&s=modify">Modify</a></div>
-            <div class="<?php if ($subpage === "upload") { ?>active<?php } ?>submenuitem"><a href="?p=inventory&s=upload">Upload</a></div>
-            <? } ?>
+            <div class="<?php if ($page === "groups") { ?>active<?php } ?>menuitem"><a href="?p=groups">Groups</a></div>
+            <div class="<?php if ($page === "upload") { ?>active<?php } ?>menuitem"><a href="?p=upload">Upload CSV</a></div>
             <div class="<?php if ($page === "users") { ?>active<?php } ?>menuitem"><a href="?p=users">Users</a></div>
             <div class="<?php if ($page === "settings") { ?>active<?php } ?>menuitem"><a href="?p=settings">Settings</a></div>
             <br />

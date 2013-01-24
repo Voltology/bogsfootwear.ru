@@ -92,9 +92,17 @@ if ($subpage === "upload") {
 <?php
     }
 } else {
-  $action = $_GET['a'];
   if (!isset($action)) {
     echo "<h3>Inventory</h3>";
+    if ($_GET['save'] === "true") {
+      if (isset($_POST['id'])) {
+        echo "<div class=\"success\">Inventory item has been saved.</div>";
+        Admin::addItem($_POST);
+      } else {
+        echo "<div class=\"success\">Inventory item has been created.</div>";
+        Admin::updateItem($_POST['id'], $_POST);
+      }
+    }
     echo "<p class=\"addnew\"><a href=\"?p=inventory&a=add\"><img src=\"/img/add.png\" />&nbsp;Add New Item</a></p>";
     $query = "SELECT * FROM cart_inventory";
     $query = mysql_query($query);
@@ -112,34 +120,73 @@ if ($subpage === "upload") {
       echo "<td>" . ucwords($row['group']) . "</td>";
       echo "<td>" . ucwords($row['gender']) . "</td>";
       echo "<td>No</td>";
-      echo "<td align=\"right\">";
+      echo "<td align=\"right\" class=\"table-operations\">";
       echo "<a href=\"?p=inventory&a=edit&id=" . $row['id'] . "\"><img src=\"/img/pencil.png\" alt=\"Edit Item\" title=\"Edit Item\" /></a>&nbsp;&nbsp;&nbsp;";
-      echo "<a href=\"javascript:\"><img src=\"/img/cross.png\" alt=\"Delete Item\" title=\"Delete Item\" /></a></td>";
+      echo "<img src=\"/img/cross.png\" alt=\"Delete Item\" title=\"Delete Item\" onclick=\"admin.delete('?p=inventory&a=delete&id=" . $row['id'] . "');\" />";
+      echo "</td>";
       echo "</tr>";
       $count++;
     }
     echo "</table>";
     echo "<p class=\"addnew\"><a href=\"?p=inventory&a=add\"><img src=\"/img/add.png\" />&nbsp;Add New Item</a></p>";
-  } else if ($action === "edit") {
+  } else if ($action === "add" || $action === "edit") {
+    $item = Admin::getItemById($_GET['id']);
 ?>
-  <h3>Inventory - Edit Item</h3>
-  <form method="post" action="?p=inventory&a=save">
-    <table class="editTable">
-      <tr><td class="editLabel">Product Name</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Sku</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Description</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Color</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Group</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Gender</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Price</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Image</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Thumbnail</td><td class="editField"><input type="text" name="email" value="" /></td></tr>
-      <tr><td class="editLabel">Active</td><td class="editField"><input type="checkbox" name="" value="" /></td></tr>
-    </table>
-    <input type="submit" value="Save Item" />
-  </form>
+    <h3>Inventory - <?php echo ucwords($action); ?> Item</h3>
+    <form method="post" action="?p=inventory&save=true">
+      <h4>Product Information</h4>
+      <table class="editTable">
+        <tr><td class="editLabel">Product Name</td><td class="editField"><input type="text" name="name" value="<?php echo $item['name']; ?>" /></td></tr>
+        <tr><td class="editLabel">Sku</td><td class="editField"><input type="text" name="sku" value="<?php echo $item['sku']; ?>" /></td></tr>
+        <tr><td class="editLabel">Description</td><td class="editField"><textarea name="description" value=""><?php echo $item['description']; ?></textarea></td></tr>
+        <tr><td class="editLabel">Color</td><td class="editField"><input type="text" name="color" value="<?php echo $item['color']; ?>" /></td></tr>
+        <tr><td class="editLabel">Group</td><td class="editField">
+          <select>
+            <option>Select Group</option>
+            <?php
+            $groups = Admin::getGroups();
+            foreach ($groups as $group) {
+            ?>
+            <option value="<?php echo $group['id']; ?>"><?php echo ucwords($group['group']); ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </td></tr>
+        <tr><td class="editLabel">Gender</td><td class="editField">
+          <select name="gender">
+            <option value="null">Select Gender</option>
+            <?php
+            $genders = Admin::getGenders();
+            foreach ($genders as $gender) {
+            ?>
+            <option value="<?php echo $gender['id']; ?>"><?php echo ucwords($gender['gender']); ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </td></tr>
+        <tr><td class="editLabel">Price</td><td class="editField"><input type="text" name="price" class="number_value" value="<?php echo number_format($item['price'], 2); ?>" /></td></tr>
+        <tr><td class="editLabel">Image</td><td class="editField"><input type="file" name="image" value="" /></td></tr>
+        <tr><td class="editLabel">Thumbnail</td><td class="editField"><input type="file" name="thumbnail" value="" /></td></tr>
+        <tr><td class="editLabel">Active</td><td class="editField"><input type="checkbox" name="active" value="1" /></td></tr>
+      </table>
+      <h4>Stock</h4>
+      <table class="editTable">
+        <?php
+        for ($i = 1; $i <= 22; $i++) {
+        ?>
+        <tr><td class="editLabel">Size <?php echo $i; ?></td><td class="editField"><input type="text" name="size_" class="number_value" value="<?php echo $item['size_' . $i]; ?>" /></td></tr>
+        <?php
+        }
+        ?>
+      </table>
+      <?php
+      if (isset($_GET['id'])) { echo "<input type=\"hidden\" name=\"id\" value=\"" . $_GET['id'] . "\" />"; }
+      ?>
+      <input type="submit" value="Save Item" />
+    </form>
 <?php
-  } else if ($action === "save") {
   }
 }
 ?>

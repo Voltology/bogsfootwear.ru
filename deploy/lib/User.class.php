@@ -5,6 +5,7 @@ class User {
   private $_email;
   private $_firstname;
   private $_lastname;
+  private $_role;
   private $_token;
 
   public function changePassword($password) {
@@ -51,6 +52,10 @@ class User {
 
   public function isLoggedIn() {
     return $this->_isloggedin;
+  }
+
+  public function login() {
+    $this->_isloggedin = false;
   }
 
   public function logout() {

@@ -2,8 +2,8 @@
 require(".local.inc.php");
 require("inc/header.php");
 
-$category = $_GET['category'];
-$style = $_GET['style'];
+$gender = $_GET['gender'];
+$group = $_GET['group'];
 ?>
     <span id="bannerimage"><img src="/img/womens-plimsoll.jpg" width="998" height="225" /></span>
     <div class="clear"></div>
@@ -50,6 +50,7 @@ $style = $_GET['style'];
                 </div>
                 <div id="thumbs" class="navigation">
                   <ul class="thumbs noscript">
+                    <!--
                     <li><a class="thumb" href="/img/catalog/womens-collections/womens-plimsoll/hero_plimsoll_multi.jpg" alt="hero_plimsoll_multi" /><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/hero_plimsoll_multi.jpg" alt="hero_plimsoll_multi" /></a>
                     <div class="caption">
                     <div class="image-title"><b>Plimsoll mid vintage</b> (РАЗМЕРЫ: 6-12)</div>
@@ -240,11 +241,10 @@ $style = $_GET['style'];
                     <div class="features">100% водонепроницаемость / Больше изящества с удобной посадкой / Надежное резиновое покрытие ручной формовки поверх эластичного во всех направлениях голенища / 7 мм водонепроницаемого материала Neo-Tech™ / Влагоотводящее покрытие Max-Wick™ дарит сухость и комфорт / Не оставляющая следов и самоочищающаяся подошва / Антимикробная стелька Aegis с защитой от запаха / Легко надеваются при помощи ручек / Комфорт гарантирован от умеренных температур до -40°С</div>
                     </div>
                   </li>
+                  -->
                   <?php
-                  $query = sprintf("SELECT id,sku,name,description,price,image,thumbnail FROM cart_inventory WHERE gender='%s'",
-                    mysql_real_escape_string(strtolower($_GET['gender'])));
-                  $query = mysql_query($query);
-                  while ($row = mysql_fetch_assoc($query)) {
+                  $items = $cart->getItemsByGenderAndGroup($gender, $group);
+                  foreach ($items as $item) {
                   ?>
                     <li>
                     <a class="thumb" href="/img/catalog/womens-collections/womens-plimsoll/71141-300.jpg" alt="71141-300" /><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71141-300.jpg" alt="71141-300" /></a>
@@ -262,10 +262,10 @@ $style = $_GET['style'];
                         <option>12</option>
                       </select>
                     </div>
-                    <input type="button" value="Add To Cart" onclick="cart.add('<?php echo $row['id']; ?>')" />
-                    <div class="image-desc"><?php echo $row['color']; ?> <i>(<?php echo $row['sku']; ?>)</i><br/>
+                    <input type="button" value="Add To Cart" onclick="cart.add('<?php echo $item['id']; ?>')" />
+                    <div class="image-desc"><?php echo $item['color']; ?> <i>(<?php echo $item['sku']; ?>)</i><br/>
                     (зеленый)<br/>
-                    <b>MSRP</b> $<?php number_format($row['price']); ?> USD</div>
+                    <b>MSRP</b> $<?php number_format($item['price']); ?> USD</div>
                     <div class="features">100% водонепроницаемость / Больше изящества с удобной посадкой / Надежное резиновое покрытие ручной формовки поверх эластичного во всех направлениях голенища / 7 мм водонепроницаемого материала Neo-Tech™ / Влагоотводящее покрытие Max-Wick™ дарит сухость и комфорт / Не оставляющая следов и самоочищающаяся подошва / Антимикробная стелька Aegis с защитой от запаха / Легко надеваются при помощи ручек / Комфорт гарантирован от умеренных температур до -40°С</div>
                     </div>
                   </li>

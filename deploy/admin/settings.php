@@ -1,5 +1,5 @@
           <h3>Settings</h3>
-          <form method="post" action="/login-redirect.php">
+          <form method="post" action="?p=settings&a=save">
             <?php
             if ($_GET['fail'] === "true") {
               echo "<div class=\"error\">Username/password incorrect.</div>";
