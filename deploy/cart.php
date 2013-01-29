@@ -26,7 +26,7 @@ require("inc/header.php");
                       <th>Total</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="cart-table-body">
                     <?php
                     $items = $cart->getCart();
                     $count = 0;
@@ -38,7 +38,7 @@ require("inc/header.php");
                         <span><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71111-009.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
                         <img src="/img/cross.png" class="item-remove" alt="Remove Item" title="Remove Item" onclick="cart.remove('<?php echo $item['id']; ?>', '<?php echo $count; ?>');" />
                       </td>
-                      <td valign="top" width="30%">ds<?php echo $item['description']; ?></td>
+                      <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?></td>
                       <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>
                       <td valign="top" width="13%">
                         <select onchange="cart.update('<?php echo $item['id']; ?>', this.options[this.selectedIndex].value)">
@@ -51,7 +51,7 @@ require("inc/header.php");
                           ?>
                         </select>
                       </td>
-                      <td valign="top" width="*"><?php echo "\$<span class=\"total-price\">" . number_format($item['price'] * $item['quantity'], 2) . "</span>"; ?></td>
+                      <td valign="top" width="*"><?php echo "\$<span class=\"total-price\" id=\"total-price-" . $item['sku'] . "\">" . number_format($item['price'] * $item['quantity'], 2) . "</span>"; ?></td>
                     </tr>
                     <?php
                       $subtotal += ($item['price'] * $item['quantity']);
@@ -63,7 +63,7 @@ require("inc/header.php");
                     ?>
                     <tr class="subtotal">
                       <td colspan="4">Subtotal:</td>
-                      <td><?php echo "\$<span class=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>
+                      <td><?php echo "\$<span class=\"cart-subtotal\" id=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -73,7 +73,9 @@ require("inc/header.php");
           <tr>
             <td align="right">
               <input type="button" value="Continue Shopping" onclick="document.location='/catalog/'" />
-              <input type="button" value="Checkout" />
+              <?php if ($count !== 0) { ?>
+              <input type="image" src="/img/btn-checkout.png" class="btn-checkout" id="btn-checkout" onclick="document.location='/checkout/'" />
+              <? } ?>
             </td>
           </tr>
         </table>

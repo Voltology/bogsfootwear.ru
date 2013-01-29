@@ -1,10 +1,12 @@
 <?php
 require(".local.inc.php");
 require("inc/header.php");
+$action = $_GET['a'];
+if ($action === "reset") {
+  $user->resetPassword($_POST['reset-email']);
+}
 ?>
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>
-
-
       <div id="maincontent">
         <div id="contentarea2">
           <span id="content2">
@@ -51,8 +53,13 @@ require("inc/header.php");
               <td>
                 <fieldset>
                   <legend>&raquo; Reset Password</legend>
-                  <form action="reset-password.php" method="post">
+                  <form action="login.php?a=reset" method="post">
                     <table cellpadding="2" cellspacing="0" border="0" class="login-reset-table">
+                      <?php
+                      if ($action === "reset") {
+                        echo "<tr class=\"success\"><td align=\"center\" colspan=\"2\">A temporary password has been emailed to you.</td></tr>";
+                      }
+                      ?>
                       <tr>
                         <td colspan="2">Enter your email address and a new password will be immediately sent to you. You may change your replacement password later under Sign In.</td>
                       </tr>

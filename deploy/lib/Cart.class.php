@@ -10,23 +10,21 @@ class Cart  {
 
   public function addItem($id) {
     $item = array();
-    /*
-    $query = sprintf("SELECT sku,name,description,color,price FROM cart_inventory WHERE id='%s'",
+    $query = sprintf("SELECT sku,name,description,color,price FROM cart_inventory WHERE id='%s' LIMIT 1",
       mysql_real_escape_string($id));
     $query = mysql_query($query);
     $row = mysql_fetch_assoc($query);
     foreach ($row as $key => $value) {
       $item[$key] = $value;
     }
-    */
-    $query = sprintf("INSERT INTO cart_sessions SET token='%s', item_id='%s', quantity='1', timestamp='%s'",
+    $query = sprintf("INSERT INTO cart_sessions SET token='%s', item_id='%s', price='%s', quantity='1', timestamp='%s'",
       mysql_real_escape_string($this->_token),
       mysql_real_escape_string($id),
+      mysql_real_escape_string($row['price']),
       mysql_real_escape_string(time()));
     mysql_query($query);
     $item['id'] = mysql_insert_id();
     $item['quantity'] = 1;
-    $item['price'] = 100;
     array_push($this->_items, $item);
     return true;
   }
@@ -56,6 +54,22 @@ class Cart  {
       array_push($items, $row);
     }
     return $items;
+  }
+
+  public function getItemTotals() {
+    $totals = array();
+    foreach ($this->_items as $item) {
+      $totals[$item['sku']] = $item['quantity'] * $item['price'];
+    }
+    return $totals;
+  }
+
+  public function getSubTotal() {
+    $subtotal = 0;
+    foreach ($this->_items as $item) {
+      $subtotal += $item['quantity'] * $item['price'];
+    }
+    return $subtotal;
   }
 
   public function removeItem($id) {

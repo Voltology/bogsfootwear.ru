@@ -172,6 +172,10 @@ left: 0;
   font-size: 12pt;
   text-transform: uppercase;
 }
+#cart .btn-checkout {
+  margin-left: 10px;
+  vertical-align: top
+}
 #cart .cart-table th {
   background-color: #dcdace;
   border-bottom: 1px solid #CCC;
@@ -261,6 +265,9 @@ left: 0;
   cursor: pointer;
   padding: 5px 10px;
   width: auto !important;
+}
+#login .login-reset-table .success {
+  color: #00AA00;
 }
 #register fieldset {
   border: 1px solid #ccc;

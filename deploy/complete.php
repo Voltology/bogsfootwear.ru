@@ -1,15 +1,34 @@
 <?php
 require(".local.inc.php");
-if ($user->isLoggedIn()) {
-  header("Location: /");
-} else if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $errors = $user->validate($_POST['email'], $_POST['password1'], $_POST['password2'], $_POST['firstname'], $_POST['lastname']);
-  if (count($errors) == 0) {
-    $user->register($_POST['email'], md5($_POST['password1']), $_POST['firstname'], $_POST['lastname']);
-    setcookie("email", $_POST['email']);
-    setcookie("password", md5($_POST['password1']));
-  }
-}
+
+$ch = curl_init(STORE_URL . "/order/create");
+$body = '';
+
+$headers = array();
+$headers[] = "storeToken: " . STORE_TOKEN;
+$headers[] = "clientToken: " . CLIENT_TOKEN;
+
+$headers[] = "Content-Type: application/json; charset=UTF-8";
+$headers[] = "Accept: application/json";
+
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_VERBOSE, 1);
+//curl_setopt($ch, CURLOPT_PUT, TRUE);
+//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+curl_setopt($ch, CURLOPT_ENCODING, "");
+curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+$data = curl_exec($ch);
+
+echo $data;
+
 require("inc/header.php");
 ?>
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>

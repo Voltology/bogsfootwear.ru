@@ -38,7 +38,7 @@
         </div>
         <span id="navigation">
           <a href="/about-us/">ДЛЯ ЛЮБОЙ НЕПОГОДЫ</a>
-          <a href="/catalog/womens-collections/womens-plimsoll/">КАТАЛОГ</a>
+          <a href="/catalog/womens/accessories/">КАТАЛОГ</a>
           <a href="/contact-us/">Эксклюзивный дистрибьютор в России</a>
           <a href="/where-to-buy/">Где купить</a>
           <?php

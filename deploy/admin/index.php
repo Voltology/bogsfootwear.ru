@@ -68,6 +68,8 @@ $action = $_GET['a'] ? $_GET['a'] : null;
               require("inventory.php");
             } else if ($page === "users") {
               require("users.php");
+            } else if ($page === "upload") {
+              require("upload.php");
             } else if ($page === "settings") {
               require("settings.php");
             } else {

@@ -8,12 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $action = $_POST['a'];
   if ($action === "add") {
     $cart->addItem($_POST['id']);
+    $json['itemcount'] = $cart->getItemCount();
   } else if ($action === "clear") {
     $cart->clearCart();
   } else if ($action === "remove") {
     $cart->removeItem($_POST['id']);
+    $json['subtotal'] = $cart->getSubTotal();
+    $json['itemcount'] = $cart->getItemCount();
   } else if ($action === "update") {
     $cart->updateQuantity($_POST['id'], $_POST['quantity']);
+    $json['totals'] = $cart->getItemTotals();
   }
 } else {
   $json['success'] = "false";

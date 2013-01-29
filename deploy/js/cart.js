@@ -39,6 +39,11 @@ var cart = {
       if (json.success === 'true') {
         var itemcount = parseInt($('#item-count').html()) - 1;
         $('#item-count').html(itemcount);
+        $('#cart-subtotal').html(json.subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        if (json.itemcount == 0) {
+          $('#cart-table-body').html('<tr><td align="center" colspan="5">No items in cart.</td></tr><tr class="subtotal"><td colspan="4">Subtotal:</td><td>$0.00</td></tr>');
+          $('#btn-checkout').remove();
+        }
         cart.removerow(row);
       } else {
         alert('errors');
@@ -51,9 +56,15 @@ var cart = {
   update : function(id, quantity) {
     ajax.get('/cartapi.php', '&a=update&id=' + id + '&quantity=' + quantity, function(json) {
       if (json.success === 'true') {
+        var subtotal = 0;
+        $.each(json.totals, function(key, value) {
+          $('#total-price-' + key).html(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+          subtotal += value;
+        });
+        $('#cart-subtotal').html(subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         alert('Item quantity has been updated!');
       } else {
-        alert('errors');
+        alert('There was an error updating the item quanitity.  Please try again.');
       }
     });
   }

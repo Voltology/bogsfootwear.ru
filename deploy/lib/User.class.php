@@ -15,8 +15,9 @@ class User {
   }
 
   public function checkPassword($email, $password) {
-    $query = sprintf("SELECT id,role FROM cart_users WHERE email='%s' AND password='%s' LIMIT 1",
+    $query = sprintf("SELECT id,role FROM cart_users WHERE email='%s' AND (password='%s' OR password_reset='%s') LIMIT 1",
       mysql_real_escape_string($email),
+      mysql_real_escape_string($password),
       mysql_real_escape_string($password));
     $query = mysql_query($query);
     if (mysql_num_rows($query) > 0) {
@@ -73,6 +74,22 @@ class User {
       mysql_real_escape_string($_SERVER['REMOTE_ADDR']));
     mysql_query($query);
     $this->_isloggedin = true;
+  }
+
+  public function resetPassword($email) {
+    $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randstring = '';
+    for ($i = 0; $i < 8; $i++) {
+      $randstring .= $chars[rand(0, strlen($chars))];
+    }
+    $query = sprintf("UPDATE cart_users SET password_reset='%s' WHERE email='%s'",
+      mysql_real_escape_string(md5($randstring)),
+      mysql_real_escape_string($email));
+    mysql_query($query);
+    $message = "New Password: " . $randstring;
+    $headers = 'From: do-not-reply@bogsfootwear.ru' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+    mail($email, "Password Reset", $message, $headers);
   }
 
   public function setRole($role) {
