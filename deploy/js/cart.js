@@ -19,6 +19,11 @@ var cart = {
   add : function(id) {
     ajax.get('/cartapi.php', '&a=add&size=&id=' + id, function(json) {
       if (json.success === 'true') {
+        if (json.itemcount === 1) {
+          $('#cart-text').html('<span id="item-count">' + json.itemcount + '</span> items in cart</a>');
+        } else {
+          $('#item-count').html(json.itemcount);
+        }
         alert('Item has been added to your cart!');
       } else {
         alert('errors');
@@ -62,6 +67,7 @@ var cart = {
           subtotal += value;
         });
         $('#cart-subtotal').html(subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#item-count').html(json.itemcount);
         alert('Item quantity has been updated!');
       } else {
         alert('There was an error updating the item quanitity.  Please try again.');
@@ -69,3 +75,19 @@ var cart = {
     });
   }
 };
+
+var dialog = {
+  close : function() {
+    $('#modal-blanket').css('display','none');
+    $('#dialog').css('display','none');
+  },
+  open : function() {
+    $('#modal-blanket').css('display','block');
+    $('#dialog').css({
+      'display' : 'block',
+      'left' : ($(document).width() / 2) - $('#dialog').width() / 2,
+      'top' : ((($(document).height() / 2) - $('#dialog').height() / 2) * .7)
+    });
+    $('#dialog').html();
+  }
+}

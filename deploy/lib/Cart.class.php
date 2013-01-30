@@ -41,7 +41,11 @@ class Cart  {
   }
 
   public function getItemCount() {
-    return count($this->getCart());
+    $count = 0;
+    foreach ($this->_items as $item) {
+      $count += $item['quantity'];
+    }
+    return $count;
   }
 
   public function getItemsByGenderAndGroup($gender, $group) {

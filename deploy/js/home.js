@@ -5,7 +5,7 @@ $(document).ready(function(){
 			autoOpen: false,
 			width:944,
 			modal: true,
-			height:2000,
+      height: 2000,
 			resizeable:false
 		  });
 		  

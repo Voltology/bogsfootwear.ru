@@ -1,6 +1,6 @@
 <?php
 require(".local.inc.php");
-require("inc/header.php");
+include("inc/header.php");
 ?>
 
 <span id="bannerimage"><img src="/img/contact-us.jpg" width="998" height="225" /></span>
@@ -11,7 +11,6 @@ require("inc/header.php");
 <div id="contentarea2">
 <span id="content2">
 
-<div><div><div>
 <table width="900" cellpadding="0" cellspacing="0" border="0">
 
 <tr>
@@ -60,37 +59,6 @@ Global Supply Management LLC<br/>
 </div>
 </div>
 
-</div>
-
-</div>
-</div>
-
-<div class="clear"></div>
-
-<div id="footer"><span style="color: #ffffff; font-size: 6pt; margin: 230px; line-height: 18pt;">&copy; Copyright 2012. Global Supply Management Inc. All Rights Reserved</span></div>
-
-<div class="clear"></div>
-
-</div>
-&nbsp;<br/>
-&nbsp;<br/>
-
-<script type="text/javascript">
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-33670595-1']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-</script>
-
-</body>
-</html>
 <?php
-require("inc/footer.php");
+include("inc/footer.php");
 ?>

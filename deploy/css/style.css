@@ -424,3 +424,36 @@ text-decoration: underline;
 cursor: pointer;
 }
 
+div#modal-blanket {
+  background-color: #000;
+  display: none;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  text-align:center;
+  top: 0px;
+  width: 100%;
+  z-index: 1000;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+div#dialog {
+  background-color: #fff;
+  border: 2px solid #999;
+  border-radius: 20px;
+  color: #666;
+  display: none;
+  font-size: 38px;
+  font-weight: 400;
+  height: 180px;
+  position: absolute;
+  text-align: center;
+  width: 450px;
+  z-index: 1001;
+  -moz-box-shadow: 5px 5px 12px #333;
+  -webkit-box-shadow: 3px 3px 12px #333;
+  box-shadow: 5px 5px 12px #333;
+}
+div#dialog p {
+  margin: 35px 0 15px 0;
+}

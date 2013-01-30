@@ -22,6 +22,11 @@
     <![endif]-->
   </head>
   <body>
+    <div id="modal-blanket"></div>
+    <div id="dialog">
+      <p>Loading PayPal...</p>
+      <img src="/img/ajax-loader.gif" />
+    </div>
     <div id="maincontainer">
       <span id="logo"><a href="<?php echo BASE_URL; ?>"><img src="/img/transparent.gif" width="211" height="64" vspace="0" hspace="0" border="0"></a></span>
       <span id="navarea">
@@ -43,7 +48,7 @@
           <a href="/where-to-buy/">Где купить</a>
           <?php
           if ($cart->getItemCount() < 1) {
-            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" /> Cart is empty.</a></span>";
+            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" /> <span id=\"cart-text\">Cart is empty.</span></a></span>";
           } else {
             echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> items in cart</a></span>";
           }

@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   } else if ($action === "update") {
     $cart->updateQuantity($_POST['id'], $_POST['quantity']);
     $json['totals'] = $cart->getItemTotals();
+    $json['itemcount'] = $cart->getItemCount();
   }
 } else {
   $json['success'] = "false";
