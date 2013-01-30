@@ -59,4 +59,12 @@ class PayPal {
     }
     return $nvp;
   }
+
+  public function setCurrency($currency) {
+    $this->_currency = $currency;
+  }
+
+  public function setPaymentType($paymenttype) {
+    $this->_paymenttype = $paymenttype;
+  }
 }

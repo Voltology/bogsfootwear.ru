@@ -6,7 +6,11 @@ if ($user->checkPassword($_POST['email'], md5($_POST['password']))) {
   if ($_POST['logintype'] === "admin") {
     header("Location: /admin/");
   } else {
-    header("Location: /catalog");
+    if (isset($_POST['ref'])) {
+      header("Location: " . $_POST['ref']);
+    } else {
+      header("Location: /catalog");
+    }
   }
 } else {
   if ($_POST['logintype'] === "admin") {

@@ -1,33 +1,8 @@
 <?php
 require(".local.inc.php");
-$ch = curl_init(STORE_URL . "/order/create");
-$body = '';
-
-$headers = array();
-$headers[] = "storeToken: " . STORE_TOKEN;
-$headers[] = "clientToken: " . CLIENT_TOKEN;
-
-$headers[] = "Content-Type: application/json; charset=UTF-8";
-$headers[] = "Accept: application/json";
-
-curl_setopt($ch, CURLOPT_HEADER, true);
-curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_VERBOSE, 1);
-//curl_setopt($ch, CURLOPT_PUT, TRUE);
-//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-curl_setopt($ch, CURLOPT_ENCODING, "");
-curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-$data = curl_exec($ch);
-
-echo $data;
-
+require(LIB_PATH . "Fulfillment.class.php");
+$data = '{"Subtotal":200.0000, "GrandTotal":220.0000, "ShippingTotal":20.0000, "HandlingTotal":0.0000, "CouponsTotal":0.0000, "TaxTotal": 0.0000, "CustomerEmail":"test@test.com", "BillToLastName":"Doe", "BillToFirstName":"John", "BillToAddressLine1":"123 Main Street", "BillToAddressLine2":null, "BillToAddressCity":"Chicago", "BillToAddressState":"IL", "BillToAddressCountry":"US", "BillToAddressPostalCode":"60631", "BillToPhone":"800-555-5555", "BillToPhoneExt":"340", "BillToFax":null, "BillToCustomerNotes":"Leave behind side door", "ShipToLastName":"Doe", "ShipToFirstName":"John", "ShipToAddressLine1":"123 Main Street", "ShipToAddressLine2":"Unit 1", "ShipToAddressCity":"Chicago", "ShipToAddressState":"IL", "ShipToAddressCountry":"US", "ShipToAddressPostalCode":"60656", "ShipToPhone":null, "ShipToPhoneExt":null, "ShipToFax":null, "ShipToCustomerNotes":null, "ReferenceID":"A38274", "ShipMethodDesc": "Standard", "Items":[{"SKU":"HM123451", "QtyOrdered":1, "EachPrice":100.0000},{"SKU":"123-456", "QtyOrdered":1, "EachPrice":100.0000}]}';
+Fulfillment::createOrder($data);
 include("inc/header.php");
 ?>
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>

@@ -1,6 +1,7 @@
 <?php
 require("../.local.inc.php");
 require(LIB_PATH . "/Admin.class.php");
+require(LIB_PATH . "/Fulfillment.class.php");
 $page = $_GET['p'] ? $_GET['p'] : "home";
 $subpage = $_GET['s'] ? $_GET['s'] : null;
 $action = $_GET['a'] ? $_GET['a'] : null;

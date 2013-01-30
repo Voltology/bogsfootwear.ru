@@ -1,4 +1,4 @@
-body {
+html,body {
   margin: 0 auto;
   padding: 0 auto;
   background-image: url("/img/background.jpg");
@@ -6,34 +6,31 @@ body {
   background-attachment: fixed;
   background-position: top center;
   font-family: arial, helvetica, verdana, sans-serif;
+  overflow-y: scroll;
 }
-
 #maincontainer {
-width: 1000px;
-margin: 0 auto;
-padding: 0 auto;
-position: relative;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0 auto;
+  position: relative;
 }
-
 #logo {
-width: 211px;
-height: 64px;
-float: left;
-margin: 10px 5px 10px 0;
-padding: 0;
-background-image: url("/img/bogsLogo.jpg");
-background-repeat: no-repeat;
+  width: 211px;
+  height: 64px;
+  float: left;
+  margin: 10px 5px 10px 0;
+  padding: 0;
+  background-image: url("/img/bogsLogo.jpg");
+  background-repeat: no-repeat;
 }
-
 #navarea {
-background-color: #bab7a5;
-width: 779px;
-height: 64px;
-margin: 10px 0 10px 5px;
-padding: 0;
-float: left;
+  background-color: #bab7a5;
+  width: 779px;
+  height: 64px;
+  margin: 10px 0 10px 5px;
+  padding: 0;
+  float: left;
 }
-
 #maincontainer .account-links {
   font-size: 9pt;
   position: absolute;
@@ -47,121 +44,104 @@ float: left;
   text-decoration: underline;
 }
 #navigation {
-position: relative;
-top: 40px;
-left: 10px;
+  position: relative;
+  top: 40px;
+  left: 10px;
 }
-
 #navigation .cart-icon {
   margin-bottom: 1px;
   vertical-align: bottom;
 }
 #navigation a {
-text-transform: uppercase;
-color: #000000;
-font-weight: bold;
-font-size: 9pt;
-margin: 0 8px 0 0;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: bold;
+  font-size: 9pt;
+  margin: 0 8px 0 0;
 }
-
 #navigation a:hover {
-color: #ffffff;
+  color: #ffffff;
 }
-
 #bannerimage {
-width: 1000px;
-margin: 0 0 10px 0;
-padding: 0;
+  width: 1000px;
+  margin: 0 0 10px 0;
+  padding: 0;
 }
-
 #maincontent {
-width: 1000px;
-/*min-height: 520px;*/
-margin: 10px 0 0 0;
-padding: 0;
+  width: 1000px;
+  /*min-height: 520px;*/
+  margin: 10px 0 0 0;
+  padding: 0;
 }
-
 #maincontent2 {
-width: 1000px;
-margin: 10px 0 0 0;
-padding: 0;
+  width: 1000px;
+  margin: 10px 0 0 0;
+  padding: 0;
 }
-
 #subnav {
-float: left;
-width: 211px;
-min-height: 720px;
-color: #ffffff;
-background-color: #bab7a5;
-margin: 0 5px 0 0;
-padding: 0;
+  float: left;
+  width: 211px;
+  min-height: 720px;
+  color: #ffffff;
+  background-color: #bab7a5;
+  margin: 0 5px 0 0;
+  padding: 0;
 }
-
 #navcontent {
-position: relative;
-top: 10px;
-font-size: 10pt;
-list-style-type: none;
+  position: relative;
+  top: 10px;
+  font-size: 10pt;
+  list-style-type: none;
 }
-
 #navcontent b {
-color: #000000;
-font-size: 11pt;
+  color: #000000;
+  font-size: 11pt;
 }
-
 #navcontent a {
-margin: 0 0 0 15px;
+  margin: 0 0 0 15px;
 }
-
 #navcontent a:hover {
-color: #ffffff;
+  color: #ffffff;
 }
-
 #navcontent a:active {
-color: #000000;
+  color: #000000;
 }
-
 #contentarea {
-float: right;
-width: 779px;
-background-color: #ffffff;
-min-height: 720px;
-margin: 0 0 0 5px;
-padding: 0;
+  float: right;
+  width: 779px;
+  background-color: #ffffff;
+  min-height: 720px;
+  margin: 0 0 0 5px;
+  padding: 0;
 }
-
 #content {
-position: relative;
-top: 15px;
-left: 20px;
+  position: relative;
+  top: 15px;
+  left: 20px;
 }
-
 #contentarea2 {
-/*float: right;*/
-width: 960px;
-background-color: #ffffff;
-/*min-height: 1200px;*/
-margin: 0;
-padding: 20px 20px;
+  /*float: right;*/
+  width: 960px;
+  background-color: #ffffff;
+  /*min-height: 1200px;*/
+  margin: 0;
+  padding: 20px 20px;
 }
-
 #content2 {
-/*position: relative;*/
-top: 15px;
-left: 20px;
+  /*position: relative;*/
+  top: 15px;
+  left: 20px;
 }
-
 #contentarea3 {
-float: right;
-width: 1000px;
-margin: 0;
-padding: 0;
+  float: right;
+  width: 1000px;
+  margin: 0;
+  padding: 0;
 }
-
 #content3 {
-position: relative;
-top: 0;
-left: 0;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 #cart fieldset {
   border: 1px solid #ccc;
@@ -184,12 +164,10 @@ left: 0;
   text-align: left;
   text-transform: uppercase;
 }
-
 #cart .cart-table td {
   font-size: 10pt;
   text-transform: uppercase;
 }
-
 #cart .cart-table hr {
   border: 0;
   color: #ccc;
@@ -303,47 +281,40 @@ left: 0;
   width: auto !important;
 }
 #breadcrumb {
-font-size: 8pt;
+  font-size: 8pt;
 }
-
 #footer {
-width: 1000px;
-background-color: #000000;
-margin: 10px 0 0 0;
-padding: 0;
-height: 30px;
+  width: 1000px;
+  background-color: #000000;
+  margin: 10px 0 0 0;
+  padding: 0;
+  height: 30px;
 }
-
 .clear {
-clear: both;
+  clear: both;
 }
-
 a{
-color: #777777;
-text-decoration: none;
+  color: #777777;
+  text-decoration: none;
 }
 a:focus, a:hover, a:active {
-text-decoration: none;
+  text-decoration: none;
 }
-
 #page {
-width: 710px;
-background-color: #fff;
-margin: 0;
-text-align: left;
+  width: 710px;
+  background-color: #fff;
+  margin: 0;
+  text-align: left;
 }
-
 #container {
-padding: 0;
-text-align: left;
+  padding: 0;
+  text-align: left;
 }
-
 .sizingTable {
   border-bottom:1px solid #CCCCCC;
   padding-bottom:25px;
   width:100%;
 }
-
 .sizingTable td {
   color:#666666;
   font-size:12px;
@@ -351,79 +322,66 @@ text-align: left;
   text-decoration:none;
   width:60px;
 }
-
 #wrapper {
     margin: -10px 0 0 0;
     padding: 0;
 }
-
-
-/* modal code starts here */
-
 .modal {
-background-image: url("/img/modalbkg.png");
-background-repeat: no-repeat;
-margin-top: 35px;
-z-index: 999;
+  background-image: url("/img/modalbkg.png");
+  background-repeat: no-repeat;
+  margin-top: 35px;
+  z-index: 999;
 }
-
 .modal .modalHeader {
-padding: 15px 0 0 25px;
-width: 620px; 
-height: auto;
-text-align: left;
+  padding: 15px 0 0 25px;
+  width: 620px; 
+  height: auto;
+  text-align: left;
 }
-
 .modal .modalBack a{
-position: relative;
-cursor:pointer;
-width: 55px;
-height: 45px;
-margin: -40px 0 0 0;
-float: right;
-text-decoration: none;
+  position: relative;
+  cursor:pointer;
+  width: 55px;
+  height: 45px;
+  margin: -40px 0 0 0;
+  float: right;
+  text-decoration: none;
 }
-
 .modal .modalBody {
-padding: 0 13px 0 0;
-margin: 12px 0 0 55px;
-width:850px;
-height:510px;
-text-align: left;
-color: #ffffff;
-font-size: 10px;
-overflow: auto;
-line-height: 12px;
+  padding: 0 13px 0 0;
+  margin: 12px 0 0 55px;
+  width:850px;
+  height:510px;
+  text-align: left;
+  color: #ffffff;
+  font-size: 10px;
+  overflow: auto;
+  line-height: 12px;
 }
-
 .modal .modalBody td {
-color: #ffffff;
-font-size: 12px;
-line-height: 14px;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 14px;
 }
-
 .modal .modalBody b {
-font-weight: bold;
-color: #ffffff;
-font-size: 12px;
-line-height: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 14px;
 }
-
 .modal .modalBody a {
-font-family: arial, helvetica, verdana;
-font-size: 12px;
-line-height: 14px;
-text-decoration: none;
-color: #9d3335;
-cursor: pointer;
+  font-family: arial, helvetica, verdana;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  color: #9d3335;
+  cursor: pointer;
 }
-
 .modal .modalBody a:hover {
-color: #ffffff;
-text-decoration: underline;
-cursor: pointer;
+  color: #ffffff;
+  text-decoration: underline;
+  cursor: pointer;
 }
-
 div#modal-blanket {
   background-color: #000;
   display: none;

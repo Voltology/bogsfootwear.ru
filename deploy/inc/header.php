@@ -37,7 +37,7 @@
             if ($user->getRole() == 2) { echo " | <a href=\"/admin/\">Admin Area</a>"; }
             echo " | <a href=\"/logout\">Log Out</a>";
           } else {
-            echo "<a href=\"/login\">Sign In</a> | <a href=\"/register\">Register</a>";
+            echo "<a href=\"/login/\">Sign In</a> | <a href=\"/register/\">Register</a>";
           }
           ?>
         </div>

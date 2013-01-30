@@ -42,8 +42,7 @@ var cart = {
   remove : function(id, row) {
     ajax.get('/cartapi.php', '&a=remove&id=' + id, function(json) {
       if (json.success === 'true') {
-        var itemcount = parseInt($('#item-count').html()) - 1;
-        $('#item-count').html(itemcount);
+        $('#item-count').html(json.itemcount);
         $('#cart-subtotal').html(json.subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         if (json.itemcount == 0) {
           $('#cart-table-body').html('<tr><td align="center" colspan="5">No items in cart.</td></tr><tr class="subtotal"><td colspan="4">Subtotal:</td><td>$0.00</td></tr>');

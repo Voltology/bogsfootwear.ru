@@ -1,5 +1,6 @@
 <?php
 require(".local.inc.php");
+$ref = $_POST['ref'] ? $_POST['ref'] : $_SERVER['HTTP_REFERER'];
 if ($user->isLoggedIn()) {
   header("Location: /");
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -15,7 +16,6 @@ include("inc/header.php");
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>
       <div id="maincontent">
         <div id="contentarea2">
-          <span id="content2">
         <div id="register">
           <table border="0" width="500">
             <tr>
@@ -69,6 +69,7 @@ include("inc/header.php");
                         <td>&nbsp;</td><td><input type="submit" value="Register" /></td>
                       </tr>
                     </table>
+                    <input type="hidden" name="ref" value="<?php echo $ref; ?>" />
                   </form>
                 </fieldset>
               <?php
