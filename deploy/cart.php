@@ -34,7 +34,7 @@ include("inc/header.php");
                         <span><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71111-009.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
                         <img src="/img/cross.png" class="item-remove" alt="Remove Item" title="Remove Item" onclick="cart.remove('<?php echo $item['id']; ?>', '<?php echo $count; ?>');" />
                       </td>
-                      <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?><br />Size <?php $item['size']; ?></td>
+                      <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?><br />Size <?php echo $item['size']; ?></td>
                       <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>
                       <td valign="top" width="13%">
                         <select onchange="cart.update('<?php echo $item['id']; ?>', this.options[this.selectedIndex].value)">
@@ -70,7 +70,7 @@ include("inc/header.php");
             <td align="right">
               <input type="button" value="Continue Shopping" onclick="document.location='/catalog/'" />
               <?php if ($count !== 0) { ?>
-              <input type="image" src="/img/btn-checkout.png" class="btn-checkout" id="btn-checkout" onclick="dialog.open(); document.location='/checkout/'" />
+              <input type="image" src="/img/btn-checkout.png" class="btn-checkout" id="btn-checkout" onclick="document.location='/checkoutlogin/'" />
               <? } ?>
             </td>
           </tr>

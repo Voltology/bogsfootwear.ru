@@ -16,19 +16,24 @@ var admin = {
 };
 
 var cart = {
-  add : function(id) {
-    ajax.get('/cartapi.php', '&a=add&size=&id=' + id, function(json) {
-      if (json.success === 'true') {
-        if (json.itemcount === 1) {
-          $('#cart-text').html('<span id="item-count">' + json.itemcount + '</span> items in cart</a>');
+  add : function(id, sku) {
+    var $size = $('#size-' + id).val();
+    if ($size !== "null") {
+      ajax.get('/cartapi.php', '&a=add&size=' + $size + '&id=' + id + '&sku=' + sku, function(json) {
+        if (json.success === 'true') {
+          if (json.itemcount === 1) {
+            $('#cart-text').html('<span id="item-count">' + json.itemcount + '</span> items in cart</a>');
+          } else {
+            $('#item-count').html(json.itemcount);
+          }
+          alert('Item has been added to your cart!');
         } else {
-          $('#item-count').html(json.itemcount);
+          alert('errors');
         }
-        alert('Item has been added to your cart!');
-      } else {
-        alert('errors');
-      }
-    });
+      });
+    } else {
+      alert('You must select a size.');
+    }
   },
   clear : function(id) {
     ajax.get('/cartapi.php', '&a=clear', function(json) {

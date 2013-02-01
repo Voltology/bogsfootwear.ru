@@ -8,6 +8,8 @@ class User {
   private $_role;
   private $_token;
 
+  private $_orders = array();
+
   public function changePassword($password) {
     $query = sprintf("UPDATE cart_users SET password='%s' WHERE id='%s'",
       mysql_real_escape_string($password),
@@ -15,13 +17,15 @@ class User {
   }
 
   public function checkPassword($email, $password) {
-    $query = sprintf("SELECT id,role FROM cart_users WHERE email='%s' AND (password='%s' OR password_reset='%s') LIMIT 1",
+    $query = sprintf("SELECT id,role,firstname,lastname FROM cart_users WHERE email='%s' AND (password='%s' OR password_reset='%s') LIMIT 1",
       mysql_real_escape_string($email),
       mysql_real_escape_string($password),
       mysql_real_escape_string($password));
     $query = mysql_query($query);
     if (mysql_num_rows($query) > 0) {
       $row = mysql_fetch_assoc($query);
+      $this->setFirstName($row['firstname']);
+      $this->setLastName($row['lastname']);
       $this->setRole($row['role']);
       $this->_isloggedin = true;
       return true;
@@ -41,6 +45,10 @@ class User {
 
   public function getLastName() {
     return $this->_lastname;
+  }
+
+  public function getOrders() {
+    return $this->_orders;
   }
 
   public function getRole() {
@@ -90,6 +98,14 @@ class User {
     $headers = 'From: do-not-reply@bogsfootwear.ru' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
     mail($email, "Password Reset", $message, $headers);
+  }
+
+  public function setFirstName($firstname) {
+    $this->_firstname = $firstname;
+  }
+
+  public function setLastName($lastname) {
+    $this->_lastname = $lastname;
   }
 
   public function setRole($role) {

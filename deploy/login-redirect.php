@@ -15,6 +15,8 @@ if ($user->checkPassword($_POST['email'], md5($_POST['password']))) {
 } else {
   if ($_POST['logintype'] === "admin") {
     header("Location: /admin/?fail=true");
+  } else if ($_POST['logintype'] === "checkout") {
+    header("Location: /checkoutlogin?fail=true");
   } else {
     header("Location: /login?fail=true");
   }

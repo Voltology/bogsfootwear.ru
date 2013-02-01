@@ -2,30 +2,49 @@
 class Cart  {
   private $_items = array();
   private $_token;
+  private $_stockthreshold = 5;
 
   function Cart($token) {
     $this->setToken($token);
     $this->setCart();
   }
 
-  public function addItem($id) {
-    $item = array();
-    $query = sprintf("SELECT sku,name,description,color,price FROM cart_inventory WHERE id='%s' LIMIT 1",
-      mysql_real_escape_string($id));
-    $query = mysql_query($query);
-    $row = mysql_fetch_assoc($query);
-    foreach ($row as $key => $value) {
-      $item[$key] = $value;
+  public function addItem($id, $sku, $size) {
+    $exists = false;
+    $count = 0;
+    foreach ($this->_items as $item) {
+      if ($item['sku'] == $sku && $item['size'] == $size) {
+        $query = sprintf("UPDATE cart_sessions SET quantity=quantity+1 WHERE token='%s' AND sku='%s' AND size='%s'",
+          mysql_real_escape_string($this->_token),
+          mysql_real_escape_string($sku),
+          mysql_real_escape_string($size));
+        mysql_query($query);
+        $this->_items[$count]['quantity']++;
+        $exists = true;
+      }
+      $count++;
     }
-    $query = sprintf("INSERT INTO cart_sessions SET token='%s', item_id='%s', price='%s', quantity='1', timestamp='%s'",
-      mysql_real_escape_string($this->_token),
-      mysql_real_escape_string($id),
-      mysql_real_escape_string($row['price']),
-      mysql_real_escape_string(time()));
-    mysql_query($query);
-    $item['id'] = mysql_insert_id();
-    $item['quantity'] = 1;
-    array_push($this->_items, $item);
+    if (!$exists) {
+      $item = array();
+      $query = sprintf("SELECT sku,name,description,color,price FROM cart_inventory WHERE id='%s' LIMIT 1",
+        mysql_real_escape_string($id));
+      $query = mysql_query($query);
+      $row = mysql_fetch_assoc($query);
+      foreach ($row as $key => $value) {
+        $item[$key] = $value;
+      }
+      $query = sprintf("INSERT INTO cart_sessions SET token='%s', item_id='%s', size='%s', price='%s', quantity='1', timestamp='%s'",
+        mysql_real_escape_string($this->_token),
+        mysql_real_escape_string($id),
+        mysql_real_escape_string($size),
+        mysql_real_escape_string($row['price']),
+        mysql_real_escape_string(time()));
+      mysql_query($query);
+      $item['id'] = mysql_insert_id();
+      $item['quantity'] = 1;
+      $item['size'] = $size;
+      array_push($this->_items, $item);
+    }
     return true;
   }
 
@@ -38,6 +57,20 @@ class Cart  {
 
   public function getCart() {
     return $this->_items;
+  }
+
+  public function getGenderGroupList() {
+    $query = sprintf("SELECT DISTINCT gender,`group` FROM cart_inventory GROUP BY gender,`group`");
+    $query = mysql_query($query);
+    $list = array();
+    while ($row = mysql_fetch_assoc($query)) {
+      $gender = $row['gender'];
+      if(!isset($list[$gender])) {
+        $list[$gender] = array();
+      }
+      array_push($list[$gender], $row['group']);
+    }
+    return $list;
   }
 
   public function getItemCount() {

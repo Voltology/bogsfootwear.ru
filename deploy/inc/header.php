@@ -33,7 +33,7 @@
         <div class="account-links">
           <?php
           if ($user->isLoggedIn()) {
-            echo "<strong>Hello, " . $user->getFirstName() . "</strong> <a href=\"/account\">My Account</a>";
+            echo "<strong>Hello, " . $user->getFirstName() . "</strong> -  <a href=\"/account\">My Account</a>";
             if ($user->getRole() == 2) { echo " | <a href=\"/admin/\">Admin Area</a>"; }
             echo " | <a href=\"/logout\">Log Out</a>";
           } else {

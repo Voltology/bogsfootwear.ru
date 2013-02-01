@@ -8,6 +8,14 @@ html,body {
   font-family: arial, helvetica, verdana, sans-serif;
   overflow-y: scroll;
 }
+input[type='submit'], input[type='button'] {
+  background-color: #333333;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: auto !important;
+}
 #maincontainer {
   width: 1000px;
   margin: 0 auto;
@@ -143,6 +151,27 @@ html,body {
   top: 0;
   left: 0;
 }
+#account fieldset {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+#account fieldset legend {
+  color: #f38401;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+#account .account-table {
+  font-size: 10pt;
+}
+#account .account-table a {
+  color: #f38401;
+}
+#account .account-table .error {
+  color: #CC0000;
+}
+#account .account-table .success {
+  color: #00AA00;
+}
 #cart fieldset {
   border: 1px solid #ccc;
   margin-bottom: 5px;
@@ -193,6 +222,9 @@ html,body {
 #cart .cart-table .subtotal td {
   border-bottom: 1px solid #ccc;
 }
+.product-desc {
+  font-size: 12px;
+}
 #login fieldset {
   border: 1px solid #ccc;
   margin-bottom: 5px;
@@ -224,7 +256,7 @@ html,body {
   width: auto !important;
 }
 #login .login-table .error {
-  color: #ff0000;
+  color: #cc0000;
 }
 #login .login-reset-table {
   font-size: 10pt;
@@ -279,6 +311,42 @@ html,body {
   cursor: pointer;
   padding: 5px 10px;
   width: auto !important;
+}
+#shipping fieldset {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+#shipping fieldset legend {
+  color: #f38401;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+#shipping .shipping-table {
+  font-size: 10pt;
+}
+#shipping .shipping-table a {
+  color: #f38401;
+}
+#shipping  .shipping-table input[type='text'], input[type='password'] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 10pt;
+  padding: 2px;
+  width: 200px;
+}
+#shipping .shipping-table input[type='submit'] {
+  background-color: #333333;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: auto !important;
+}
+#login .login-table .error {
+  color: #cc0000;
+}
+#login .login-reset-table {
+  font-size: 10pt;
 }
 #breadcrumb {
   font-size: 8pt;

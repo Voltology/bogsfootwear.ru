@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $json['success'] = "true";
   $action = $_POST['a'];
   if ($action === "add") {
-    $cart->addItem($_POST['id']);
+    $cart->addItem($_POST['id'], $_POST['sku'], $_POST['size']);
     $json['itemcount'] = $cart->getItemCount();
   } else if ($action === "clear") {
     $cart->clearCart();

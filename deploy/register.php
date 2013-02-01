@@ -29,6 +29,9 @@ include("inc/header.php");
                       <tr>
                         <td>Thank you for registering!  You will now be able to view your account and order history.</td>
                       </tr>
+                      <tr>
+                        <td><input type="button" value="Continue With Checkout" onclick="document.location='/checkoutlogin/'" /></td>
+                      </tr>
                     </table>
                 </fieldset>
               <?php
@@ -36,7 +39,7 @@ include("inc/header.php");
               ?>
                 <fieldset>
                   <legend>&raquo; Register for an Account</legend>
-                  <form action="/register" method="post">
+                  <form action="/register/" method="post">
                     <table cellpadding="2" cellspacing="0" border="0" class="register-table">
                       <tr>
                         <td colspan="2">Welcome! Complete the form below to register for your free account.</td>
