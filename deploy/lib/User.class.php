@@ -10,6 +10,21 @@ class User {
 
   private $_orders = array();
 
+  public function addShippingAddress($name, $addr1, $addr2, $district, $province, $postalcode, $country) {
+    $query = sprintf("INSERT INTO cart_shipping_addresses SET user_id='%s', recipient='%s', address1='%s', address2='%s', district='%s', province='%s', postal_code='%s', country='%s', timestamp='%s'",
+      mysql_real_escape_string($this->_id),
+      mysql_real_escape_string($name),
+      mysql_real_escape_string($addr1),
+      mysql_real_escape_string($addr2),
+      mysql_real_escape_string($district),
+      mysql_real_escape_string($province),
+      mysql_real_escape_string($postalcode),
+      mysql_real_escape_string($country),
+      mysql_real_escape_string(time()));
+    $query = mysql_query($query);
+    return mysql_insert_id();
+  }
+
   public function changePassword($password) {
     $query = sprintf("UPDATE cart_users SET password='%s' WHERE id='%s'",
       mysql_real_escape_string($password),
@@ -17,13 +32,15 @@ class User {
   }
 
   public function checkPassword($email, $password) {
-    $query = sprintf("SELECT id,role,firstname,lastname FROM cart_users WHERE email='%s' AND (password='%s' OR password_reset='%s') LIMIT 1",
+    $query = sprintf("SELECT id,role,email,firstname,lastname FROM cart_users WHERE email='%s' AND (password='%s' OR password_reset='%s') LIMIT 1",
       mysql_real_escape_string($email),
       mysql_real_escape_string($password),
       mysql_real_escape_string($password));
     $query = mysql_query($query);
     if (mysql_num_rows($query) > 0) {
       $row = mysql_fetch_assoc($query);
+      $this->setId($row['id']);
+      $this->setEmail($row['email']);
       $this->setFirstName($row['firstname']);
       $this->setLastName($row['lastname']);
       $this->setRole($row['role']);
@@ -55,6 +72,25 @@ class User {
     return $this->_role;
   }
 
+  public function getShippingAddressById($id) {
+    $query = sprintf("SELECT * FROM cart_shipping_addresses WHERE id='%s' AND user_id='%s' ORDER BY timestamp DESC LIMIT 1",
+      mysql_real_escape_string($id),
+      mysql_real_escape_string($this->_id));
+    $query = mysql_query($query);
+    return  mysql_fetch_assoc($query);
+  }
+
+  public function getShippingAddresses() {
+    $addresses = array();
+    $query = sprintf("SELECT * FROM cart_shipping_addresses WHERE user_id='%s' ORDER BY timestamp DESC",
+      mysql_real_escape_string($this->_id));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_assoc($query)) {
+      array_push($addresses, $row);
+    }
+    return $addresses;
+  }
+
   public function getToken() {
     return $this->_token;
   }
@@ -84,6 +120,13 @@ class User {
     $this->_isloggedin = true;
   }
 
+  public function removeShippingAddress($id) {
+    $query = sprintf("DELETE FROM cart_shipping_addresses WHERE user_id='%s' AND id='%s'",
+      mysql_real_escape_string($this->_id),
+      mysql_real_escape_string($id));
+    mysql_query($query);
+  }
+
   public function resetPassword($email) {
     $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randstring = '';
@@ -100,8 +143,16 @@ class User {
     mail($email, "Password Reset", $message, $headers);
   }
 
+  public function setEmail($email) {
+    $this->_email = $email;
+  }
+
   public function setFirstName($firstname) {
     $this->_firstname = $firstname;
+  }
+
+  public function setId($id) {
+    $this->_id = $id;
   }
 
   public function setLastName($lastname) {

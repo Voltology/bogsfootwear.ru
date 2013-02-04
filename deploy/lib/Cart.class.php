@@ -2,6 +2,7 @@
 class Cart  {
   private $_items = array();
   private $_token;
+  private $_paypaltoken;
   private $_stockthreshold = 5;
 
   function Cart($token) {
@@ -46,6 +47,17 @@ class Cart  {
       array_push($this->_items, $item);
     }
     return true;
+  }
+
+  public function checkout($paypal) {
+    $url = "&PAYMENTREQUEST_0_AMT=" . $this->getSubTotal();
+    $url .= "&PAYMENTREQUEST_0_PAYMENTACTION=" . $paypal->getPaymentType();
+    $url .= "&RETURNURL=" . PAYPAL_RETURN_URL;
+    $url .= "&CANCELURL=" . PAYPAL_CANCEL_URL;
+    $url .= "&PAYMENTREQUEST_0_CURRENCYCODE=". $paypal->getCurrency();
+    $url .= "&SOLUTIONTYPE=Sole";
+    $url .= "&LANDINGPAGE=Billing";
+    return $paypal->connect($url);
   }
 
   public function clearCart() {
@@ -136,6 +148,10 @@ class Cart  {
       array_push($this->_items, $item);
     }
     return true;
+  }
+
+  public function setPayPalToken($token) {
+    $this->_paypaltoken = $token;
   }
 
   public function setToken($token) {

@@ -225,6 +225,62 @@ input[type='submit'], input[type='button'] {
 .product-desc {
   font-size: 12px;
 }
+#confirm fieldset {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+#confirm fieldset legend {
+  color: #f38401;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+#confirm .cart-table {
+  font-size: 10pt;
+}
+#confirm .btn-checkout {
+  margin-left: 10px;
+  vertical-align: top
+}
+#confirm .cart-table th {
+  background-color: #dcdace;
+  border-bottom: 1px solid #CCC;
+  font-size: 10pt;
+  font-weight: 800;
+  text-align: left;
+  text-transform: uppercase;
+}
+#confirm .cart-table td {
+  font-size: 10pt;
+  text-transform: uppercase;
+}
+#confirm .cart-table hr {
+  border: 0;
+  color: #ccc;
+  background-color: #ccc;
+  height: 1px;
+}
+#confirm .cart-table .item-thumbnail {
+  height: 75px;
+  overflow: hidden;
+  width: 75px;
+}
+#confirm .cart-table .item-row td {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+}
+#confirm .cart-table .subtotal {
+  background-color: #dcdace;
+  font-weight: bold;
+}
+#confirm .cart-table .subtotal td {
+  border-bottom: 1px solid #ccc;
+}
+#confirm .shipping-table {
+  font-size: 10pt;
+}
+#confirm .shipping-table a {
+  color: #f38401;
+}
 #login fieldset {
   border: 1px solid #ccc;
   margin-bottom: 5px;
@@ -455,7 +511,7 @@ div#modal-blanket {
   display: none;
   height: 100%;
   left: 0px;
-  position: absolute;
+  position: fixed;
   text-align:center;
   top: 0px;
   width: 100%;

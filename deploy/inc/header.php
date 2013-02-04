@@ -48,9 +48,9 @@
           <a href="/where-to-buy/">Где купить</a>
           <?php
           if ($cart->getItemCount() < 1) {
-            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" /> <span id=\"cart-text\">Cart is empty.</span></a></span>";
+            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"cart-text\">Cart is empty.</span></a></span>";
           } else {
-            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> items in cart</a></span>";
+            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> items in cart</a></span>";
           }
           ?>
         </span>
