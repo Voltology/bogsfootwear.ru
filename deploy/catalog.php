@@ -4,7 +4,6 @@ include("inc/header.php");
 
 $gender = $_GET['gender'];
 $group = $_GET['group'];
-echo $group;
 ?>
     <span id="bannerimage"><img src="/img/womens-plimsoll.jpg" width="998" height="225" /></span>
     <div class="clear"></div>
@@ -53,6 +52,16 @@ echo $group;
                           </div>
                           <div class="image-desc">
                             <table class="image-desc" width="300">
+                              <tr>
+                                <td align="center" colspan="2">
+                                  <ul id="multiview-images">
+                                    <li class="thumb"><img src="/img/catalog/71055-202.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71055-202.jpg')" /></li>
+                                    <li class="thumb"><img src="/img/catalog/71063-001.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71063-001.jpg')" /></li>
+                                    <li class="thumb"><img src="/img/catalog/71055-202.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71055-202.jpg')" /></li>
+                                    <li class="thumb"><img src="/img/catalog/71063-001.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71063-001.jpg')" /></li>
+                                  </ul>
+                                </td>
+                              </tr>
                               <tr>
                                 <td class="product-desc">
                                   <b><?php echo $item['name']; ?></b><br />

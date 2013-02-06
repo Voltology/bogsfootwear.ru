@@ -609,6 +609,7 @@
 					// set alt and src
 					image.alt = imageData.title;
 					image.src = imageData.slideUrl;
+          image.id = "gallery-image";
 				}
 
 				// This causes the preloader (if still running) to relocate out from the currentIndex

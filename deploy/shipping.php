@@ -115,6 +115,9 @@ include("inc/header.php");
                           <form action="/shipping/?a=save" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="shipping-table">
                               <tr>
+                                <td colspan="2"><strong>*Note:</strong> Shipping address must be a residential address.</td>
+                              </tr>
+                              <tr>
                                 <td>Recipient Name</td>
                                 <td><input type="text" name="recipient" /></td>
                               </tr>

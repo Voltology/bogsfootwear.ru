@@ -100,7 +100,7 @@ class User {
   }
 
   public function login() {
-    $this->_isloggedin = false;
+    $this->_isloggedin = true;
   }
 
   public function logout() {

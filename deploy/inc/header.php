@@ -42,17 +42,24 @@
           ?>
         </div>
         <span id="navigation">
-          <a href="/about-us/">ДЛЯ ЛЮБОЙ НЕПОГОДЫ</a>
-          <a href="/catalog/womens/accessories/">КАТАЛОГ</a>
-          <a href="/contact-us/">Эксклюзивный дистрибьютор в России</a>
-          <a href="/where-to-buy/">Где купить</a>
+          <a href="/about-us">ДЛЯ ЛЮБОЙ НЕПОГОДЫ</a>
+          <a href="/catalog/womens/accessories">КАТАЛОГ</a>
+          <a href="/contact-us">Эксклюзивный дистрибьютор в России</a>
+          <a href="/where-to-buy">Где купить</a>
           <?php
           if ($cart->getItemCount() < 1) {
-            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"cart-text\">Cart is empty.</span></a></span>";
+            echo "<a href=\"/cart\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"cart-text\">Cart is empty.</span></a></span>";
           } else {
-            echo "<a href=\"/cart/\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> items in cart</a></span>";
+            echo "<a href=\"/cart\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> items in cart</a></span>";
           }
           ?>
         </span>
         <div class="clear"></div>
       </span>
+      <?php
+      if ($shippingbanner) {
+      ?>
+      <div class="shipping-banner">We now support shipping from the US</div>
+      <?php
+      }
+      ?>

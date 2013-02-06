@@ -80,6 +80,14 @@ var cart = {
   }
 };
 
+var catalog = {
+  multiview : {
+    load : function(img) {
+      $('#gallery-image').attr('src', img);
+    }
+  }
+}
+
 var dialog = {
   close : function() {
     $('#modal-blanket').css('display','none');

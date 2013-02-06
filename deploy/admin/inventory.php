@@ -97,10 +97,10 @@ if ($subpage === "upload") {
     if ($_GET['save'] === "true") {
       if (isset($_POST['id'])) {
         echo "<div class=\"success\">Inventory item has been saved.</div>";
-        Admin::addItem($_POST);
+        Admin::updateItem($_POST['id'], $_POST);
       } else {
         echo "<div class=\"success\">Inventory item has been created.</div>";
-        Admin::updateItem($_POST['id'], $_POST);
+        Admin::addItem($_POST);
       }
     }
     echo "<p class=\"addnew\"><a href=\"?p=inventory&a=add\"><img src=\"/img/add.png\" />&nbsp;Add New Item</a></p>";
@@ -110,7 +110,7 @@ if ($subpage === "upload") {
     $bgcolor = array('#efefef','#ffffff');
     echo "<table cellpadding=\"4\" cellspacing=\"0\" width=\"100%\" class=\"inventory-table\">";
     echo "<tr class=\"table-header\">";
-    echo "<td width=\"24\">#</td><td>Product Name (sku)</td><td>Color</td><td>Group</td><td>Gender</td><td>Active</td><td align=\"right\">Operations</td>";
+    echo "<td width=\"24\">#</td><td>Product Name (sku)</td><td>Color</td><td>Group</td><td>Gender</td><td>Price</td><td>Active</td><td align=\"right\">Operations</td>";
     echo "</tr>";
     while ($row = mysql_fetch_assoc($query)) {
       echo "<tr bgcolor=\"" . $bgcolor[$count % 2] . "\">";
@@ -119,7 +119,12 @@ if ($subpage === "upload") {
       echo "<td>" . ucwords($row['color']) . "</td>";
       echo "<td>" . ucwords($row['group']) . "</td>";
       echo "<td>" . ucwords($row['gender']) . "</td>";
-      echo "<td>No</td>";
+      echo "<td>\$" . number_format($row['price'], 2) . "</td>";
+      if ($row['active'] == 0) {
+        echo "<td>No</td>";
+      } else {
+        echo "<td>Yes</td>";
+      }
       echo "<td align=\"right\" class=\"table-operations\">";
       echo "<a href=\"?p=inventory&a=edit&id=" . $row['id'] . "\"><img src=\"/img/pencil.png\" alt=\"Edit Item\" title=\"Edit Item\" /></a>&nbsp;&nbsp;&nbsp;";
       echo "<img src=\"/img/cross.png\" alt=\"Delete Item\" title=\"Delete Item\" onclick=\"admin.delete('?p=inventory&a=delete&id=" . $row['id'] . "');\" />";
@@ -169,7 +174,7 @@ if ($subpage === "upload") {
         <tr><td class="editLabel">Price</td><td class="editField"><input type="text" name="price" class="number_value" value="<?php echo number_format($item['price'], 2); ?>" /></td></tr>
         <tr><td class="editLabel">Image</td><td class="editField"><input type="file" name="image" value="" /></td></tr>
         <tr><td class="editLabel">Thumbnail</td><td class="editField"><input type="file" name="thumbnail" value="" /></td></tr>
-        <tr><td class="editLabel">Active</td><td class="editField"><input type="checkbox" name="active" value="1" /></td></tr>
+        <tr><td class="editLabel">Publish</td><td class="editField"><input type="checkbox" name="active" value="1" <?php if ($item['active'] == "1") { echo "checked "; } ?>/></td></tr>
       </table>
       <h4>Stock</h4>
       <table class="editTable">

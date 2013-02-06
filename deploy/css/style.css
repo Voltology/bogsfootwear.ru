@@ -51,6 +51,36 @@ input[type='submit'], input[type='button'] {
 #maincontainer .account-links a:hover {
   text-decoration: underline;
 }
+#maincontainer .shipping-banner {
+  background-color: #f38401;
+  color: #fff;
+  display: block;
+  font-size: 24px;
+  height: 30px;
+  margin-bottom: 20px;
+  padding: 8px 0;
+  text-align: center;
+  width: 100%;
+}
+#multiview-images {
+  list-style-image: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#multiview-images .thumb {
+  border: 1px solid #aaa;
+  cursor: pointer;
+  display: inline-block;
+  height: 36px;
+  margin: 0 2px;
+  overflow: hidden;
+  padding: 0;
+  width: 36px;
+}
+#multiview-images .thumb img {
+  width: 100%;
+}
 #navigation {
   position: relative;
   top: 40px;

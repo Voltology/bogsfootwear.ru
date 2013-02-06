@@ -95,7 +95,7 @@ class Cart  {
 
   public function getItemsByGenderAndGroup($gender, $group) {
     $items = array();
-    $query = sprintf("SELECT * FROM cart_inventory WHERE `gender`='%s' AND `group`='%s'",
+    $query = sprintf("SELECT * FROM cart_inventory WHERE `gender`='%s' AND `group`='%s' AND active='1'",
       mysql_real_escape_string($gender),
       mysql_real_escape_string($group));
     $query = mysql_query($query);

@@ -1,5 +1,6 @@
 <?php
 require(".local.inc.php");
+$shippingbanner = true;
 include("inc/header.php");
 ?>
 <div id="maincontent2">
