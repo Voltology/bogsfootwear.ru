@@ -10,9 +10,15 @@ a {
   color: #f38401;
 }
 p.addnew {
-  float: right;
+  float: left;
 }
 p.addnew img {
+  vertical-align: bottom;
+}
+p.export {
+  float: right;
+}
+p.export img {
   vertical-align: bottom;
 }
 .logoCell, .headerCell {
@@ -178,6 +184,13 @@ table .table-header td {
   border-bottom: 1px solid #ccc;
   font-weight: bold;
   padding: 4px 4px;
+}
+table .table-header td a {
+  color: #000;
+  text-decoration: none;
+}
+table .table-header td a:hover {
+  text-decoration: underline;
 }
 table .table-operations img {
   border: 0;

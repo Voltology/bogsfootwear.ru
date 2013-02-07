@@ -59,7 +59,7 @@
       <?php
       if ($shippingbanner) {
       ?>
-      <div class="shipping-banner">We now support shipping from the US</div>
+      <div class="shipping-banner">Free shipping from the USA <img src="/img/usflag.gif" class="flag" /></div>
       <?php
       }
       ?>

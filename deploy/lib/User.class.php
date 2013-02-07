@@ -60,6 +60,10 @@ class User {
     return $this->_firstname;
   }
 
+  public function getId() {
+    return $this->_id;
+  }
+
   public function getLastName() {
     return $this->_lastname;
   }

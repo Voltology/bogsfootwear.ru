@@ -93,6 +93,8 @@ if ($subpage === "upload") {
     }
 } else {
   if (!isset($action)) {
+    $sortby = $_GET['sortby'] ? $_GET['sortby'] : "last_modified";
+    $dir = $_GET['dir'] == "0" ? "ASC" : "DESC";
     echo "<h3>Inventory</h3>";
     if ($_GET['save'] === "true") {
       if (isset($_POST['id'])) {
@@ -102,32 +104,43 @@ if ($subpage === "upload") {
         echo "<div class=\"success\">Inventory item has been created.</div>";
         Admin::addItem($_POST);
       }
+    } else if ($_GET['delete'] === "true") {
+        echo "<div class=\"error\">Inventory item has been removed.</div>";
+        Admin::removeItem($_GET['id']);
     }
     echo "<p class=\"addnew\"><a href=\"?p=inventory&a=add\"><img src=\"/img/add.png\" />&nbsp;Add New Item</a></p>";
-    $query = "SELECT * FROM cart_inventory";
-    $query = mysql_query($query);
-    $count = 1;
+    $items = Admin::getItems($sortby, $dir);
     $bgcolor = array('#efefef','#ffffff');
     echo "<table cellpadding=\"4\" cellspacing=\"0\" width=\"100%\" class=\"inventory-table\">";
     echo "<tr class=\"table-header\">";
-    echo "<td width=\"24\">#</td><td>Product Name (sku)</td><td>Color</td><td>Group</td><td>Gender</td><td>Price</td><td>Active</td><td align=\"right\">Operations</td>";
+    echo "<td width=\"24\">#</td>";
+    echo "<td><a href=\"?p=inventory&sortby=name&dir=0\">Product Name (sku)</a></td>";
+    echo "<td><a href=\"?p=inventory&sortby=color&dir=0\">Color</a></td>";
+    echo "<td><a href=\"?p=inventory&sortby=group&dir=0\">Group</a></td>";
+    echo "<td><a href=\"?p=inventory&sortby=gender&dir=0\">Gender</a></td>";
+    echo "<td><a href=\"?p=inventory&sortby=price&dir=0\">Price</a></td>";
+    echo "<td><a href=\"?p=inventory&sortby=active&dir=1\">Published</a></td>";
+    echo "<td><a href=\"?p=inventory&sortby=last_modified&dir=1\">Last Modified</a></td>";
+    echo "<td align=\"right\">Operations</td>";
     echo "</tr>";
-    while ($row = mysql_fetch_assoc($query)) {
+    $count = 1;
+    foreach ($items as $item) {
       echo "<tr bgcolor=\"" . $bgcolor[$count % 2] . "\">";
       echo "<td><strong>" . $count . "</strong></td>";
-      echo "<td><strong>" . ucwords($row['name']) . "</strong> (" . $row['sku'] . ")</td>";
-      echo "<td>" . ucwords($row['color']) . "</td>";
-      echo "<td>" . ucwords($row['group']) . "</td>";
-      echo "<td>" . ucwords($row['gender']) . "</td>";
-      echo "<td>\$" . number_format($row['price'], 2) . "</td>";
-      if ($row['active'] == 0) {
-        echo "<td>No</td>";
+      echo "<td><strong>" . ucwords($item['name']) . "</strong> (" . $item['sku'] . ")</td>";
+      echo "<td>" . ucwords($item['color']) . "</td>";
+      echo "<td>" . ucwords($item['group']) . "</td>";
+      echo "<td>" . ucwords($item['gender']) . "</td>";
+      echo "<td>\$" . number_format($item['price'], 2) . "</td>";
+      if ($item['active'] == 0) {
+        echo "<td><span style=\"color: #CC0000;\">No</span></td>";
       } else {
-        echo "<td>Yes</td>";
+        echo "<td><span style=\"color: #00BB00;\">Yes</span></td>";
       }
+      echo "<td>" . date("M j, Y, g:i a", $item['last_modified']) . "</td>";
       echo "<td align=\"right\" class=\"table-operations\">";
-      echo "<a href=\"?p=inventory&a=edit&id=" . $row['id'] . "\"><img src=\"/img/pencil.png\" alt=\"Edit Item\" title=\"Edit Item\" /></a>&nbsp;&nbsp;&nbsp;";
-      echo "<img src=\"/img/cross.png\" alt=\"Delete Item\" title=\"Delete Item\" onclick=\"admin.delete('?p=inventory&a=delete&id=" . $row['id'] . "');\" />";
+      echo "<a href=\"?p=inventory&a=edit&id=" . $item['id'] . "\"><img src=\"/img/pencil.png\" alt=\"Edit Item\" title=\"Edit Item\" /></a>&nbsp;&nbsp;&nbsp;";
+      echo "<img src=\"/img/cross.png\" alt=\"Remove Item\" title=\"Remove Item\" onclick=\"admin.delete('?p=inventory&a=delete&id=" . $item['id'] . "');\" />";
       echo "</td>";
       echo "</tr>";
       $count++;
@@ -176,6 +189,7 @@ if ($subpage === "upload") {
         <tr><td class="editLabel">Thumbnail</td><td class="editField"><input type="file" name="thumbnail" value="" /></td></tr>
         <tr><td class="editLabel">Publish</td><td class="editField"><input type="checkbox" name="active" value="1" <?php if ($item['active'] == "1") { echo "checked "; } ?>/></td></tr>
       </table>
+      <!--
       <h4>Stock</h4>
       <table class="editTable">
         <?php
@@ -186,10 +200,12 @@ if ($subpage === "upload") {
         }
         ?>
       </table>
+      -->
       <?php
       if (isset($_GET['id'])) { echo "<input type=\"hidden\" name=\"id\" value=\"" . $_GET['id'] . "\" />"; }
       ?>
       <input type="submit" value="Save Item" />
+      <input type="button" value="Cancel" onclick="document.location='?p=inventory'"/>
     </form>
 <?php
   }

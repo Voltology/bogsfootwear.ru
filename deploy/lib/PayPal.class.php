@@ -18,8 +18,7 @@ class PayPal {
     $req .= "&PWD=" . urlencode(PAYPAL_PASS);
     $req .= "&USER=" . urlencode(PAYPAL_USER);
     $req .= "&SIGNATURE=" . urlencode(PAYPAL_SIG);
-    $req .= "&LOCALECODE=" . urlencode("RU");
-    $req .= "&BUTTONSOURCE=" . urlencode($sBNCode);
+    $req .= "&LOCALECODE=" . urlencode(PAYPAL_LANG);
     $req .= $url;
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
 

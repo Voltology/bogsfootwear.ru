@@ -56,11 +56,17 @@ input[type='submit'], input[type='button'] {
   color: #fff;
   display: block;
   font-size: 24px;
-  height: 30px;
+  font-weight: bold;
+  height: 26px;
   margin-bottom: 20px;
   padding: 8px 0;
   text-align: center;
   width: 100%;
+}
+#maincontainer .shipping-banner .flag {
+  height: 22px;
+  margin-bottom: 3px;
+  vertical-align: middle;
 }
 #multiview-images {
   list-style-image: none;
@@ -252,6 +258,13 @@ input[type='submit'], input[type='button'] {
 #cart .cart-table .subtotal td {
   border-bottom: 1px solid #ccc;
 }
+#cart .cart-table .shipping {
+  background-color: #dcdace;
+  font-weight: bold;
+}
+#cart .cart-table .shipping td {
+  border-bottom: 1px solid #ccc;
+}
 .product-desc {
   font-size: 12px;
 }
@@ -303,6 +316,13 @@ input[type='submit'], input[type='button'] {
   font-weight: bold;
 }
 #confirm .cart-table .subtotal td {
+  border-bottom: 1px solid #ccc;
+}
+#confirm .cart-table .shipping {
+  background-color: #dcdace;
+  font-weight: bold;
+}
+#confirm .cart-table .shipping td {
   border-bottom: 1px solid #ccc;
 }
 #confirm .shipping-table {

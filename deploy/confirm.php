@@ -46,6 +46,11 @@ include("inc/header.php");
                       echo "<tr><td align=\"center\" colspan=\"5\">No items in cart.</td></tr>";
                     }
                     ?>
+                    <tr class="shipping">
+                      <td colspan="4">Shipping:<br /><small>(US / Russian Express Mail with Tracking)</small></td>
+                      <td valign="top"><span class="cart-subtotal">$0.00</span></td>
+                    </tr>
+                    <tr><td colspan="5">&nbsp;</td></tr>
                     <tr class="subtotal">
                       <td colspan="4">Subtotal:</td>
                       <td><?php echo "\$<span class=\"cart-subtotal\" id=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>

@@ -7,6 +7,7 @@ class Admin {
     $users = array();
     $query = sprintf("SELECT email,firstname,lastname FROM cart_users WHERE role='1'");
     $query = mysql_query($query);
+    echo "email,firstname,lastname\n";
     while ($row = mysql_fetch_assoc($query)) {
       foreach ($row as $key => $value) {
         $row[$key] = preg_replace("/\"/", "\"\"", $value);
@@ -38,6 +39,18 @@ class Admin {
     return $groups;
   }
 
+  public function getItems($order, $dir) {
+    $items = array();
+    $query = sprintf("SELECT id,name,sku,color,`group`,gender,price,active,last_modified FROM cart_inventory ORDER BY `%s` %s",
+      mysql_real_escape_string($order),
+      mysql_real_escape_string($dir));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_array($query)) {
+      array_push($items, $row);
+    }
+    return $items;
+  }
+
   public function getItemById($id) {
     $query = sprintf("SELECT * FROM cart_inventory WHERE id='%s' LIMIT 1",
       mysql_real_escape_string($id));
@@ -52,9 +65,11 @@ class Admin {
     return mysql_fetch_assoc($query);
   }
 
-  public function getUsers() {
+  public function getUsers($order, $dir) {
     $users = array();
-    $query = sprintf("SELECT cart_users.id,email,firstname,lastname,cart_roles.role,timestamp FROM cart_users LEFT JOIN cart_roles ON (cart_users.role = cart_roles.id) ORDER BY email ASC");
+    $query = sprintf("SELECT cart_users.id,email,firstname,lastname,cart_roles.role,timestamp FROM cart_users LEFT JOIN cart_roles ON (cart_users.role = cart_roles.id) ORDER BY %s %s",
+      mysql_real_escape_string($order),
+      mysql_real_escape_string($dir));
     $query = mysql_query($query);
     while ($row = mysql_fetch_assoc($query)) {
       array_push($users, $row);
@@ -65,11 +80,27 @@ class Admin {
   public function importCSV() {
   }
 
+  public function removeItem($id) {
+    $query = sprintf("DELETE FROM cart_inventory WHERE id='%s'",
+      mysql_real_escape_string($id));
+    mysql_query($query);
+  }
+
+  public function removeUser($id) {
+    $query = sprintf("DELETE FROM cart_users WHERE id='%s'",
+      mysql_real_escape_string($id));
+    mysql_query($query);
+  }
+
   public function updateItem($id, $data) {
-    $query = sprintf("UPDATE cart_inventory SET name='%s', price='%s', active='%s' WHERE id='%s'",
+    $query = sprintf("UPDATE cart_inventory SET name='%s', sku='%s', description='%s', color='%s', price='%s', active='%s', last_modified='%s' WHERE id='%s'",
       mysql_real_escape_string($data['name']),
+      mysql_real_escape_string($data['sku']),
+      mysql_real_escape_string($data['description']),
+      mysql_real_escape_string($data['color']),
       mysql_real_escape_string($data['price']),
       mysql_real_escape_string($data['active']),
+      mysql_real_escape_string(time()),
       mysql_real_escape_string($id));
     mysql_query($query);
   }
