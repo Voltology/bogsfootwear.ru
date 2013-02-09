@@ -58,6 +58,18 @@ class Admin {
     return mysql_fetch_assoc($query);
   }
 
+  public function getOrders($order, $dir) {
+    $orders = array();
+    $query = sprintf("SELECT id,user_id,timestamp FROM cart_completed_orders ORDER BY `%s` %s",
+      mysql_real_escape_string($order),
+      mysql_real_escape_string($dir));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_array($query)) {
+      array_push($orders, $row);
+    }
+    return $orders;
+  }
+
   public function getUserById($id) {
     $query = sprintf("SELECT cart_users.id,email,firstname,lastname,cart_roles.role,timestamp FROM cart_users LEFT JOIN cart_roles ON (cart_users.role = cart_roles.id) WHERE cart_users.id='%s' ORDER BY email ASC",
       mysql_real_escape_string($id));
@@ -81,6 +93,10 @@ class Admin {
   }
 
   public function removeItem($id) {
+    $query = sprintf("SELECT sku FROM cart_inventory WHERE id='%s'",
+      mysql_real_escape_string($id));
+    $data = mysql_fetch_assoc(mysql_query($query));
+    $response = Fulfillment::deleteProduct($data['sku']);
     $query = sprintf("DELETE FROM cart_inventory WHERE id='%s'",
       mysql_real_escape_string($id));
     mysql_query($query);
@@ -102,7 +118,25 @@ class Admin {
       mysql_real_escape_string($data['active']),
       mysql_real_escape_string(time()),
       mysql_real_escape_string($id));
-    mysql_query($query);
+    if ($data['active'] == 1) {
+      $item = array();
+      $json['SKU'] = $data['sku'];
+      $json['UPC'] = $data['sku'];
+      $json['Name'] = ucwords($data['name']);
+      $json['Summary'] = $data['description'];
+      array_push($item, $json);
+      $response = json_decode(Fulfillment::createProduct(json_encode($item)), true);
+      if ($response['Status'] == "1") {
+        mysql_query($query);
+        return true;
+      } else {
+        return false;
+      }
+    } else if ($data['active'] != 1) {
+      $response = Fulfillment::deleteProduct($data['sku']);
+      mysql_query($query);
+      return true;
+    }
   }
 
   public function updateUser($id, $data) {

@@ -1,6 +1,6 @@
 <div class="clear"></div>
 
-<div id="footer"><span style="color: #ffffff; font-size: 6pt; margin: 230px; line-height: 18pt;">&copy; Copyright 2012. Global Supply Management Inc. All Rights Reserved</span></div>
+<div id="footer"><span style="color: #ffffff; font-size: 8pt; line-height: 18pt;">&copy; Copyright 2012. Global Supply Management Inc. All Rights Reserved</span></div>
 
 <div class="clear"></div>
 

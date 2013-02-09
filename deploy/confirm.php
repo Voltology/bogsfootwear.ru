@@ -11,15 +11,15 @@ include("inc/header.php");
           <tr>
             <td>
               <fieldset>
-                <legend>&raquo; Your Shopping Cart</legend>
+                <legend>&raquo; <?php echo t("Your Shopping Cart"); ?></legend>
                 <table width="100%" cellpadding="4" cellspacing="0" border="0" class="cart-table">
                   <thead>
                     <tr>
-                      <th>Products</th>
-                      <th>Description</th>
-                      <th>Price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
+                      <th><?php echo t("Product"); ?></th>
+                      <th><?php echo t("Description"); ?></th>
+                      <th><?php echo t("Price"); ?></th>
+                      <th><?php echo t("Quantity"); ?></th>
+                      <th><?php echo t("Total"); ?></th>
                     </tr>
                   </thead>
                   <tbody id="cart-table-body">
@@ -47,12 +47,12 @@ include("inc/header.php");
                     }
                     ?>
                     <tr class="shipping">
-                      <td colspan="4">Shipping:<br /><small>(US / Russian Express Mail with Tracking)</small></td>
+                      <td colspan="4"><?php echo t("Shipping"); ?>:<br /><small>(<?php echo t("US / Russian Express Mail with Tracking"); ?>)</small></td>
                       <td valign="top"><span class="cart-subtotal">$0.00</span></td>
                     </tr>
                     <tr><td colspan="5">&nbsp;</td></tr>
                     <tr class="subtotal">
-                      <td colspan="4">Subtotal:</td>
+                      <td colspan="4"><?php echo t("Subtotal"); ?>:</td>
                       <td><?php echo "\$<span class=\"cart-subtotal\" id=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>
                     </tr>
                   </tbody>
@@ -65,7 +65,7 @@ include("inc/header.php");
           <tr>
             <td>
               <fieldset>
-                <legend>&raquo; Your Shipping Address</legend>
+                <legend>&raquo; <?php echo t("Your Shipping Address"); ?></legend>
                 <table width="100%" cellpadding="4" cellspacing="0" border="0" class="shipping-table">
                   <tr>
                     <td>
@@ -79,7 +79,7 @@ include("inc/header.php");
                       <?php if ($address['province'] !== "") { echo $address['province'] . "<br />"; } ?>
                       <?php echo $address['postal_code']; ?><br />
                       <?php echo $address['country']; ?><br />
-                      <a href="/shipping/">Edit Address</a>
+                      <a href="/shipping/"><?php echo t("Edit Address") ?></a>
                     </td>
                   </tr>
                 </table>
@@ -92,14 +92,14 @@ include("inc/header.php");
             <td align="center">&nbsp;</td>
           </tr>
           <tr>
-            <td align="center">If all the details above are correct, click the "Check out with PayPal" button to continue.</td>
+            <td align="center"><?php echo t("If all the details above are correct, click the \"Check out with PayPal\" button to continue."); ?></td>
           </tr>
           <tr>
             <td align="center">&nbsp;</td>
           </tr>
           <tr>
             <td align="right">
-              <input type="button" value="Cancel Checkout" onclick="document.location='/cart/'" />
+              <input type="button" value="<?php echo t("Cancel Checkout"); ?>" onclick="document.location='/cart/'" />
               <input type="image" src="/img/btn-checkout.png" class="btn-checkout" id="btn-checkout" onclick="dialog.open(); document.location='/checkout/'" />
             </td>
           </tr>

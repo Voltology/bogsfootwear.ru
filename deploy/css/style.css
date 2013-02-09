@@ -458,11 +458,12 @@ input[type='submit'], input[type='button'] {
   font-size: 8pt;
 }
 #footer {
-  width: 1000px;
   background-color: #000000;
   margin: 10px 0 0 0;
   padding: 0;
   height: 30px;
+  text-align: center;
+  width: 1000px;
 }
 .clear {
   clear: both;

@@ -33,24 +33,24 @@
         <div class="account-links">
           <?php
           if ($user->isLoggedIn()) {
-            echo "<strong>Hello, " . $user->getFirstName() . "</strong> -  <a href=\"/account\">My Account</a>";
-            if ($user->getRole() == 2) { echo " | <a href=\"/admin/\">Admin Area</a>"; }
-            echo " | <a href=\"/logout\">Log Out</a>";
+            echo "<strong>" . t("Hello") . ", " . $user->getFirstName() . "</strong> -  <a href=\"/account\">" . t("My Account") . "</a>";
+            if ($user->getRole() == 2) { echo " | <a href=\"/admin/\">" . t("Admin Area") . "</a>"; }
+            echo " | <a href=\"/logout\">" . t("Log Out") . "</a>";
           } else {
-            echo "<a href=\"/login/\">Sign In</a> | <a href=\"/register/\">Register</a>";
+            echo "<a href=\"/login/\">" . t("Sign In") . "</a> | <a href=\"/register/\">" . t("Register") . "</a>";
           }
           ?>
         </div>
         <span id="navigation">
-          <a href="/about-us">ДЛЯ ЛЮБОЙ НЕПОГОДЫ</a>
-          <a href="/catalog/womens/accessories">КАТАЛОГ</a>
-          <a href="/contact-us">Эксклюзивный дистрибьютор в России</a>
-          <a href="/where-to-buy">Где купить</a>
+          <a href="/about-us"><?php echo t("About Us"); ?></a>
+          <a href="/catalog/womens/accessories"><?php echo t("Catalog"); ?></a>
+          <a href="/contact-us"><?php echo t("Contact Us"); ?></a>
+          <a href="/where-to-buy"><?php echo t("Where to Buy"); ?></a>
           <?php
           if ($cart->getItemCount() < 1) {
-            echo "<a href=\"/cart\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"cart-text\">Cart is empty.</span></a></span>";
+            echo "<a href=\"/cart\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"cart-text\">" . t("Cart is empty") . "</span></a></span>";
           } else {
-            echo "<a href=\"/cart\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> items in cart</a></span>";
+            echo "<a href=\"/cart\"><img src=\"/img/cart.png\" class=\"cart-icon\" border=\"0\" /> <span id=\"item-count\">" . $cart->getItemCount() . "</span> " . t("items in cart") . "</a></span>";
           }
           ?>
         </span>
@@ -59,7 +59,7 @@
       <?php
       if ($shippingbanner) {
       ?>
-      <div class="shipping-banner">Free shipping from the USA <img src="/img/usflag.gif" class="flag" /></div>
+      <div class="shipping-banner"><?php echo t("Free shipping from the USA"); ?> <img src="/img/usflag.gif" class="flag" /></div>
       <?php
       }
       ?>

@@ -11,10 +11,10 @@ include("inc/header.php");
                 <tr>
                   <td>
                     <fieldset>
-                      <legend>&raquo; Order Complete</legend>
+                      <legend>&raquo; <?php echo t("Order Complete"); ?></legend>
                         <table cellpadding="2" cellspacing="0" border="0" class="register-table">
                           <tr>
-                            <td>Thank you for your purchase!</td>
+                            <td><?php echo t("Thank you for your purchase!"); ?></td>
                           </tr>
                         </table>
                     </fieldset>

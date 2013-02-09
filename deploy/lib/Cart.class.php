@@ -64,6 +64,7 @@ class Cart  {
     $query = sprintf("DELETE FROM cart_sessions WHERE token='%s'",
       mysql_real_escape_string($this->_token));
     mysql_query($query);
+    $this->_items = array();
     return true;
   }
 
@@ -72,7 +73,7 @@ class Cart  {
   }
 
   public function getGenderGroupList() {
-    $query = sprintf("SELECT DISTINCT gender,`group` FROM cart_inventory GROUP BY gender,`group`");
+    $query = sprintf("SELECT DISTINCT gender,`group` FROM cart_inventory WHERE active='1' GROUP BY gender,`group`");
     $query = mysql_query($query);
     $list = array();
     while ($row = mysql_fetch_assoc($query)) {
@@ -108,9 +109,13 @@ class Cart  {
   public function getItemTotals() {
     $totals = array();
     foreach ($this->_items as $item) {
-      $totals[$item['sku']] = $item['quantity'] * $item['price'];
+      $totals[$item['sku'] . "-" . $item['size']] = $item['quantity'] * $item['price'];
     }
     return $totals;
+  }
+
+  public function getPayPalToken() {
+    return $this->_paypaltoken;
   }
 
   public function getSubTotal() {
@@ -150,8 +155,33 @@ class Cart  {
     return true;
   }
 
+  public function setCompletedOrder($user_id, $shipping_id) {
+    $query = sprintf("INSERT INTO cart_completed_orders SET user_id='%s', shipping_address_id='%s', token='%s', paypal_token='%s', timestamp='%s'",
+      mysql_real_escape_string($user_id),
+      mysql_real_escape_string($shipping_id),
+      mysql_real_escape_string($this->_token),
+      mysql_real_escape_string($this->_paypaltoken),
+      mysql_real_escape_string(time()));
+    mysql_query($query);
+    $query = sprintf("DELETE FROM cart_pending_orders WHERE user_id='%s' AND token='%s' AND paypal_token='%s'",
+      mysql_real_escape_string($user_id),
+      mysql_real_escape_string($this->_token),
+      mysql_real_escape_string($this->_paypaltoken));
+    mysql_query($query);
+  }
+
   public function setPayPalToken($token) {
     $this->_paypaltoken = $token;
+  }
+
+  public function setPendingOrder($user_id, $shipping_id) {
+    $query = sprintf("INSERT INTO cart_pending_orders SET user_id='%s', shipping_address_id='%s', token='%s', paypal_token='%s', timestamp='%s'",
+      mysql_real_escape_string($user_id),
+      mysql_real_escape_string($shipping_id),
+      mysql_real_escape_string($this->_token),
+      mysql_real_escape_string($this->_paypaltoken),
+      mysql_real_escape_string(time()));
+    mysql_query($query);
   }
 
   public function setToken($token) {

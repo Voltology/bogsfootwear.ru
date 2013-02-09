@@ -13,7 +13,7 @@ $group = $_GET['group'];
             <?php
             $list = $cart->getGenderGroupList();
             foreach ($list as $key => $value) {
-              echo "<br /><a href=\"/catalog/" . $key . "\"><b>" . strToUpper($key) . "</b></a><br/>";
+              echo "<br /><a href=\"/catalog/" . $key . "\"><b>" . strToUpper(t($key)) . " " . t("Collection") . "</b></a><br/>";
               foreach ($list[$key] as $groupname) {
                 echo "<a href=\"/catalog/" . $key . "/" . $groupname . "\">" . ucwords($groupname) . "</a><br/>";
               }
@@ -27,8 +27,8 @@ $group = $_GET['group'];
         </div>
         <div id="contentarea">
           <div id="content">
-            <span id="breadcrumb"><a href="/">Home</a> | <a href="/catalog/womens-collections/womens-plimsoll/">КАТАЛОГ</a> | ЖЕНСКИЕ коллекции</span>
-            <h2>ЖЕНСКИЕ Plimsoll</h2>
+            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo t($gender); ?></a> | <?php echo t($gender); ?> <?php echo t($group); ?></span>
+            <h2><?php echo t($gender); ?> <?php echo ucwords(t($group)); ?></h2>
             <div id="page">
               <div id="container">
                 <div id="gallery" class="content">
@@ -95,7 +95,7 @@ $group = $_GET['group'];
               </div>
             </div>
           </div>
-          <a style="font-size: 9pt; line-height: 31pt; text-decoration: underline;" href="javascript:mdlMusic()">&gt; Click here for shoe sizing information</a>
+          <a style="font-size: 9pt; line-height: 31pt; text-decoration: underline;" href="javascript:mdlMusic()">&gt; <?php echo t("Click here for shoe sizing information"); ?></a>
         </div>
       </div>
       <script type="text/javascript" src="/js/addfunctions.js"></script>

@@ -32,6 +32,7 @@ $action = $_GET['a'] ? $_GET['a'] : null;
             <div class="<?php if ($page === "inventory") { ?>active<?php } ?>menuitem"><a href="?p=inventory">Inventory</a></div>
             <div class="<?php if ($page === "groups") { ?>active<?php } ?>menuitem"><a href="?p=groups">Groups</a></div>
             <div class="<?php if ($page === "upload") { ?>active<?php } ?>menuitem"><a href="?p=upload">Upload CSV</a></div>
+            <div class="<?php if ($page === "orders") { ?>active<?php } ?>menuitem"><a href="?p=orders">Orders</a></div>
             <div class="<?php if ($page === "users") { ?>active<?php } ?>menuitem"><a href="?p=users">Users</a></div>
             <div class="<?php if ($page === "settings") { ?>active<?php } ?>menuitem"><a href="?p=settings">Settings</a></div>
             <br />
@@ -67,6 +68,8 @@ $action = $_GET['a'] ? $_GET['a'] : null;
               require("home.php");
             } else if ($page === "inventory") {
               require("inventory.php");
+            } else if ($page === "orders") {
+              require("orders.php");
             } else if ($page === "users") {
               require("users.php");
             } else if ($page === "upload") {

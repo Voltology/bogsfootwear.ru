@@ -17,16 +17,16 @@ include("inc/header.php");
         <tr>
           <td>
             <fieldset>
-              <legend>&raquo; My Account</legend>
+              <legend>&raquo; <?php echo t("My Account"); ?></legend>
               <table cellpadding="2" cellspacing="0" border="0" class="account-table">
                 <tr>
-                  <td><a href="/account/vieworders">View Orders</a></td>
+                  <td><a href="/account/vieworders"><?php echo t("View Orders"); ?></a></td>
                 </tr>
                 <tr>
-                  <td><a href="/account/edit">Edit Account Information</a></td>
+                  <td><a href="/account/edit"><?php echo t("Edit Account Information"); ?></a></td>
                 </tr>
                 <tr>
-                  <td><a href="/account/editpassword">Change Password</a></td>
+                  <td><a href="/account/editpassword"><?php echo t("Change Password"); ?></a></td>
                 </tr>
               </table>
             </fieldset>

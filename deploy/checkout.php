@@ -12,6 +12,7 @@ $ack = strtolower($res["ACK"]);
 if ($ack == "success" || $ack == "successwithwarning") {
 	$token = urldecode($res["TOKEN"]);
   $cart->setPayPalToken($token);
+  $cart->setPendingOrder($user->getId(), $_SESSION['addressid']);
 	$_SESSION['token'] = $token;
 	header("Location: ". PAYPAL_URL . $token);
 } else {

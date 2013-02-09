@@ -20,28 +20,28 @@ include("inc/header.php");
                           <form action="/login-redirect.php" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="login-table">
                               <tr>
-                                <td colspan="2">To contiune with the checkout, you can log in, register for an account or continue as a guest.</td>
+                                <td colspan="2"><?php echo t("To contiune with the checkout, you can log in, register for an account or continue as a guest."); ?></td>
                               </tr>
                               <?php
                               if ($_GET['fail'] == "true") {
                               ?>
                               <tr>
-                                <td colspan="2" class="error">Username and password incorrect.</td>
+                                <td colspan="2" class="error"><?php echo t("Username and password incorrect."); ?></td>
                               </tr>
                               <?php
                               }
                               ?>
                               <tr>
-                                <td width="80">Email</td><td><input type="text" name="email" /></td>
+                                <td width="80"><?php echo t("Email"); ?></td><td><input type="text" name="email" /></td>
                               </tr>
                               <tr>
-                                <td width="80">Password</td><td><input type="password" name="password"/></td>
+                                <td width="80"><?php echo t("Password"); ?></td><td><input type="password" name="password"/></td>
                               </tr>
                               <tr>
-                                <td>&nbsp;</td><td><input type="submit" value="Log In" /></td>
+                                <td>&nbsp;</td><td><input type="submit" value="<?php echo t("Log In"); ?>" /></td>
                               </tr>
                               <tr>
-                                <td colspan="2"><a href="/register/">Don't have an account? Click here to register!</a></td>
+                                <td colspan="2"><a href="/register/"><?php echo t("Don't have an account? Click here to register!"); ?></a></td>
                               </tr>
                             </table>
                             <input type="hidden" name="logintype" value="checkout" />
@@ -53,7 +53,7 @@ include("inc/header.php");
                   </table>
                 </td>
                 <td align="center">
-                  <a href="/shipping/">Click here to continue as guest.</a>
+                  <a href="/shipping/"><?php echo t("Click here to continue as guest."); ?></a>
                 </td>
               </tr>
             </table>

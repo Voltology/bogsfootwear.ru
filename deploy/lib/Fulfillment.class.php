@@ -8,8 +8,6 @@ class Fulfillment {
     $headers[] = "Accept: application/json";
 
     $ch = curl_init(STORE_URL . $action);
-    curl_setopt($ch, CURLOPT_HEADER, true);
-    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     if ($method === "post") {
       curl_setopt($ch, CURLOPT_POST, true);
@@ -21,7 +19,6 @@ class Fulfillment {
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
     }
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_VERBOSE, 1);
     curl_setopt($ch, CURLOPT_ENCODING, "");
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);

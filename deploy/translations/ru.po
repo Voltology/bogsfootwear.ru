@@ -1,0 +1,259 @@
+<?php
+$msg[] = "About Us";
+$rep[] = "ДЛЯ ЛЮБОЙ НЕПОГОДЫ";
+
+$msg[] = "Catalog";
+$rep[] = "КАТАЛОГ";
+
+$msg[] = "Contact Us";
+$rep[] = "Эксклюзивный дистрибьютор в России";
+
+$msg[] = "Where to Buy";
+$rep[] = "Где купить";
+
+$msg[] = "Hello";
+$rep[] = "Здравствуйте";
+
+$msg[] = "My Account";
+$rep[] = "Мой счет";
+
+$msg[] = "Admin Area";
+$rep[] = "Область администрирования";
+
+$msg[] = "Log Out";
+$rep[] = "Выйти";
+
+$msg[] = "Cart is empty";
+$rep[] = "Корзина пуста";
+
+$msg[] = "item in cart";
+$rep[] = "пара в корзине";
+
+$msg[] = "items in cart";
+$rep[] = "пары в корзине";
+
+$msg[] = "Free shipping from the USA";
+$rep[] = "Бесплатная доставка из США";
+
+$msg[] = "Sign In";
+$rep[] = "Войти";
+
+$msg[] = "Register";
+$rep[] = "Зарегестрироваться";
+
+$msg[] = "womens";
+$rep[] = "ЖЕНСКИЕ";
+
+$msg[] = "mens";
+$rep[] = "МУЖСКИЕ";
+
+$msg[] = "kids";
+$rep[] = "ДЕТСКИЕ";
+
+$msg[] = "Collection";
+$rep[] = "коллекции";
+
+$msg[] = "Click here for shoe sizing information";
+$rep[] = "Щелкните здесь для информации по размерам обуви ";
+
+$msg[] = "Add to cart";
+$rep[] = "Добавить в корзину";
+
+$msg[] = "Select size";
+$rep[] = "Выберите размер";
+
+$msg[] = "You must select a size.";
+$rep[] = "Вы должны выбрать размер.";
+
+$msg[] = "This item has been added to your cart.";
+$rep[] = "Этот товар был добавлен в корзину.";
+
+$msg[] = "Your shopping cart";
+$rep[] = "Ваша корзина";
+
+$msg[] = "Product";
+$rep[] = "Товар";
+
+$msg[] = "Description";
+$rep[] = "Описание";
+
+$msg[] = "Price";
+$rep[] = "Цена за единицу";
+
+$msg[] = "Quantity";
+$rep[] = "Количество";
+
+$msg[] = "Total";
+$rep[] = "Общая сумма";
+
+$msg[] = "Shipping";
+$rep[] = "Транспортные расходы";
+
+$msg[] = "US / Russian Express Mail with Tracking";
+$rep[] = "США / Русский Экспресс почта с отслеживанием";
+
+$msg[] = "Subtotal";
+$rep[] = "Промежуточный итог";
+
+$msg[] = "Remove item";
+$rep[] = "Удалить товар";
+
+$msg[] = "Item quantity has been updated.";
+$rep[] = "Количество товаров в корзине обновлено";
+
+$msg[] = "Continue shopping";
+$rep[] = "Продолжить покупку";
+
+$msg[] = "No items in cart";
+$rep[] = "Товаров в корзине нет";
+
+$msg[] = "My account";
+$rep[] = "Мой счет";
+
+$msg[] = "Welcome back. To access your account, enter your email and password.";
+$rep[] = "Добро пожаловать обратно. Чтобы получить доступ к Вашему счету, введите адрес электронной почты и пароль.";
+
+$msg[] = "Email";
+$rep[] = "Электронная почта";
+
+$msg[] = "Password";
+$rep[] = "Пароль";
+
+$msg[] = "Log In";
+$rep[] = "Вход";
+
+$msg[] = "Don't have an account? Click here to sign up!";
+$rep[] = "Не имеете счета? Нажмите сюда, чтобы зарегистрироваться!";
+
+$msg[] = "Reset Password";
+$rep[] = "Изменить пароль";
+
+$msg[] = "Enter your email address and a new password will be immediately sent to you. You may change your replacement password later under Sign In.";
+$rep[] = "Введите адрес электронной почты и новый пароль будет немедленно отправлен к вам. Вы можете изменить свой пароль как только зайдете на свой счет.";
+
+$msg[] = "Username and/or password are incorrect.";
+$rep[] = "Имя пользователя и / или пароль неверны.";
+
+$msg[] = "That email address does not exist in our database.";
+$rep[] = "Этот адрес электронной почты не существует в нашей базе данных.";
+
+$msg[] = "A temporary password has been emailed to you.";
+$rep[] = "Временный пароль был отправлен вам.";
+
+$msg[] = "Register for an account";
+$rep[] = "Зарегистрировать счет";
+
+$msg[] = "First Name";
+$rep[] = "Имя";
+
+$msg[] = "Last Name";
+$rep[] = "фамилия";
+
+$msg[] = "Password";
+$rep[] = "пароль";
+
+$msg[] = "Re-enter password";
+$rep[] = "Повторно введите пароль";
+
+$msg[] = "Register";
+$rep[] = "Зарегестрироваться";
+
+$msg[] = "Welcome! Complete the form below to register for your free account";
+$rep[] = "Добро пожаловать! Заполните форму ниже, чтобы зарегистрировать бесплатный счет";
+
+$msg[] = "You must make sure to fill out all fields";
+$rep[] = "Заполните все поля";
+
+$msg[] = "You must enter a valid email address";
+$rep[] = "Вы должны ввести действительный адрес электронной почты";
+
+$msg[] = "Your password must be at least 6 characters long";
+$rep[] = "Ваш пароль должен содержать не менее 6 символов";
+
+$msg[] = "Your passwords must match";
+$rep[] = "Ваши пароли должны совпадать";
+
+$msg[] = "Click here to continue as guest";
+$rep[] = "Нажмите здесь, чтобы продолжить в качестве гостя";
+
+$msg[] = "To continue with the checkout you can log in, register for an account, or continue as a guest.";
+$rep[] = "Чтобы завершить покупку вы можете войти в систему с зарегистрированным счетом, или продолжить в качестве гостя.";
+
+$msg[] = "Select shipping address";
+$rep[] = "Выберите адрес доставки";
+
+$msg[] = "Select the shipping address you'd like to use or create a new one using the form on the right.";
+$rep[] = "Выберите адрес доставки вы хотели бы использовать или создайте новый, используя форму справа.";
+
+$msg[] = "Remove Address";
+$rep[] = "Удалить адрес";
+
+$msg[] = "Use this Address";
+$rep[] = "Используйте этот адрес";
+
+$msg[] = "New Shipping Address";
+$rep[] = "Новый адрес доставки";
+
+$msg[] = "Note: Shipping address must be a residential address.";
+$rep[] = "Примечание: доставка должена быть на домашний адрес.";
+
+$msg[] = "Recipient Name";
+$rep[] = "Имя получателя";
+
+$msg[] = "Address Line 1";
+$rep[] = "Адресная строка 1";
+
+$msg[] = "Address Line 2";
+$rep[] = "Адресная строка 2";
+
+$msg[] = "District";
+$rep[] = "район";
+
+$msg[] = "Province";
+$rep[] = "область";
+
+$msg[] = "Postal Code";
+$rep[] = "почтовый код";
+
+$msg[] = "Country";
+$rep[] = "страна";
+
+$msg[] = "Are you sure you want to remove this address?";
+$rep[] = "Вы уверены, что хотите удалить этот адрес?";
+
+$msg[] = "You do not have any shipping addresses associated with this account. Use the form on the right to create a new one.";
+$rep[] = "Ваш счет не имеет адреса доставли. Используйте форму справа для создания нового.";
+
+$msg[] = "Your Shipping Address";
+$rep[] = "Ваш адрес доставки";
+
+$msg[] = "Edit Address";
+$rep[] = "Изменить адрес";
+
+$msg[] = "If all the details above are correct, click the \"Check out with PayPal\" button to continue.";
+$rep[] = "Если все указанные выше сведения верны, нажмите кнопку \"Проверить с PayPal\" для продолжения.";
+
+$msg[] = "Cancel Checkout";
+$rep[] = "Отменить заказ";
+
+$msg[] = "Thank you for your purchase!  A confirmation email has been sent to the email address you've provided.  *Click here* to view the status of your order.";
+$rep[] = "Спасибо за покупку! Письмо с подтверждением было отправлено на адрес электронной почты, который Вы указали. * Нажмите здесь*, чтобы просмотреть статус вашего заказа.";
+
+$msg[] = "My Account";
+$rep[] = "Мой счет";
+
+$msg[] = "View Orders";
+$rep[] = "Заказы";
+
+$msg[] = "Edit Account Information";
+$rep[] = "Изменить данные Вашего счета ";
+
+$msg[] = "Change Password";
+$rep[] = "Изменить пароль";
+
+$msg[] = "Status";
+$rep[] = "Статус покупки";
+
+$msg[] = "Tracking Number";
+$rep[] = "Номер отслеживания";
+?>
