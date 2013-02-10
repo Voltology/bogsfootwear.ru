@@ -68,7 +68,7 @@
             }
             echo "<br />";
             echo "<h3>Do these results make sense?</h3>";
-            echo "<form method=\"post\" action=\"?p=inventory&s=upload&a=approved\">";
+            echo "<form method=\"post\" action=\"?p=upload&s=upload&a=approve\">";
             echo "<input type=\"hidden\" name=\"filename\" value=\"" . $location  . "\" />";
             echo "<input type=\"submit\" value=\"Yes - Complete the upload\" />&nbsp;";
             echo "<input type=\"button\" value=\"No - Go back\" onclick=\"document.location='?p=inventory&s=upload'\" />";
@@ -82,7 +82,7 @@
 
     } else {
 ?>
-        <form method="post" action="?p=inventory&s=upload&a=approve" enctype="multipart/form-data">
+        <form method="post" action="?p=upload&s=upload&a=approve" enctype="multipart/form-data">
             <table class="editTable">
                 <tr><td class="editLabel" width="80">Select File</td><td class="editField"><input type="file" name="csv" value="" /></td></tr>
             </table>

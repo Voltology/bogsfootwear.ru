@@ -27,7 +27,7 @@ $group = $_GET['group'];
         </div>
         <div id="contentarea">
           <div id="content">
-            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo t($gender); ?></a> | <?php echo t($gender); ?> <?php echo t($group); ?></span>
+            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo t($gender); ?></a> | <?php echo t($gender); ?> <?php echo ucwords(t($group)); ?></span>
             <h2><?php echo t($gender); ?> <?php echo ucwords(t($group)); ?></h2>
             <div id="page">
               <div id="container">
@@ -46,7 +46,7 @@ $group = $_GET['group'];
                   ?>
                     <li>
                       <form id="form-<?php echo $item['id']; ?>">
-                        <a class="thumb" href="/img/catalog/womens-collections/womens-plimsoll/71141-300.jpg" alt="71141-300" /><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71141-300.jpg" alt="71141-300" /></a>
+                        <a class="thumb" href="/img/catalog/<?php echo $item['sku']; ?>.jpg" alt="<?php echo $item['sku']; ?>" /><img src="/img/catalog/thumbs/<?php echo $item['sku']; ?>-thumb.jpg" alt="<?php echo $item['sku']; ?>" /></a>
                         <div class="caption">
                           <div class="image-title">
                           </div>
@@ -54,12 +54,14 @@ $group = $_GET['group'];
                             <table class="image-desc" width="300">
                               <tr>
                                 <td align="center" colspan="2">
+                                <!--
                                   <ul id="multiview-images">
                                     <li class="thumb"><img src="/img/catalog/71055-202.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71055-202.jpg')" /></li>
                                     <li class="thumb"><img src="/img/catalog/71063-001.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71063-001.jpg')" /></li>
                                     <li class="thumb"><img src="/img/catalog/71055-202.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71055-202.jpg')" /></li>
                                     <li class="thumb"><img src="/img/catalog/71063-001.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71063-001.jpg')" /></li>
                                   </ul>
+                                  -->
                                 </td>
                               </tr>
                               <tr>
@@ -84,7 +86,7 @@ $group = $_GET['group'];
                               </tr>
                               </table>
                             <div class="features">100% водонепроницаемость / Больше изящества с удобной посадкой / Надежное резиновое покрытие ручной формовки поверх эластичного во всех направлениях голенища / 7 мм водонепроницаемого материала Neo-Tech™ / Влагоотводящее покрытие Max-Wick™ дарит сухость и комфорт / Не оставляющая следов и самоочищающаяся подошва / Антимикробная стелька Aegis с защитой от запаха / Легко надеваются при помощи ручек / Комфорт гарантирован от умеренных температур до -40°С</div>
-                            <input type="button" value="Add To Cart" onclick="cart.add('<?php echo $item['id']; ?>', '<?php echo $item['sku']; ?>')" />
+                            <input type="button" value="<?php echo t("Add To Cart"); ?>" onclick="cart.add('<?php echo $item['id']; ?>', '<?php echo $item['sku']; ?>')" />
                           </div>
                       </form>
                     </li>

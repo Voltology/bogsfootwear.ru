@@ -26,7 +26,7 @@ $action = $_GET['a'] ? $_GET['a'] : null;
         <td valign="top" class="sidebarCell" width="120" style="border-top: 2px solid #000;">
           <div id="sidebar" style="line-height: 1.3em;">
           <?php
-          if ($user->isLoggedIn()) {
+          if ($user->isLoggedIn() && $user->getRole() == 2) {
           ?>
             <div class="<?php if ($page === "home") { ?>active<?php } ?>menuitem"><a href="?p=">Home</a></div>
             <div class="<?php if ($page === "inventory") { ?>active<?php } ?>menuitem"><a href="?p=inventory">Inventory</a></div>
@@ -39,13 +39,13 @@ $action = $_GET['a'] ? $_GET['a'] : null;
             <div class="logout"><a href="../logout?admin=true">Log Out</a></div>
             <br />
           <?php
-          }
+          } 
           ?>
           </div>
         </td>
         <td valign="top" align="left" class="page" style="border-top: 2px solid #000;">
           <?php
-          if (!$user->isLoggedIn()) {
+          if (!$user->isLoggedIn() || $user->getRole() != 2) {
           ?>
           <h3>Log In</h3>
           <form method="post" action="/login-redirect.php">
@@ -63,7 +63,7 @@ $action = $_GET['a'] ? $_GET['a'] : null;
             <input type="submit" value="Log In" />
           </form>
           <?php
-          } else {
+          } else if ($user->getRole() == 2) {
             if ($page === "home") {
               require("home.php");
             } else if ($page === "inventory") {
@@ -79,6 +79,8 @@ $action = $_GET['a'] ? $_GET['a'] : null;
             } else {
               require("error.php");
             }
+          } else {
+            require("error.php");
           }
           ?>
           <br />

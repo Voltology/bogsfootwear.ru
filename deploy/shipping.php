@@ -27,7 +27,7 @@ include("inc/header.php");
                     <tr>
                       <td>
                         <fieldset>
-                          <legend>&raquo; Select Shipping Address</legend>
+                          <legend>&raquo; <?php echo t("Select Shipping Address"); ?></legend>
                           <form action="/shipping/" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="shipping-table">
                               <?php
@@ -38,13 +38,13 @@ include("inc/header.php");
                                 <td colspan="2">&nbsp;</td>
                               </tr>
                               <tr>
-                                <td colspan="2">You do not have any shipping addresses associated with this account.  Use the form on the right to create a new one.</td>
+                                <td colspan="2"><?php echo t("You do not have any shipping addresses associated with this account. Use the form on the right to create a new one."); ?></td>
                               </tr>
                               <?php
                               } else {
                               ?>
                               <tr>
-                                <td colspan="2">Select the shipping address you'd like to use or create a new one using the form on the right.</td>
+                                <td colspan="2"><?php echo t("Select the shipping address you'd like to use or create a new one using the form on the right."); ?></td>
                               </tr>
                               <?php
                               }
@@ -71,7 +71,7 @@ include("inc/header.php");
                                       <?php if ($address['province'] !== "") { echo $address['province'] . "<br />"; } ?>
                                       <?php echo $address['postal_code']; ?><br />
                                       <?php echo $address['country']; ?><br />
-                                      <a href="javascript:if(confirm('Are you sure you want to remove this address?')) { document.location = '/shipping/?a=remove&id=<?php echo $address['id']; ?>'; }">Remove Address</a>
+                                      <a href="javascript:if(confirm('<?php echo t("Are you sure you want to remove this address?"); ?>')) { document.location = '/shipping/?a=remove&id=<?php echo $address['id']; ?>'; }"><?php echo t("Remove Address"); ?></a>
                                     </td>
                                   </tr>
                                 </table>
@@ -91,7 +91,7 @@ include("inc/header.php");
                               if (count($addresses) > 0) {
                               ?>
                               <tr>
-                                <td colspan="2"><input type="submit" value="Use This Address" /></td>
+                                <td colspan="2"><input type="submit" value="<?php echo t("Use This Address"); ?>" /></td>
                               </tr>
                               <?php
                               }
@@ -111,47 +111,47 @@ include("inc/header.php");
                     <tr>
                       <td>
                         <fieldset>
-                          <legend>&raquo; <?php if ($user->isLoggedIn()) { echo "New"; } else { echo "Your"; } ?> Shipping Address</legend>
+                          <legend>&raquo; <?php if ($user->isLoggedIn()) { echo t("New"); } else { echo "Your"; } ?> <?php echo t("Shipping Address"); ?></legend>
                           <form action="/shipping/?a=save" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="shipping-table">
                               <tr>
-                                <td colspan="2"><strong>*Note:</strong> Shipping address must be a residential address.</td>
+                                <td colspan="2"><strong>*<?php echo t("Note:"); ?></strong> <?php echo t("Shipping address must be a residential address."); ?></td>
                               </tr>
                               <tr>
-                                <td>Recipient Name</td>
+                                <td><?php echo t("Recipient Name"); ?></td>
                                 <td><input type="text" name="recipient" /></td>
                               </tr>
                               <tr>
-                                <td>Address Line 1</td>
+                                <td><?php echo t("Address Line 1"); ?></td>
                                 <td><input type="text" name="address1" /></td>
                               </tr>
                               <tr>
-                                <td>Address Line 2</td>
+                                <td><?php echo t("Address Line 2"); ?></td>
                                 <td><input type="text" name="address2" /></td>
                               </tr>
                               <tr>
-                                <td>District</td>
+                                <td><?php echo t("District"); ?></td>
                                 <td><input type="text" name="district" /></td>
                               </tr>
                               <tr>
-                                <td>Province</td>
+                                <td><?php echo t("Province"); ?></td>
                                 <td><input type="text" name="province" /></td>
                               </tr>
                               <tr>
-                                <td>Postal Code</td>
+                                <td><?php echo t("Postal Code"); ?></td>
                                 <td><input type="text" name="postalcode" /></td>
                               </tr>
                               <tr>
-                                <td>Country</td>
+                                <td><?php echo t("Country"); ?></td>
                                 <td><input type="text" name="country" /></td>
                               </tr>
                               <tr>
                                 <td>&nbsp;</td>
                                 <?php
                                 if ($user->isLoggedIn()) {
-                                  echo "<td><input type=\"submit\" value=\"Save Address\" /></td>";
+                                  echo "<td><input type=\"submit\" value=\"" . t("Save Address") . "\" /></td>";
                                 } else {
-                                  echo "<td><input type=\"submit\" value=\"Continue with Checkout\" /></td>";
+                                  echo "<td><input type=\"submit\" value=\"" . t("Continue with Checkout") . "\" /></td>";
                                 }
                                 ?>
 

@@ -24,10 +24,10 @@ include("inc/header.php");
               if (($_SERVER['REQUEST_METHOD'] == "POST" && count($errors) == 0)) {
               ?>
                 <fieldset>
-                  <legend>&raquo; Registration Complete</legend>
+                  <legend>&raquo; <?php echo t("Registration Complete"); ?></legend>
                     <table cellpadding="2" cellspacing="0" border="0" class="register-table">
                       <tr>
-                        <td>Thank you for registering!  You will now be able to view your account and order history.</td>
+                        <td><?php echo t("Thank you for registering!  You will now be able to view your account and order history."); ?></td>
                       </tr>
                       <?php
                       if (preg_match("/checkoutlogin/", $ref)) {
@@ -44,38 +44,38 @@ include("inc/header.php");
               } else {
               ?>
                 <fieldset>
-                  <legend>&raquo; Register for an Account</legend>
+                  <legend>&raquo; <?php echo t("Register for an Account"); ?></legend>
                   <form action="/register" method="post">
                     <table cellpadding="2" cellspacing="0" border="0" class="register-table">
                       <tr>
-                        <td colspan="2">Welcome! Complete the form below to register for your free account.</td>
+                        <td colspan="2"><?php echo t("Welcome! Complete the form below to register for your free account."); ?></td>
                       </tr>
                       <?php
                       if (count($errors) > 0) {
                         echo "<tr><td colspan=\"2\" align=\"center\" class=\"register-errors\">";
                         foreach ($errors as $error) {
-                          echo $error . "<br />";
+                          echo t($error) . "<br />";
                         }
                         echo "</td></tr>";
                       }
                       ?>
                       <tr>
-                        <td width="120">First Name</td><td><input type="text" name="firstname" value="<?php echo $_POST['firstname']; ?>" /></td>
+                        <td width="120"><?php echo t("First Name"); ?></td><td><input type="text" name="firstname" value="<?php echo $_POST['firstname']; ?>" /></td>
                       </tr>
                       <tr>
-                        <td width="120">Last Name</td><td><input type="text" name="lastname" value="<?php echo $_POST['lastname']; ?>" /></td>
+                        <td width="120"><?php echo t("Last Name"); ?></td><td><input type="text" name="lastname" value="<?php echo $_POST['lastname']; ?>" /></td>
                       </tr>
                       <tr>
-                        <td width="120">Email</td><td><input type="text" name="email" value="<?php echo $_POST['email']; ?>" /></td>
+                        <td width="120"><?php echo t("Email"); ?></td><td><input type="text" name="email" value="<?php echo $_POST['email']; ?>" /></td>
                       </tr>
                       <tr>
-                        <td width="120">Password</td><td><input type="password" name="password1" /></td>
+                        <td width="120"><?php echo t("Password"); ?></td><td><input type="password" name="password1" /></td>
                       </tr>
                       <tr>
-                        <td width="120">Re-enter Password</td><td><input type="password" name="password2" /></td>
+                        <td width="120"><?php echo t("Re-enter Password"); ?></td><td><input type="password" name="password2" /></td>
                       </tr>
                       <tr>
-                        <td>&nbsp;</td><td><input type="submit" value="Register" /></td>
+                        <td>&nbsp;</td><td><input type="submit" value="<?php echo t("Register"); ?>" /></td>
                       </tr>
                     </table>
                     <input type="hidden" name="ref" value="<?php echo $ref; ?>" />

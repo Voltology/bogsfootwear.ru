@@ -40,7 +40,7 @@ include("inc/header.php");
         <tr>
           <td>
             <fieldset>
-              <legend>&raquo; My Orders</legend>
+              <legend>&raquo; <?php echo t("My Orders"); ?></legend>
               Order #1
             </fieldset>
           </td>
@@ -53,28 +53,28 @@ include("inc/header.php");
         <tr>
           <td>
             <fieldset>
-              <legend>&raquo; Edit Account</legend>
+              <legend>&raquo; <?php echo t("Edit Account Information"); ?></legend>
               <form method="post" action="/account/edit">
                 <table cellpadding="2" cellspacing="2" border="0" class="account-table" width="400">
                   <?php
                   if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                    echo "<tr><td colspan=\"2\" align=\"center\" class=\"success\">Account Saved</td></tr>";
+                    echo "<tr><td colspan=\"2\" align=\"center\" class=\"success\">" . t("Account Saved") . "</td></tr>";
                   }
                   ?>
                   <tr>
-                    <td>First Name</td>
+                    <td><?php echo t("First Name"); ?></td>
                     <td><input type="firstname" value="<?php echo $user->getFirstName();?>" /></td>
                   </tr>
                   <tr>
-                    <td>Last Name</td>
+                    <td><?php echo t("Last Name"); ?></td>
                     <td><input type="lastname" value="<?php echo $user->getLastName();?>" /></td>
                   </tr>
                   <tr>
-                    <td>Email</td>
+                    <td><?php echo t("Email"); ?></td>
                     <td><input type="email" value="<?php echo $user->getEmail(); ?>" /></td>
                   </tr>
                   <tr>
-                    <td>&nbsp;</td><td align="left"><input type="submit" value="Save" /></td>
+                    <td>&nbsp;</td><td align="left"><input type="submit" value="<?php echo t("Save"); ?>" /></td>
                   </tr>
                 </table>
               </form>
@@ -89,28 +89,28 @@ include("inc/header.php");
         <tr>
           <td>
             <fieldset>
-              <legend>&raquo; Change Password</legend>
+              <legend>&raquo; <?php echo t("Change Password"); ?></legend>
               <form method="post" action="/account/editpassword">
                 <table cellpadding="2" cellspacing="2" border="0" class="account-table" width="400">
                   <?php
                   if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                    echo "<tr><td colspan=\"2\" align=\"center\" class=\"success\">Password Saved</td></tr>";
+                    echo "<tr><td colspan=\"2\" align=\"center\" class=\"success\">" . t("Password Saved") . "</td></tr>";
                   }
                   ?>
                   <tr>
-                    <td>Current Password</td>
+                    <td><?php echo t("Current Password"); ?></td>
                     <td><input type="password" /></td>
                   </tr>
                   <tr>
-                    <td>New Password</td>
+                    <td><?php echo t("New Password"); ?></td>
                     <td><input type="password" /></td>
                   </tr>
                   <tr>
-                    <td>Re-enter New Password</td>
+                    <td><?php echo t("Re-enter New Password"); ?></td>
                     <td><input type="password" /></td>
                   </tr>
                   <tr>
-                    <td>&nbsp;</td><td align="left"><input type="submit" value="Change Password" /></td>
+                    <td>&nbsp;</td><td align="left"><input type="submit" value="<?php echo t("Change Password"); ?>" /></td>
                   </tr>
                 </table>
               </form>

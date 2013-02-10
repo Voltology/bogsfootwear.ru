@@ -31,7 +31,7 @@ include("inc/header.php");
                     ?>
                     <tr id="item-<?php echo $count; ?>" class="item-row">
                       <td width="30%">
-                        <span><img src="/img/catalog/womens-collections/womens-plimsoll/thumbs/71111-009.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
+                        <span><img src="/img/catalog/thumbs/<?php echo $item['sku']; ?>-thumb.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
                         <img src="/img/cross.png" class="item-remove" alt="<?php echo t("Remove Item"); ?>" title="<?php echo t("Remove Item"); ?>" onclick="cart.remove('<?php echo $item['id']; ?>', '<?php echo $count; ?>');" />
                       </td>
                       <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?><br /><?php echo t("Size"); ?> <?php echo $item['size']; ?></td>
@@ -58,7 +58,7 @@ include("inc/header.php");
                     }
                     ?>
                     <tr class="shipping">
-                      <td colspan="4"><?php echo t("Shipping"); ?>:<br /><small><?php echo t("(US / Russian Express Mail with Tracking"); ?></small></td>
+                      <td colspan="4"><?php echo t("Shipping"); ?>:<br /><small>(<?php echo t("US / Russian Express Mail with Tracking"); ?>)</small></td>
                       <td valign="top"><span class="cart-subtotal">$0.00</span></td>
                     </tr>
                     <tr><td colspan="5">&nbsp;</td></tr>
