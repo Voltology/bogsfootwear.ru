@@ -59,6 +59,9 @@ $rep[] = "Щелкните здесь для информации по разм�
 $msg[] = "Add To Cart";
 $rep[] = "Добавить в корзину";
 
+$msg[] = "Size";
+$rep[] = "Pазмер";
+
 $msg[] = "Select size";
 $rep[] = "Выберите размер";
 
@@ -173,7 +176,7 @@ $rep[] = "Ваш пароль должен содержать не менее 6 
 $msg[] = "Your passwords must match";
 $rep[] = "Ваши пароли должны совпадать";
 
-$msg[] = "Click here to continue as guest";
+$msg[] = "Click here to continue as guest.";
 $rep[] = "Нажмите здесь, чтобы продолжить в качестве гостя";
 
 $msg[] = "To continue with the checkout you can log in, register for an account, or continue as a guest.";

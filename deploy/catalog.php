@@ -3,7 +3,7 @@ require(".local.inc.php");
 include("inc/header.php");
 
 $gender = $_GET['gender'];
-$group = $_GET['group'];
+$group = $_GET['group'] ? $_GET['group'] : null;
 ?>
     <span id="bannerimage"><img src="/img/womens-plimsoll.jpg" width="998" height="225" /></span>
     <div class="clear"></div>
@@ -27,7 +27,7 @@ $group = $_GET['group'];
         </div>
         <div id="contentarea">
           <div id="content">
-            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo t($gender); ?></a> | <?php echo t($gender); ?> <?php echo ucwords(t($group)); ?></span>
+            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo t($gender); ?></a> <?php if ($group) { ?>| <?php echo t($gender); ?> <?php echo ucwords(t($group)); } ?></span>
             <h2><?php echo t($gender); ?> <?php echo ucwords(t($group)); ?></h2>
             <div id="page">
               <div id="container">
@@ -46,7 +46,7 @@ $group = $_GET['group'];
                   ?>
                     <li>
                       <form id="form-<?php echo $item['id']; ?>">
-                        <a class="thumb" href="/img/catalog/<?php echo $item['sku']; ?>.jpg" alt="<?php echo $item['sku']; ?>" /><img src="/img/catalog/thumbs/<?php echo $item['sku']; ?>-thumb.jpg" alt="<?php echo $item['sku']; ?>" /></a>
+                        <a class="thumb" href="/img/catalog/<?php echo $item['sku']; ?>/1.jpg" alt="<?php echo $item['sku']; ?>" /><img src="/img/catalog/<?php echo $item['sku']; ?>/thumb.jpg" alt="<?php echo $item['sku']; ?>" /></a>
                         <div class="caption">
                           <div class="image-title">
                           </div>

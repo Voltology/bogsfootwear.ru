@@ -6,9 +6,29 @@ if (!isset($action)) {
   if ($_GET['save'] === "true") {
     if (isset($_POST['id'])) {
       echo "<div class=\"success\">Inventory item has been saved.</div>";
+      if ($_FILES['image'] != "") {
+        uploadFile($_FILES['image'], "1", 330, 330, $_POST['sku']);
+      }
+      if ($_FILES['thumbnail'] != "") {
+        uploadFile($_FILES['thumbnail'], "thumb", 75, 75, $_POST['sku']);
+      }
+      if ($_POST['price'] == 0 && $_POST['active'] == 1) {
+        $_POST['active'] = 0;
+        echo "<div class=\"error\">Item not published.  Price must be greater than \$0.00</div>";
+      }
       Admin::updateItem($_POST['id'], $_POST);
     } else {
       echo "<div class=\"success\">Inventory item has been created.</div>";
+      if ($_FILES['image'] != "") {
+        uploadFile($_FILES['image'], "1", 330, 330, $_POST['sku']);
+      }
+      if ($_FILES['thumbnail'] != "") {
+        uploadFile($_FILES['thumbnail'], "thumb", 75, 75, $_POST['sku']);
+      }
+      if ($_POST['price'] == 0 && $_POST['active'] == 1) {
+        $_POST['active'] = 0;
+        echo "<div class=\"error\">Item not published.  Price must be greater than \$0.00</div>";
+      }
       Admin::addItem($_POST);
     }
   } else if ($_GET['delete'] === "true") {
@@ -58,7 +78,7 @@ if (!isset($action)) {
   $item = Admin::getItemById($_GET['id']);
 ?>
   <h3>Inventory - <?php echo ucwords($action); ?> Item</h3>
-  <form method="post" action="?p=inventory&save=true">
+  <form method="post" action="?p=inventory&save=true" enctype="multipart/form-data">
     <h4>Product Information</h4>
     <table class="editTable">
       <tr><td class="editLabel">Product Name</td><td class="editField"><input type="text" name="name" value="<?php echo $item['name']; ?>" /></td></tr>
@@ -92,8 +112,23 @@ if (!isset($action)) {
         </select>
       </td></tr>
       <tr><td class="editLabel">Price</td><td class="editField"><input type="text" name="price" class="number_value" value="<?php echo number_format($item['price'], 2); ?>" /></td></tr>
-      <tr><td class="editLabel">Image</td><td class="editField"><input type="file" name="image" value="" /></td></tr>
-      <tr><td class="editLabel">Thumbnail</td><td class="editField"><input type="file" name="thumbnail" value="" /></td></tr>
+      <tr><td class="editLabel">Image</td><td class="editField"><input type="file" name="image" value="" />
+          <?php if (file_exists("../img/catalog/" . $item['sku'] . "/1.jpg")) { ?>
+          <br /><img src="../img/catalog/<?php echo $item['sku']; ?>/1.jpg" />
+          <?php } else { ?>
+          <br />No file uploaded.
+          <?php } ?>
+        </td>
+      </tr>
+      <tr>
+        <td class="editLabel">Thumbnail</td><td class="editField"><input type="file" name="thumbnail" value="" />
+          <?php if (file_exists("../img/catalog/" . $item['sku'] . "/thumb.jpg")) { ?>
+          <br /><img src="../img/catalog/<?php echo $item['sku']; ?>/thumb.jpg" />
+          <?php } else { ?>
+          <br />No file uploaded.
+          <?php } ?>
+        </td>
+      </tr>
       <tr><td class="editLabel">Publish</td><td class="editField"><input type="checkbox" name="active" value="1" <?php if ($item['active'] == "1") { echo "checked "; } ?>/></td></tr>
     </table>
     <!--
@@ -115,5 +150,46 @@ if (!isset($action)) {
     <input type="button" value="Cancel" onclick="document.location='?p=inventory'"/>
   </form>
 <?php
+}
+
+function uploadFile($file, $name, $height, $width, $dir) {
+  $allowedExts = array("jpg", "jpeg", "gif", "png");
+  $extension = end(explode(".", $file["name"]));
+  $imagetypes = array('image/png' => 'png', 'image/gif' => 'gif', 'image/jpeg' => 'jpg', 'image/bmp' => 'bmp');
+  if ((($file["type"] == "image/gif") || ($file["type"] == "image/jpeg") || ($file["type"] == "image/jpg") || ($file["type"] == "image/png") || ($file["type"] == "image/pjpeg")) && ($file["size"] < 2000000) && in_array($extension, $allowedExts)) {
+    if ($file["error"] > 0) {
+      echo "Return Code: " . $file["error"] . "<br>";
+    } else {
+      if (!is_dir("../img/catalog/" . $dir)) {
+        mkdir("../img/catalog/" . $dir);
+      }
+      $filename = $name . "." . $imagetypes[$file["type"]];
+      move_uploaded_file($file["tmp_name"], "../img/catalog/" . $dir . "/" . $filename);
+
+      $filename = "../img/catalog/" . $dir . "/" . $filename;
+      list($current_width, $current_height) = getimagesize($filename);
+      if ($imagetypes[$file["type"]] == "png") {
+        $current_image = imagecreatefrompng($filename);
+      } else if ($imagetypes[$file["type"]] == "jpg" || $imagetypes[$file["type"]] == "jpeg") {
+        $current_image = imagecreatefromjpeg($filename);
+      } else if ($imagetypes[$file["type"]] == "gif") {
+        $current_image = imagecreatefromgif($filename);
+      }
+
+      $canvas = imagecreatetruecolor($width, $height);
+      imagecopyresampled($canvas, $current_image, 0, 0, 0, 0, $width, $height, $current_width, $current_height);
+      $white = imagecolorallocate($canvas, 255, 255, 255);
+      imagefill($canvas, 0, 0, $white);
+      if ($imagetypes[$file["type"]] == "png") {
+        imagepng($canvas, $filename);
+      } else if ($imagetypes[$file["type"]] == "jpg" || $imagetypes[$file["type"]] == "jpeg") {
+        imagejpeg($canvas, $filename);
+      } else if ($imagetypes[$file["type"]] == "gif") {
+        imagegif($canvas, $filename);
+      }
+    }
+  } else {
+    echo "Invalid file";
+  }
 }
 ?>

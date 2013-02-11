@@ -31,7 +31,7 @@ include("inc/header.php");
                     ?>
                     <tr id="item-<?php echo $count; ?>" class="item-row">
                       <td width="30%">
-                        <span><img src="/img/catalog/thumbs/<?php echo $item['sku']; ?>-thumb.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
+                        <span><img src="/img/catalog/<?php echo $item['sku']; ?>/thumb.jpg<?php echo $item['thumbnail']; ?>" class="item-thumbnail" /></span>
                       </td>
                       <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?><br />Size <?php echo $item['size']; ?></td>
                       <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>

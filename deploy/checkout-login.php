@@ -16,11 +16,11 @@ include("inc/header.php");
                     <tr>
                       <td>
                         <fieldset>
-                          <legend>&raquo; My Account</legend>
+                          <legend>&raquo; <?php echo t("My Account"); ?></legend>
                           <form action="/login-redirect.php" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="login-table">
                               <tr>
-                                <td colspan="2"><?php echo t("To contiune with the checkout, you can log in, register for an account or continue as a guest."); ?></td>
+                                <td colspan="2"><?php echo t("To continue with the checkout you can log in, register for an account, or continue as a guest."); ?></td>
                               </tr>
                               <?php
                               if ($_GET['fail'] == "true") {
@@ -41,7 +41,7 @@ include("inc/header.php");
                                 <td>&nbsp;</td><td><input type="submit" value="<?php echo t("Log In"); ?>" /></td>
                               </tr>
                               <tr>
-                                <td colspan="2"><a href="/register/"><?php echo t("Don't have an account? Click here to register!"); ?></a></td>
+                                <td colspan="2"><a href="/register/"><?php echo t("Don't have an account? Click here to sign up!"); ?></a></td>
                               </tr>
                             </table>
                             <input type="hidden" name="logintype" value="checkout" />
