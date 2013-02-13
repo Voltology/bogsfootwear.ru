@@ -33,7 +33,9 @@ include("inc/header.php");
                       if (preg_match("/checkoutlogin/", $ref)) {
                       ?>
                       <tr>
-                        <td><input type="button" value="Continue With Checkout" onclick="document.location='/checkoutlogin/'" /></td>
+                        <td>
+                          <input type="button" value="Continue With Checkout" onclick="document.location='/checkoutlogin/'" />&nbsp;
+                        </td>
                       </tr>
                       <?php
                       }
@@ -75,7 +77,15 @@ include("inc/header.php");
                         <td width="120"><?php echo t("Re-enter Password"); ?></td><td><input type="password" name="password2" /></td>
                       </tr>
                       <tr>
-                        <td>&nbsp;</td><td><input type="submit" value="<?php echo t("Register"); ?>" /></td>
+                        <td>&nbsp;</td>
+                        <td>
+                          <input type="submit" value="<?php echo t("Register"); ?>" />
+                          <?php
+                          if (preg_match("/checkoutlogin/", $ref)) {
+                            echo "<input type=\"button\" value=\"Cancel\" onclick=\"window.location='/checkoutlogin/'\" />";
+                          }
+                          ?>
+                        </td>
                       </tr>
                     </table>
                     <input type="hidden" name="ref" value="<?php echo $ref; ?>" />

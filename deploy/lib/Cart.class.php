@@ -71,6 +71,24 @@ class Cart  {
   public function getCart() {
     return $this->_items;
   }
+ 
+  public function getCountryNameByCode($code) {
+    $query = sprintf("SELECT name FROM cart_countries WHERE iso1_code='%s'",
+      mysql_real_escape_string($code));
+    $query = mysql_query($query);
+    $row = mysql_fetch_assoc($query);
+    return $row['name'];
+  }
+
+  public function getCountries() {
+    $query = sprintf("SELECT iso1_code,name FROM cart_countries");
+    $query = mysql_query($query);
+    $countries = array();
+    while ($row = mysql_fetch_assoc($query)) {
+      array_push($countries, $row);
+    }
+    return $countries;
+  }
 
   public function getGenderGroupList() {
     $query = sprintf("SELECT DISTINCT gender,`group` FROM cart_inventory" . DB_EXT . " WHERE active='1' GROUP BY gender,`group`");

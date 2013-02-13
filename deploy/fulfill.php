@@ -52,9 +52,9 @@ if ($paypaltoken == $cart->getPayPalToken()) {
   }
 
   $data = json_encode($data);
-  Fulfillment::createOrder($data);
+  echo Fulfillment::createOrder($data);
   $cart->clearCart();
-  header("Location: /complete/");
+  //header("Location: /complete/");
 } else {
   echo "error";
 }

@@ -1,14 +1,31 @@
 <?php
 require(".local.inc.php");
 $action = $_GET['a'] ? $_GET['a'] : null;
+$errors = array();
 if ($_SERVER['REQUEST_METHOD'] === "POST" || isset($action)) {
+  if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    if (isRussian($_POST['recipient']) || isRussian($_POST['address1']) || isRussian($_POST['address2']) || isRussian($_POST['district']) || isRussian($_POST['province']) || isRussian($_POST['postalcode']) || isRussian($_POST['country'])) {
+      $errors[] = "Your address must be in English.";
+    }
+    if ($_POST['recipient'] == "") { $errors[] = "You must enter a recipient name."; }
+    if ($_POST['address1'] == "") { $errors[] = "You must enter an address."; }
+    if ($_POST['postalcode'] == "") { $errors[] = "You must enter a postal code."; }
+    if ($_POST['country'] == "") { $errors[] = "You must enter a country."; }
+  }
   if ($action == "save" && $user->isLoggedIn()) {
-    $addressid = $user->addShippingAddress($_POST['recipient'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
+    if (count($errors) == 0) {
+      $addressid = $user->addShippingAddress($_POST['recipient'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
+    }
   } else if ($action == "remove" && $user->isLoggedIn()) {
     $user->removeShippingAddress($_GET['id']);
   } else {
-    $_SESSION['addressid'] = $_POST['shippingaddress'];
-    header("Location: /confirm/");
+    if (count($errors) == 0) {
+      $_SESSION['addressid'] = $user->addShippingAddress($_POST['recipient'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
+      header("Location: /confirm/");
+    } else if ($action == "continue") {
+      $_SESSION['addressid'] = $_POST['shippingaddress'];
+      header("Location: /confirm/");
+    }
   }
 }
 include("inc/header.php");
@@ -28,7 +45,7 @@ include("inc/header.php");
                       <td>
                         <fieldset>
                           <legend>&raquo; <?php echo t("Select Shipping Address"); ?></legend>
-                          <form action="/shipping/" method="post">
+                          <form action="/shipping/?a=continue" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="shipping-table">
                               <?php
                               $addresses = $user->getShippingAddresses();
@@ -70,7 +87,7 @@ include("inc/header.php");
                                       <?php if ($address['district'] !== "") { echo $address['district'] . "<br />"; } ?>
                                       <?php if ($address['province'] !== "") { echo $address['province'] . "<br />"; } ?>
                                       <?php echo $address['postal_code']; ?><br />
-                                      <?php echo $address['country']; ?><br />
+                                      <?php echo $cart->getCountryNameByCode($address['country']); ?><br />
                                       <a href="javascript:if(confirm('<?php echo t("Are you sure you want to remove this address?"); ?>')) { document.location = '/shipping/?a=remove&id=<?php echo $address['id']; ?>'; }"><?php echo t("Remove Address"); ?></a>
                                     </td>
                                   </tr>
@@ -112,6 +129,15 @@ include("inc/header.php");
                       <td>
                         <fieldset>
                           <legend>&raquo; <?php if ($user->isLoggedIn()) { echo t("New"); } else { echo "Your"; } ?> <?php echo t("Shipping Address"); ?></legend>
+                          <?php
+                          if (count($errors) > 0) {
+                            echo "<div class=\"error\">";
+                            foreach ($errors as $error) {
+                              echo $error . "<br />";
+                            }
+                            echo "</div>";
+                          }
+                          ?>
                           <form action="/shipping/?a=save" method="post">
                             <table cellpadding="2" cellspacing="0" border="0" class="shipping-table">
                               <tr>
@@ -119,31 +145,45 @@ include("inc/header.php");
                               </tr>
                               <tr>
                                 <td><?php echo t("Recipient Name"); ?></td>
-                                <td><input type="text" name="recipient" /></td>
+                                <td><input type="text" name="recipient" value="<?php echo $_POST['recipient']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("Address Line 1"); ?></td>
-                                <td><input type="text" name="address1" /></td>
+                                <td><input type="text" name="address1" value="<?php echo $_POST['address1']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("Address Line 2"); ?></td>
-                                <td><input type="text" name="address2" /></td>
+                                <td><input type="text" name="address2" value="<?php echo $_POST['address2']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("District"); ?></td>
-                                <td><input type="text" name="district" /></td>
+                                <td><input type="text" name="district" value="<?php echo $_POST['district']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("Province"); ?></td>
-                                <td><input type="text" name="province" /></td>
+                                <td><input type="text" name="province" value="<?php echo $_POST['province']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("Postal Code"); ?></td>
-                                <td><input type="text" name="postalcode" /></td>
+                                <td><input type="text" name="postalcode" value="<?php echo $_POST['postalcode']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("Country"); ?></td>
-                                <td><input type="text" name="country" /></td>
+                                <td>
+                                  <select name="country">
+                                    <option value="">Select Country</option>
+                                    <option value="RU">Russian Federation</option>
+                                    <option value="US">United States</option>
+                                    <?php
+                                      $countries = $cart->getCountries();
+                                      foreach ($countries as $country) {
+                                        echo "<option value=" . $country['iso1_code'];
+                                        if ($country['iso1_code'] == $_POST['country']) { echo " selected"; }
+                                        echo ">" . $country['name'] . "</option>";
+                                      }
+                                    ?>
+                                  </select>
+                                </td>
                               </tr>
                               <tr>
                                 <td>&nbsp;</td>
@@ -151,7 +191,7 @@ include("inc/header.php");
                                 if ($user->isLoggedIn()) {
                                   echo "<td><input type=\"submit\" value=\"" . t("Save Address") . "\" /></td>";
                                 } else {
-                                  echo "<td><input type=\"submit\" value=\"" . t("Continue with Checkout") . "\" /></td>";
+                                  echo "<td><input type=\"submit\" value=\"" . t("Continue with Checkout") . "\" />&nbsp;<input type=\"button\" value=\"Cancel\" onclick=\"window.location='/checkoutlogin/'\"/></td>";
                                 }
                                 ?>
 

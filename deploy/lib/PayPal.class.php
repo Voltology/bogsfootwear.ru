@@ -14,11 +14,13 @@ class PayPal {
     curl_setopt($ch, CURLOPT_POST, 1);
 
     $req = "METHOD=" . urlencode($this->_method);
+    $req .= "&NOSHIPPING=1";
     $req .= "&VERSION=" . urlencode(PAYPAL_VER);
     $req .= "&PWD=" . urlencode(PAYPAL_PASS);
     $req .= "&USER=" . urlencode(PAYPAL_USER);
     $req .= "&SIGNATURE=" . urlencode(PAYPAL_SIG);
     $req .= "&LOCALECODE=" . urlencode(PAYPAL_LANG);
+    $req .= "&NOSHIPPING=1";
     $req .= $url;
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
 

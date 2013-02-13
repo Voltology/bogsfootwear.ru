@@ -78,7 +78,7 @@ include("inc/header.php");
                       <?php if ($address['district'] !== "") { echo $address['district'] . "<br />"; } ?>
                       <?php if ($address['province'] !== "") { echo $address['province'] . "<br />"; } ?>
                       <?php echo $address['postal_code']; ?><br />
-                      <?php echo $address['country']; ?><br />
+                      <?php echo $cart->getCountryNameByCode($address['country']); ?><br />
                       <a href="/shipping/"><?php echo t("Edit Address") ?></a>
                     </td>
                   </tr>
