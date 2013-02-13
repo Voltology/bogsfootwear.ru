@@ -41,7 +41,57 @@ include("inc/header.php");
           <td>
             <fieldset>
               <legend>&raquo; <?php echo t("My Orders"); ?></legend>
-              Order #1
+                <br />
+                <?php
+                $orders = $cart->getCompletedOrdersByUserId($user->getId());
+                $count = 0;
+                foreach ($orders as $order) {
+                ?>
+                <span class="order-date"><strong>Order Date:</strong> <?php echo date('d/m/Y H:i:s', $order['timestamp']); ?></span>
+                <table width="100%" cellpadding="4" cellspacing="0" border="0" class="cart-table" id="cart-table">
+                  <thead>
+                    <tr>
+                      <th><?php echo t("Product"); ?></th>
+                      <th><?php echo t("Description"); ?></th>
+                      <th><?php echo t("Price"); ?></th>
+                      <th><?php echo t("Quantity"); ?></th>
+                      <th><?php echo t("Total"); ?></th>
+                    </tr>
+                  </thead>
+                  <tbody id="cart-table-body">
+                <?php
+                  $subtotal = 0;
+                  foreach ($order['items'] as $item) {
+                ?>
+                    <tr id="item-<?php echo $count; ?>" class="item-row">
+                      <td width="30%">
+                        <span><img src="/img/catalog/<?php echo $item['sku']; ?>/thumb.jpg" class="item-thumbnail" /></span>
+                      </td>
+                      <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?><br /><?php echo t("Size"); ?> <?php echo $item['size']; ?></td>
+                      <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>
+                      <td valign="top" width="13%"><?php echo $item['quantity']; ?></td>
+                      <td valign="top" width="*"><?php echo "\$<span class=\"total-price\" id=\"total-price-" . $item['sku'] . "-" . $item['size'] . "\">" . number_format($item['price'] * $item['quantity'], 2) . "</span>"; ?></td>
+                    </tr>
+                <?php
+                    $subtotal += ($item['price'] * $item['quantity']);
+                  }
+                  $count++;
+                ?>
+                      <tr class="subtotal">
+                        <td colspan="4"><?php echo t("Subtotal"); ?>:</td>
+                        <td><?php echo "\$<span class=\"cart-subtotal\" id=\"cart-subtotal\">" . number_format($subtotal, 2); ?></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br /><br />
+                <?php
+                }
+                ?>
+              <?php
+              if ($count == 0) {
+                echo "<div style=\"text-align: center;\">You have no previous orders.</div>";
+              }
+              ?>
             </fieldset>
           </td>
         </tr>

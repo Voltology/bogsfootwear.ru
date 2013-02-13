@@ -1,6 +1,7 @@
 <?php
 require(".local.inc.php");
 include("inc/header.php");
+var_dump($cart->getItems());
 ?>
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>
       <div id="maincontent">

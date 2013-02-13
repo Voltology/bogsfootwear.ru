@@ -213,6 +213,55 @@ input[type='submit'], input[type='button'] {
 #account .account-table .success {
   color: #00AA00;
 }
+#account fieldset {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+#account fieldset legend {
+  color: #f38401;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+#account .order-date {
+  font-size: 14px;
+}
+#account .cart-table th {
+  background-color: #dcdace;
+  border-bottom: 1px solid #CCC;
+  font-size: 10pt;
+  font-weight: 800;
+  text-align: left;
+  text-transform: uppercase;
+}
+#account  .cart-table td {
+  font-size: 10pt;
+  text-transform: uppercase;
+}
+#account .cart-table hr {
+  border: 0;
+  color: #ccc;
+  background-color: #ccc;
+  height: 1px;
+}
+#account .cart-table .item-thumbnail {
+  height: 75px;
+  overflow: hidden;
+  width: 75px;
+}
+#account .cart-table .item-remove {
+  cursor: pointer;
+}
+#account .cart-table .item-row td {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+}
+#account .cart-table .subtotal {
+  background-color: #dcdace;
+  font-weight: bold;
+}
+#account .cart-table .subtotal td {
+  border-bottom: 1px solid #ccc;
+}
 #cart fieldset {
   border: 1px solid #ccc;
   margin-bottom: 5px;

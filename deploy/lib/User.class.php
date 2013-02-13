@@ -10,10 +10,11 @@ class User {
 
   private $_orders = array();
 
-  public function addShippingAddress($name, $addr1, $addr2, $district, $province, $postalcode, $country) {
-    $query = sprintf("INSERT INTO cart_shipping_addresses SET user_id='%s', recipient='%s', address1='%s', address2='%s', district='%s', province='%s', postal_code='%s', country='%s', timestamp='%s'",
+  public function addShippingAddress($firstname, $lastname, $addr1, $addr2, $district, $province, $postalcode, $country) {
+    $query = sprintf("INSERT INTO cart_shipping_addresses SET user_id='%s', firstname='%s', lastname='%s', address1='%s', address2='%s', district='%s', province='%s', postal_code='%s', country='%s', timestamp='%s'",
       mysql_real_escape_string($this->_id),
-      mysql_real_escape_string($name),
+      mysql_real_escape_string($firstname),
+      mysql_real_escape_string($lastname),
       mysql_real_escape_string($addr1),
       mysql_real_escape_string($addr2),
       mysql_real_escape_string($district),

@@ -36,7 +36,7 @@ $action = $_GET['a'] ? $_GET['a'] : null;
             <div class="<?php if ($page === "users") { ?>active<?php } ?>menuitem"><a href="?p=users">Users</a></div>
             <div class="<?php if ($page === "settings") { ?>active<?php } ?>menuitem"><a href="?p=settings">Settings</a></div>
             <br />
-            <div class="<?php if ($page === "migrate") { ?>active<?php } ?>menuitem"><a href="?p=migrate">Migrate</a></div>
+            <div class="<?php if ($page === "migrate") { ?>active<?php } ?>menuitem"><a href="?p=migrate"><span style="color: #cc0000">Migrate</span></a></div>
             <br />
             <div class="logout"><a href="../logout?admin=true">Log Out</a></div>
             <br />

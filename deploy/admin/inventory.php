@@ -46,6 +46,7 @@ if (!isset($action)) {
   echo "<td><a href=\"?p=inventory&sortby=group&dir=0\">Group</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=gender&dir=0\">Gender</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=price&dir=0\">Price</a></td>";
+  echo "<td><a href=\"?p=inventory&sortby=totalstock&dir=1\"># In Stock</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=active&dir=1\">Published</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=last_modified&dir=1\">Last Modified</a></td>";
   echo "<td align=\"right\">Operations</td>";
@@ -59,6 +60,7 @@ if (!isset($action)) {
     echo "<td>" . ucwords($item['group']) . "</td>";
     echo "<td>" . ucwords($item['gender']) . "</td>";
     echo "<td>\$" . number_format($item['price'], 2) . "</td>";
+    echo "<td>" . ucwords($item['totalstock']) . "</td>";
     if ($item['active'] == 0) {
       echo "<td><span style=\"color: #CC0000;\">No</span></td>";
     } else {

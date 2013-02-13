@@ -20,6 +20,11 @@ class Admin {
     mysql_query($query);
   }
 
+  public function addUser($data) {
+    $query = sprintf("");
+    mysql_query($query);
+  }
+
   public function exportUsers() {
     $users = array();
     $query = sprintf("SELECT email,firstname,lastname FROM cart_users WHERE role='1'");
@@ -60,7 +65,7 @@ class Admin {
 
   public function getItems($order, $dir) {
     $items = array();
-    $query = sprintf("SELECT id,name,sku,color,`group`,gender,price,active,last_modified FROM cart_inventory" . DB_EXT . " ORDER BY `%s` %s",
+    $query = sprintf("SELECT id,name,sku,color,`group`,gender,price,totalstock,active,last_modified FROM cart_inventory" . DB_EXT . " ORDER BY `%s` %s",
       mysql_real_escape_string($order),
       mysql_real_escape_string($dir));
     $query = mysql_query($query);
@@ -131,8 +136,6 @@ class Admin {
     foreach ($tables as $table) {
       $query = sprintf("TRUNCATE cart_" . $table);
       mysql_query($query);
-//      $query = sprintf("CREATE TABLE cart_" . $table . " LIKE cart_" . $table. "_staging");
-//      mysql_query($query);
       $query = sprintf("INSERT INTO cart_" . $table . " SELECT * FROM cart_" . $table . "_staging");
       mysql_query($query);
     }

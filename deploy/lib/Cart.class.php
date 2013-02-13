@@ -71,7 +71,25 @@ class Cart  {
   public function getCart() {
     return $this->_items;
   }
- 
+
+  public function getCompletedOrdersByUserId($id) {
+    $orders = array();
+    $query = sprintf("SELECT id,shipping_address_id,timestamp FROM cart_completed_orders WHERE user_id='%s' ORDER BY timestamp DESC",
+      mysql_real_escape_string($id));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_assoc($query)) {
+      $row['items'] = array();
+      $query2 = sprintf("SELECT item_id,quantity,cart_ordered_items.size,cart_ordered_items.price,cart_inventory" . DB_EXT . ".sku,cart_inventory" . DB_EXT . ".name,cart_inventory" . DB_EXT . ".color FROM cart_ordered_items LEFT JOIN cart_inventory" . DB_EXT . " ON (cart_ordered_items.item_id = cart_inventory" . DB_EXT . ".id) WHERE order_id='%s'",
+        mysql_real_escape_string($row['id']));
+      $query2 = mysql_query($query2);
+      while ($row2 = mysql_fetch_assoc($query2)) {
+        array_push($row['items'], $row2);
+      }
+      array_push($orders, $row);
+    }
+    return $orders;
+  }
+
   public function getCountryNameByCode($code) {
     $query = sprintf("SELECT name FROM cart_countries WHERE iso1_code='%s'",
       mysql_real_escape_string($code));
@@ -192,6 +210,18 @@ class Cart  {
       mysql_real_escape_string($this->_paypaltoken),
       mysql_real_escape_string(time()));
     mysql_query($query);
+    $orderid = mysql_insert_id();
+    foreach ($this->_items as $item) {
+      $query = sprintf("INSERT INTO cart_ordered_items SET order_id='%s', item_id='%s', quantity='%s', size='%s', price='%s', token='%s', paypal_token='%s'",
+        mysql_real_escape_string($orderid),
+        mysql_real_escape_string($item['id']),
+        mysql_real_escape_string($item['quantity']),
+        mysql_real_escape_string($item['size']),
+        mysql_real_escape_string($item['price']),
+        mysql_real_escape_string($this->_token),
+        mysql_real_escape_string($this->_paypaltoken));
+      mysql_query($query);
+    }
     $query = sprintf("DELETE FROM cart_pending_orders WHERE user_id='%s' AND token='%s' AND paypal_token='%s'",
       mysql_real_escape_string($user_id),
       mysql_real_escape_string($this->_token),

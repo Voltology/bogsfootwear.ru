@@ -4,23 +4,24 @@ $action = $_GET['a'] ? $_GET['a'] : null;
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] === "POST" || isset($action)) {
   if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    if (isRussian($_POST['recipient']) || isRussian($_POST['address1']) || isRussian($_POST['address2']) || isRussian($_POST['district']) || isRussian($_POST['province']) || isRussian($_POST['postalcode']) || isRussian($_POST['country'])) {
+    if (isRussian($_POST['firstname']) || isRussian($_POST['lastname']) || isRussian($_POST['address1']) || isRussian($_POST['address2']) || isRussian($_POST['district']) || isRussian($_POST['province']) || isRussian($_POST['postalcode']) || isRussian($_POST['country'])) {
       $errors[] = "Your address must be in English.";
     }
-    if ($_POST['recipient'] == "") { $errors[] = "You must enter a recipient name."; }
+    if ($_POST['firstname'] == "") { $errors[] = "You must enter a first name."; }
+    if ($_POST['lastname'] == "") { $errors[] = "You must enter a last name."; }
     if ($_POST['address1'] == "") { $errors[] = "You must enter an address."; }
     if ($_POST['postalcode'] == "") { $errors[] = "You must enter a postal code."; }
     if ($_POST['country'] == "") { $errors[] = "You must enter a country."; }
   }
   if ($action == "save" && $user->isLoggedIn()) {
     if (count($errors) == 0) {
-      $addressid = $user->addShippingAddress($_POST['recipient'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
+      $addressid = $user->addShippingAddress($_POST['firstname'], $_POST['lastname'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
     }
   } else if ($action == "remove" && $user->isLoggedIn()) {
     $user->removeShippingAddress($_GET['id']);
   } else {
     if (count($errors) == 0) {
-      $_SESSION['addressid'] = $user->addShippingAddress($_POST['recipient'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
+      $_SESSION['addressid'] = $user->addShippingAddress($_POST['firstname'], $_POST['lastname'], $_POST['address1'], $_POST['address2'], $_POST['district'], $_POST['province'], $_POST['postalcode'], $_POST['country']);
       header("Location: /confirm/");
     } else if ($action == "continue") {
       $_SESSION['addressid'] = $_POST['shippingaddress'];
@@ -81,11 +82,11 @@ include("inc/header.php");
                                       <input type="radio" name="shippingaddress" value="<?php echo $address['id']; ?>" <?php if ($addressid == $address['id'] || (!isset($addressid) && $count === 0)) { echo "checked "; } ?>/>
                                     </td>
                                     <td valign="top">
-                                      <strong><?php echo $address['recipient']; ?></strong><br />
+                                      <strong><?php echo $address['firstname'] . " " . $address['lastname']; ?></strong><br />
                                       <?php echo $address['address1']; ?><br />
                                       <?php if ($address['address2'] !== "") { echo $address['address2'] . "<br />"; } ?>
-                                      <?php if ($address['district'] !== "") { echo $address['district'] . "<br />"; } ?>
-                                      <?php if ($address['province'] !== "") { echo $address['province'] . "<br />"; } ?>
+                                      <?php if ($address['district'] !== "") { echo $address['district'] . ", "; } ?>
+                                      <?php if ($address['province'] !== "") { echo $address['province'] . " "; } ?>
                                       <?php echo $address['postal_code']; ?><br />
                                       <?php echo $cart->getCountryNameByCode($address['country']); ?><br />
                                       <a href="javascript:if(confirm('<?php echo t("Are you sure you want to remove this address?"); ?>')) { document.location = '/shipping/?a=remove&id=<?php echo $address['id']; ?>'; }"><?php echo t("Remove Address"); ?></a>
@@ -144,8 +145,12 @@ include("inc/header.php");
                                 <td colspan="2"><strong>*<?php echo t("Note:"); ?></strong> <?php echo t("Shipping address must be a residential address."); ?></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Recipient Name"); ?></td>
-                                <td><input type="text" name="recipient" value="<?php echo $_POST['recipient']; ?>" /></td>
+                                <td><?php echo t("First Name"); ?></td>
+                                <td><input type="text" name="firstname" value="<?php echo $_POST['firstname']; ?>" /></td>
+                              </tr>
+                              <tr>
+                                <td><?php echo t("Last Name"); ?></td>
+                                <td><input type="text" name="lastname" value="<?php echo $_POST['lastname']; ?>" /></td>
                               </tr>
                               <tr>
                                 <td><?php echo t("Address Line 1"); ?></td>

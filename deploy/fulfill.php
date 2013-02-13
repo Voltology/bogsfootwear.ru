@@ -3,9 +3,7 @@ require(".local.inc.php");
 require(LIB_PATH . "Fulfillment.class.php");
 $paypaltoken = $_GET['token'];
 if ($paypaltoken == $cart->getPayPalToken()) {
-  $cart->setCompletedOrder($user->getId(), $_SESSION['addressid']);
   $address = $user->getShippingAddressById($_SESSION['addressid']);
-
   $data['Subtotal'] = $cart->getSubTotal();
   $data['GrandTotal'] = $cart->getSubTotal();
   $data['ShippingTotal'] = 0;
@@ -25,15 +23,14 @@ if ($paypaltoken == $cart->getPayPalToken()) {
   $data['BillToPhoneExt'] = '';
   $data['BillToPhoneFax'] = '';
   $data['BillToCustomerNotes'] = '';
-  $data['ShipToLastName'] = '';
-  $data['ShipToFirstName'] = $address['recipient'];
+  $data['ShipToFirstName'] = $address['firstname'];
+  $data['ShipToLastName'] = $address['lastname'];
   $data['ShipToAddressLine1'] = $address['address1'];
   $data['ShipToAddressLine2'] = $address['address2'];
   $data['ShipToAddressCity'] = $address['district'];
   $data['ShipToAddressState'] = $address['province'];
-  //$data['ShipToAddressCountry'] = $address['country'];
-  $data['ShipToAddressCountry'] = "RU";
   $data['ShipToAddressPostalCode'] = $address['postal_code'];
+  $data['ShipToAddressCountry'] = $address['country'];
   $data['ShipToPhone'] = '';
   $data['ShipToPhoneExt'] = '';
   $data['ShipToPhoneFax'] = '';
@@ -44,18 +41,18 @@ if ($paypaltoken == $cart->getPayPalToken()) {
 
   $items = $cart->getCart();
   foreach ($items as $ordereditem) {
-   // $item['SKU'] = $ordereditem['sku'];
     $item['SKU'] = $ordereditem['sku'];
     $item['QtyOrdered'] = $ordereditem['quantity'];
-    $item['EachPrice'] = $ordereditem['price'];
+    $item['EachPrice'] = number_format($ordereditem['price'], 2);
     array_push($data['Items'], $item);
   }
 
   $data = json_encode($data);
-  echo Fulfillment::createOrder($data);
+  Fulfillment::createOrder($data);
+  $cart->setCompletedOrder($user->getId(), $_SESSION['addressid']);
   $cart->clearCart();
-  //header("Location: /complete/");
+  header("Location: /complete/");
 } else {
-  echo "error";
+  echo "There was an error in your order.  Please call contact us as soon as possible.";
 }
 ?>

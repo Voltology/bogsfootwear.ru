@@ -72,11 +72,11 @@ include("inc/header.php");
                       <?php
                       $address = $user->getShippingAddressById($_SESSION['addressid']);
                       ?>
-                      <strong><?php echo $address['recipient']; ?></strong><br />
+                      <strong><?php echo $address['firstname'] . " " . $address['lastname']; ?></strong><br />
                       <?php echo $address['address1']; ?><br />
                       <?php if ($address['address2'] !== "") { echo $address['address2'] . "<br />"; } ?>
-                      <?php if ($address['district'] !== "") { echo $address['district'] . "<br />"; } ?>
-                      <?php if ($address['province'] !== "") { echo $address['province'] . "<br />"; } ?>
+                      <?php if ($address['district'] !== "") { echo $address['district'] . ", "; } ?>
+                      <?php if ($address['province'] !== "") { echo $address['province'] . " "; } ?>
                       <?php echo $address['postal_code']; ?><br />
                       <?php echo $cart->getCountryNameByCode($address['country']); ?><br />
                       <a href="/shipping/"><?php echo t("Edit Address") ?></a>

@@ -14,6 +14,7 @@
                   'color' => 3,
                   'gender' => 4,
                   'group' => 5,
+                  'totalstock' => 8,
                   'size_1' => 9,
                   'size_2' => 10,
                   'size_3' => 11,
@@ -41,6 +42,7 @@
                   'size_l' => 33,
                   'size_xl' => 34);
                 $update_fields = array(
+                  'totalstock' => 8,
                   'size_1' => 9,
                   'size_2' => 10,
                   'size_3' => 11,
@@ -81,6 +83,7 @@
                           foreach ($update_fields as $key => $value) {
                             $query .= ", `" . mysql_real_escape_string($key) . "`='" . mysql_real_escape_string(trim(strtolower($data[$value]))) . "'";
                           }
+                          $query .= ", last_modified='" . time() . "'";
                           $query .= " WHERE sku='" . $sku . "'";
                         } else{
                           $inserts++;
@@ -88,7 +91,6 @@
                           foreach ($insert_fields as $key => $value) {
                             $query .= ", `" . mysql_real_escape_string($key) . "`='" . mysql_real_escape_string(trim(strtolower($data[$value]))) . "'";
                           }
-                          $query .= ", last_modified='" . time() . "'";
                         }
                         mysql_query($query);
                       }
