@@ -145,35 +145,35 @@ include("inc/header.php");
                                 <td colspan="2"><strong>*<?php echo t("Note:"); ?></strong> <?php echo t("Shipping address must be a residential address."); ?></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("First Name"); ?></td>
+                                <td>First Name</td>
                                 <td><input type="text" name="firstname" value="<?php echo $_POST['firstname']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Last Name"); ?></td>
+                                <td>Last Name</td>
                                 <td><input type="text" name="lastname" value="<?php echo $_POST['lastname']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Address Line 1"); ?></td>
+                                <td>Address Line 1</td>
                                 <td><input type="text" name="address1" value="<?php echo $_POST['address1']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Address Line 2"); ?></td>
+                                <td>Address Line 2</td>
                                 <td><input type="text" name="address2" value="<?php echo $_POST['address2']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("District"); ?></td>
+                                <td>District</td>
                                 <td><input type="text" name="district" value="<?php echo $_POST['district']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Province"); ?></td>
+                                <td>Province</td>
                                 <td><input type="text" name="province" value="<?php echo $_POST['province']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Postal Code"); ?></td>
+                                <td>Postal Code</td>
                                 <td><input type="text" name="postalcode" value="<?php echo $_POST['postalcode']; ?>" /></td>
                               </tr>
                               <tr>
-                                <td><?php echo t("Country"); ?></td>
+                                <td>Country</td>
                                 <td>
                                   <select name="country">
                                     <option value="">Select Country</option>

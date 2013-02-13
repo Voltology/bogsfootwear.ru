@@ -192,6 +192,13 @@ input[type='submit'], input[type='button'] {
   font-size: 12px;
   text-align: center;
 }
+#account .account-table input[type='text'], input[type='password'] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 10pt;
+  padding: 2px;
+  width: 200px;
+}
 #account fieldset {
   border: 1px solid #ccc;
   margin-bottom: 5px;

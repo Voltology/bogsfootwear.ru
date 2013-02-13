@@ -113,15 +113,15 @@ include("inc/header.php");
                   ?>
                   <tr>
                     <td><?php echo t("First Name"); ?></td>
-                    <td><input type="firstname" value="<?php echo $user->getFirstName();?>" /></td>
+                    <td><input type="text" value="<?php echo $user->getFirstName();?>" /></td>
                   </tr>
                   <tr>
                     <td><?php echo t("Last Name"); ?></td>
-                    <td><input type="lastname" value="<?php echo $user->getLastName();?>" /></td>
+                    <td><input type="text" value="<?php echo $user->getLastName();?>" /></td>
                   </tr>
                   <tr>
                     <td><?php echo t("Email"); ?></td>
-                    <td><input type="email" value="<?php echo $user->getEmail(); ?>" /></td>
+                    <td><input type="text" value="<?php echo $user->getEmail(); ?>" /></td>
                   </tr>
                   <tr>
                     <td>&nbsp;</td><td align="left"><input type="submit" value="<?php echo t("Save"); ?>" /></td>
