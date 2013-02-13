@@ -8,7 +8,7 @@ var ajax = {
 };
 
 var admin = {
-  delete : function(path) {
+  'delete' : function(path) {
     if (confirm('Are you sure you want to delete this item?')) {
       document.location = path;
     }
@@ -67,9 +67,11 @@ var cart = {
       if (json.success === 'true') {
         var subtotal = 0;
         $.each(json.totals, function(key, value) {
-          $('#total-price-' + key).html(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
           subtotal += value;
+          value = value.toFixed(2);
+          $('#total-price-' + key).html(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         });
+        subtotal = subtotal.toFixed(2);
         $('#cart-subtotal').html(subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         $('#item-count').html(json.itemcount);
         alert('Item quantity has been updated!');

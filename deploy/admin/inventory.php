@@ -86,13 +86,12 @@ if (!isset($action)) {
       <tr><td class="editLabel">Description</td><td class="editField"><textarea name="description" value=""><?php echo $item['description']; ?></textarea></td></tr>
       <tr><td class="editLabel">Color</td><td class="editField"><input type="text" name="color" value="<?php echo $item['color']; ?>" /></td></tr>
       <tr><td class="editLabel">Group</td><td class="editField">
-        <select>
-          <option>Select Group</option>
+        <select name="group">
           <?php
-          $groups = Admin::getGroups();
+          $groups = Admin::getGroups("group", "ASC");
           foreach ($groups as $group) {
           ?>
-          <option value="<?php echo $group['id']; ?>"><?php echo ucwords($group['group']); ?></option>
+          <option value="<?php echo $group['group']; ?>"<?php if(strtolower($group['group']) == strtolower($item['group'])) { echo " selected"; } ?>><?php echo ucwords($group['group']); ?></option>
           <?php
           }
           ?>
@@ -100,12 +99,11 @@ if (!isset($action)) {
       </td></tr>
       <tr><td class="editLabel">Gender</td><td class="editField">
         <select name="gender">
-          <option value="null">Select Gender</option>
           <?php
           $genders = Admin::getGenders();
           foreach ($genders as $gender) {
           ?>
-          <option value="<?php echo $gender['id']; ?>"><?php echo ucwords($gender['gender']); ?></option>
+          <option value="<?php echo $gender['gender']; ?>"<?php if(strtolower($gender['gender']) == strtolower($item['gender'])) { echo " selected"; } ?>><?php echo ucwords($gender['gender']); ?></option>
           <?php
           }
           ?>
@@ -188,8 +186,6 @@ function uploadFile($file, $name, $height, $width, $dir) {
         imagegif($canvas, $filename);
       }
     }
-  } else {
-    echo "Invalid file";
   }
 }
 ?>

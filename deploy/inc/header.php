@@ -43,7 +43,7 @@
         </div>
         <span id="navigation">
           <a href="/about-us"><?php echo t("About Us"); ?></a>
-          <a href="/catalog/womens/womens%20outdo"><?php echo t("Catalog"); ?></a>
+          <a href="/catalog/womens/womens%20outdoor"><?php echo t("Catalog"); ?></a>
           <a href="/contact-us"><?php echo t("Contact Us"); ?></a>
           <a href="/where-to-buy"><?php echo t("Where to Buy"); ?></a>
           <?php

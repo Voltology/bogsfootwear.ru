@@ -27,7 +27,7 @@ class Cart  {
     }
     if (!$exists) {
       $item = array();
-      $query = sprintf("SELECT sku,name,description,color,price FROM cart_inventory WHERE id='%s' LIMIT 1",
+      $query = sprintf("SELECT sku,name,description,color,price FROM cart_inventory" . DB_EXT . " WHERE id='%s' LIMIT 1",
         mysql_real_escape_string($id));
       $query = mysql_query($query);
       $row = mysql_fetch_assoc($query);
@@ -73,7 +73,7 @@ class Cart  {
   }
 
   public function getGenderGroupList() {
-    $query = sprintf("SELECT DISTINCT gender,`group` FROM cart_inventory WHERE active='1' GROUP BY gender,`group`");
+    $query = sprintf("SELECT DISTINCT gender,`group` FROM cart_inventory" . DB_EXT . " WHERE active='1' GROUP BY gender,`group`");
     $query = mysql_query($query);
     $list = array();
     while ($row = mysql_fetch_assoc($query)) {
@@ -94,9 +94,20 @@ class Cart  {
     return $count;
   }
 
+  public function getItemsByGender($gender) {
+    $items = array();
+    $query = sprintf("SELECT * FROM cart_inventory" . DB_EXT . " WHERE `gender`='%s' AND active='1'",
+      mysql_real_escape_string($gender));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_assoc($query)) {
+      array_push($items, $row);
+    }
+    return $items;
+  }
+
   public function getItemsByGenderAndGroup($gender, $group) {
     $items = array();
-    $query = sprintf("SELECT * FROM cart_inventory WHERE `gender`='%s' AND `group`='%s' AND active='1'",
+    $query = sprintf("SELECT * FROM cart_inventory" . DB_EXT . " WHERE `gender`='%s' AND `group`='%s' AND active='1'",
       mysql_real_escape_string($gender),
       mysql_real_escape_string($group));
     $query = mysql_query($query);

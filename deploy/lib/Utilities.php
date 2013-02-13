@@ -11,4 +11,8 @@ function t($str) {
   }
   return $str;
 }
+
+function isRussian($text) {
+  return preg_match('/[А-Яа-яЁё]/u', $text);
+}
 ?>

@@ -27,8 +27,8 @@ $group = $_GET['group'] ? $_GET['group'] : null;
         </div>
         <div id="contentarea">
           <div id="content">
-            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo t($gender); ?></a> <?php if ($group) { ?>| <?php echo t($gender); ?> <?php echo ucwords(t($group)); } ?></span>
-            <h2><?php echo t($gender); ?> <?php echo ucwords(t($group)); ?></h2>
+            <span id="breadcrumb"><a href="/"><?php echo t("Home"); ?></a> | <a href="/catalog/<?php echo $gender; ?>/"><?php echo ucwords(t($gender)); ?></a> <?php if ($group) { ?>| <?php echo ucwords(t($group)); } ?></span>
+            <h2><?php echo ucwords(t($group)); ?></h2>
             <div id="page">
               <div id="container">
                 <div id="gallery" class="content">
@@ -41,7 +41,11 @@ $group = $_GET['group'] ? $_GET['group'] : null;
                 <div id="thumbs" class="navigation">
                   <ul class="thumbs noscript">
                   <?php
-                  $items = $cart->getItemsByGenderAndGroup($gender, $group);
+                  if ($group) {
+                    $items = $cart->getItemsByGenderAndGroup($gender, $group);
+                  } else {
+                    $items = $cart->getItemsByGender($gender);
+                  }
                   foreach ($items as $item) {
                   ?>
                     <li>
@@ -76,7 +80,7 @@ $group = $_GET['group'] ? $_GET['group'] : null;
                                     <option value="null">РАЗМЕРЫ</option>
                                     <?php
                                     for ($i = 1; $i <= 22; $i++) {
-                                      if ($item['size_' . $i] > 5) {
+                                      if ($item['size_' . $i] > STOCK_THRESHOLD) {
                                         echo "<option value=\"" . $i . "\">" .$i ."</option>";
                                       }
                                     }
