@@ -41,7 +41,8 @@ class Cart  {
         mysql_real_escape_string($row['price']),
         mysql_real_escape_string(time()));
       mysql_query($query);
-      $item['id'] = mysql_insert_id();
+//      $item['id'] = mysql_insert_id();
+      $item['id'] = $id;
       $item['quantity'] = 1;
       $item['size'] = $size;
       array_push($this->_items, $item);

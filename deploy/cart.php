@@ -1,7 +1,6 @@
 <?php
 require(".local.inc.php");
 include("inc/header.php");
-var_dump($cart->getItems());
 ?>
       <span id="bannerimage"><img src="/img/about-us.jpg" width="998" height="225" /></span>
       <div id="maincontent">
@@ -74,7 +73,7 @@ var_dump($cart->getItems());
           </tr>
           <tr>
             <td align="right">
-              <input type="button" value="<?php echo t("Continue Shopping"); ?>" onclick="document.location='/catalog/'" />
+              <input type="button" value="<?php echo t("Continue Shopping"); ?>" onclick="document.location='/catalog/womens/'" />
               <?php if ($count !== 0) { ?>
               <input type="image" src="/img/btn-checkout.png" class="btn-checkout" id="btn-checkout" onclick="document.location='/checkoutlogin/'" />
               <? } ?>

@@ -83,7 +83,7 @@ include("inc/header.php");
                       </tr>
                     </tbody>
                   </table>
-                  <br /><br />
+                  <br /><hr /><br />
                 <?php
                 }
                 ?>
