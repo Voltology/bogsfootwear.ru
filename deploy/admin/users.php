@@ -1,5 +1,6 @@
 <?php
-if (!$action) {
+$action = $_GET['a'] ? $_GET['a'] : null;
+if ($action == "") {
   $sortby = $_GET['sortby'] ? $_GET['sortby'] : "timestamp";
   $dir = $_GET['dir'] == "1" ? "DESC" : "ASC";
   echo "<h3>Users</h3>";
@@ -54,7 +55,7 @@ if (!$action) {
 </table>
 <p class="addnew"><img src="/img/add.png" />&nbsp;<a href="?p=users&a=add">Add New User</a></p>
 <?php
-} else if ($action === "add" || $action === "edit") {
+} else if ($action == "add" || $action == "edit") {
   $data = Admin::getUserById($_GET['id']);
 ?>
     <h3>Users - <?php echo ucwords($action); ?> User</h3>

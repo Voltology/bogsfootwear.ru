@@ -37,6 +37,6 @@ include("inc/header.php");
   </div>
 </div>
 <?php
-$sizingguide = true;
+$catalogguide = true;
 include("inc/footer.php");
 ?>

@@ -203,10 +203,14 @@ class Cart  {
     return true;
   }
 
-  public function setCompletedOrder($user_id, $shipping_id) {
-    $query = sprintf("INSERT INTO cart_completed_orders SET user_id='%s', shipping_address_id='%s', token='%s', paypal_token='%s', timestamp='%s'",
+  public function setCompletedOrder($user_id, $shipping_id, $response) {
+    $query = sprintf("INSERT INTO cart_completed_orders SET user_id='%s', shipping_address_id='%s', fulfillment_id='%s', reference_id='%s', tracking_number='%s', status='%s', token='%s', paypal_token='%s', timestamp='%s'",
       mysql_real_escape_string($user_id),
       mysql_real_escape_string($shipping_id),
+      mysql_real_escape_string($response['ID']),
+      mysql_real_escape_string($response['ReferenceID']),
+      mysql_real_escape_string($response['ShipmentTrackingNumber']),
+      mysql_real_escape_string($response['Status']),
       mysql_real_escape_string($this->_token),
       mysql_real_escape_string($this->_paypaltoken),
       mysql_real_escape_string(time()));

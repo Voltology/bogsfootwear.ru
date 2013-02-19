@@ -6,11 +6,10 @@ if (!isset($action)) {
   if ($_GET['save'] === "true") {
     if (isset($_POST['id'])) {
       echo "<div class=\"success\">Inventory item has been saved.</div>";
-      if ($_FILES['image'] != "") {
-        uploadFile($_FILES['image'], "1", 330, 330, $_POST['sku']);
-      }
-      if ($_FILES['thumbnail'] != "") {
-        uploadFile($_FILES['thumbnail'], "thumb", 75, 75, $_POST['sku']);
+      for ($i = 1; $i <= 5; $i++) {
+        $main = $_FILES['image-' . $i];
+        $thumb = $_FILES['image-' . $i];
+        uploadFile($main, $i, 330, 330, $_POST['sku']);
       }
       if ($_POST['price'] == 0 && $_POST['active'] == 1) {
         $_POST['active'] = 0;
@@ -19,11 +18,9 @@ if (!isset($action)) {
       Admin::updateItem($_POST['id'], $_POST);
     } else {
       echo "<div class=\"success\">Inventory item has been created.</div>";
-      if ($_FILES['image'] != "") {
-        uploadFile($_FILES['image'], "1", 330, 330, $_POST['sku']);
-      }
-      if ($_FILES['thumbnail'] != "") {
-        uploadFile($_FILES['thumbnail'], "thumb", 75, 75, $_POST['sku']);
+      for ($i = 1; $i <= 5; $i++) {
+        uploadFile($_FILES['image-' . $i], $i, 330, 330, $_POST['sku']);
+        uploadFile($_FILES['image-' . $i], "thumb-" . $i, 75, 75, $_POST['sku']);
       }
       if ($_POST['price'] == 0 && $_POST['active'] == 1) {
         $_POST['active'] = 0;
@@ -112,23 +109,21 @@ if (!isset($action)) {
         </select>
       </td></tr>
       <tr><td class="editLabel">Price</td><td class="editField"><input type="text" name="price" class="number_value" value="<?php echo number_format($item['price'], 2); ?>" /></td></tr>
-      <tr><td class="editLabel">Image</td><td class="editField"><input type="file" name="image" value="" />
-          <?php if (file_exists("../img/catalog/" . $item['sku'] . "/1.jpg")) { ?>
-          <br /><img src="../img/catalog/<?php echo $item['sku']; ?>/1.jpg" />
+      <?php
+      for ($i = 1; $i <= 5; $i++) {
+      ?>
+      <tr><td class="editLabel">Image #<?php echo $i; ?></td><td class="editField"><input type="file" name="image-<?php echo $i; ?>" value="" />
+          <?php if (file_exists("../img/catalog/" . $item['sku'] . "/" . $i . ".jpg")) { ?>
+          <br /><img src="../img/catalog/<?php echo $item['sku']; ?>/<?php echo $i; ?>-thumb.jpg" />
+          <a href="?p="><img src="../img/cross.png" alt="Remove Image" title="Remove Image" border="0" /></a>
           <?php } else { ?>
           <br />No file uploaded.
           <?php } ?>
         </td>
       </tr>
-      <tr>
-        <td class="editLabel">Thumbnail</td><td class="editField"><input type="file" name="thumbnail" value="" />
-          <?php if (file_exists("../img/catalog/" . $item['sku'] . "/thumb.jpg")) { ?>
-          <br /><img src="../img/catalog/<?php echo $item['sku']; ?>/thumb.jpg" />
-          <?php } else { ?>
-          <br />No file uploaded.
-          <?php } ?>
-        </td>
-      </tr>
+      <?php
+      }
+      ?>
       <tr><td class="editLabel">Publish</td><td class="editField"><input type="checkbox" name="active" value="1" <?php if ($item['active'] == "1") { echo "checked "; } ?>/></td></tr>
     </table>
     <!--
@@ -164,28 +159,40 @@ function uploadFile($file, $name, $height, $width, $dir) {
         mkdir("../img/catalog/" . $dir);
       }
       $filename = $name . "." . $imagetypes[$file["type"]];
+      $thumbfilename = $name . "-thumb." . $imagetypes[$file["type"]];
       move_uploaded_file($file["tmp_name"], "../img/catalog/" . $dir . "/" . $filename);
-
+      copy("../img/catalog/" . $dir . "/" . $filename,"../img/catalog/" . $dir . "/" . $thumbfilename);
       $filename = "../img/catalog/" . $dir . "/" . $filename;
+      $thumbfilename = "../img/catalog/" . $dir . "/" . $thumbfilename;
       list($current_width, $current_height) = getimagesize($filename);
+      list($thumb_current_width, $thumb_current_height) = getimagesize($thumbfilename);
       if ($imagetypes[$file["type"]] == "png") {
         $current_image = imagecreatefrompng($filename);
+        $thumb_current_image = imagecreatefrompng($thumbfilename);
       } else if ($imagetypes[$file["type"]] == "jpg" || $imagetypes[$file["type"]] == "jpeg") {
         $current_image = imagecreatefromjpeg($filename);
+        $thumb_current_image = imagecreatefromjpeg($thumbfilename);
       } else if ($imagetypes[$file["type"]] == "gif") {
         $current_image = imagecreatefromgif($filename);
+        $thumb_current_image = imagecreatefromgif($thumbfilename);
       }
-
       $canvas = imagecreatetruecolor($width, $height);
+      $thumbcanvas = imagecreatetruecolor(75, 75);
       imagecopyresampled($canvas, $current_image, 0, 0, 0, 0, $width, $height, $current_width, $current_height);
+      imagecopyresampled($thumbcanvas, $thumb_current_image, 0, 0, 0, 0, 75, 75, $thumb_current_width, $thumb_current_height);
       $white = imagecolorallocate($canvas, 255, 255, 255);
       imagefill($canvas, 0, 0, $white);
+      $white = imagecolorallocate($thumbcanvas, 255, 255, 255);
+      imagefill($thumbcanvas, 0, 0, $white);
       if ($imagetypes[$file["type"]] == "png") {
         imagepng($canvas, $filename);
+        imagepng($thumbcanvas, $thumbfilename);
       } else if ($imagetypes[$file["type"]] == "jpg" || $imagetypes[$file["type"]] == "jpeg") {
         imagejpeg($canvas, $filename);
+        imagejpeg($thumbcanvas, $thumbfilename);
       } else if ($imagetypes[$file["type"]] == "gif") {
         imagegif($canvas, $filename);
+        imagegif($thumbcanvas, $thumbfilename);
       }
     }
   }

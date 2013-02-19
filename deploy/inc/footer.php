@@ -6,7 +6,7 @@
 
 </div>
 <?php
-if ($sizingguide === true) {
+if ($catalogguide === true) {
 ?>
 &nbsp;<br/>
 &nbsp;<br/>
@@ -509,6 +509,203 @@ We will be stocking the following boots in Moscow and Sakhalin in the fall of 20
 
 </div></div>
 <?
+}
+if ($sizingguide) {
+?>
+<div class="modal modalMusic">
+
+<div class="modalHeader">&nbsp;</div>
+<div class="modalBack"><a>&nbsp;</a></div>
+<div class="clear"></div>
+
+<div class="modalBody">
+
+<table width="830" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000">
+
+<tr>
+
+<td width="830" valign="middle" align="left"><h1>Информация по размеру обуви</h1>
+<h2>Полезные заметки</h2>
+ <p>
+Bogs производятся на основе Европейской обувной колодки, и предоставлены во всех основных размерах.  Европейская колодка облегает стопу для максимального комфорта. Начинаясь с довольно свободного мыска, колодка просторная в передней части ступни, комфортная в подъеме, и сужается в пятке.  Эта комбинация подходит для большого диапазона длины и ширины ступни, и упраздняет необходимость покупки обуви "половинного" размера.<br/>
+<br/>
+Если Вы носите обувь "половинного" размера, мы рекомендуем Вам использовать обувь ближайшего полного размера (округляя в большую сторону), что позволит сохранить должную вентиляцию. Ниже Вы найдете диапазон размеров обуви Bogs. Каждая модель производится в  различных размерах в этом спектре, поэтому советуем проверять наличие нужного размера индивидуально, или в местной сети розничной продажи.<br/>
+<br/>
+<b>Обращаем Ваше внимание:</b> Таблица с размерами основана на том, что BOGS носятся с тонкими носками для лучшей  посадки, теплоты и комфорта. Обувь на один размер больше - соразмерный допуск для нормального подбора обуви.<br/>
+<br/>
+<h2>Размеры мужской обуви</h2>
+<table class="sizingTable" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td style="width: 150px;">США </td>
+            <td>7   </td>
+            <td>8   </td>
+            <td>9   </td>
+            <td>10  </td>
+            <td>11  </td>
+            <td>12  </td>
+            <td>13  </td>
+            <td>14  </td>
+            <td>15  </td>
+            <td>16  </td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>ЕВРОПА </td>
+            <td>40 </td>
+            <td>41  </td>
+            <td>42  </td>
+            <td>43  </td>
+            <td>44  </td>
+            <td>45  </td>
+            <td>46  </td>
+            <td>47  </td>
+            <td>48  </td>
+            <td>49  </td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>ВЕЛИКОБРИТАНИЯ  </td>
+            <td>6   </td>
+            <td>7   </td>
+            <td>8   </td>
+            <td>9   </td>
+            <td>10  </td>
+            <td>11  </td>
+            <td>12  </td>
+            <td>13  </td>
+            <td>14  </td>
+            <td>15  </td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>CM  </td>
+            <td>25 </td>
+            <td>26  </td>
+            <td>27  </td>
+            <td>28  </td>
+            <td>29  </td>
+            <td>30  </td>
+            <td>31  </td>
+            <td>32  </td>
+            <td>33  </td>
+            <td>34  </td>
+            <td>35</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<h2>Размеры женской обуви</h2>
+<table class="sizingTable" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td style="width: 150px;">США </td>
+            <td>6   </td>
+            <td>7   </td>
+            <td>8   </td>
+            <td>9   </td>
+            <td>10  </td>
+            <td>11  </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>ЕВРОПА  </td>
+            <td>37  </td>
+            <td>38  </td>
+            <td>39  </td>
+            <td>40  </td>
+            <td>41  </td>
+            <td>42  </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>ВЕЛИКОБРИТАНИЯ  </td>
+            <td>  4   </td>
+            <td>  5 </td>
+            <td>  6 </td>
+            <td>  7 </td>
+            <td>  8 </td>
+            <td>  9 </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>CM </td>
+            <td>  22.5 </td>
+            <td>  23.5</td>
+            <td>  24.5 </td>
+            <td>  25.5 </td>
+            <td>  26.5</td>
+            <td>  27.5</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<h2>Размеры детской обуви</h2>
+<table class="sizingTable" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td style="width: 150px;">США </td>
+            <td>7I* </td>
+            <td>8I*   </td>
+            <td>9Y*</td>
+            <td>10Y*</td>
+            <td>11Y*</td>
+            <td>12Y*</td>
+            <td>13Y*</td>
+            <td>1K*</td>
+            <td>2K*</td>
+            <td>3K*</td>
+            <td>4K*</td>
+            <td>5K*</td>
+            <td>6K*</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;">ЕВРОПА</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>33</td>
+            <td>35</td>
+            <td>37</td>
+            <td>38</td>
+            <td>39</td>
+        </tr>
+    </tbody>
+</table>
+<p>*I = Младенцы| *Y = Дети | *K = Подростки | 
+          
+                  <script type="text/javascript">
+                    /* <![CDATA[ */
+                    function sizePopup() {
+                    window.open( "/pdfs/Bogs_Kids_Ruler.pdf", "sizeChartWindow",
+                                 "status = 1, height = 600, scrollbars = 1, width = 700, resizable = " )
+                    }
+                    /* ]]> */
+                  </script>
+                  <a class="sizing-alert-message" onclick="sizePopup()">Масштабная линейка »</a></td></tr></table></div></div>
+<?php
 }
 ?>
 <script type="text/javascript">

@@ -132,6 +132,21 @@ class Admin {
   }
 
   public function migrate() {
+    $items = self::getItems('timestamp', 'ASC');
+    define("PROD_STORE_URL", "https://api.pickandfulfill.com/");
+    define("PROD_STORE_TOKEN", "7E5030BD-4AF8-4AD9-A2C1-92EFDB76CC6C");
+    define("PROD_CLIENT_TOKEN", "7FA7BC60-42C2-48D6-855B-883CB1C4209D");
+    $ffitems = array();
+    foreach ($items as $row) {
+      $json['SKU'] = $row['sku'];
+      $json['UPC'] = $row['sku'];
+      $json['Name'] = ucwords($row['name']);
+      $json['Summary'] = "";
+      $json['LowStockThreshold'] = 5;
+      $json['InventoryQtyOnHand'] = $row['totalstock'];
+      array_push($ffitems, $json);
+    }
+    $response = json_decode(Fulfillment::migrate(json_encode($ffitems)), true);
     $tables = array("inventory", "genders", "groups");
     foreach ($tables as $table) {
       $query = sprintf("TRUNCATE cart_" . $table);

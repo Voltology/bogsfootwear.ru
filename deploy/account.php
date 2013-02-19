@@ -65,7 +65,7 @@ include("inc/header.php");
                 ?>
                     <tr id="item-<?php echo $count; ?>" class="item-row">
                       <td width="30%">
-                        <span><img src="/img/catalog/<?php echo $item['sku']; ?>/thumb.jpg" class="item-thumbnail" /></span>
+                        <span><img src="/img/catalog/<?php echo $item['sku']; ?>/1-thumb.jpg" class="item-thumbnail" /></span>
                       </td>
                       <td valign="top" width="30%"><?php echo "<strong>" . $item['name'] . "</strong><br />" . $item['color']; ?><br /><?php echo t("Size"); ?> <?php echo $item['size']; ?></td>
                       <td valign="top" width="13%"><?php echo "\$" . number_format($item['price'], 2); ?></td>

@@ -11,19 +11,19 @@ if (!isset($action)) {
   echo "<td width=\"24\">#</td>";
   echo "<td><a href=\"?p=inventory&sortby=name&dir=0\">Customer Email</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=color&dir=0\">Subtotal</a></td>";
+  echo "<td><a href=\"?p=inventory&sortby=fulfillment_id&dir=0\">Order ID</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=color&dir=0\">Status</a></td>";
   echo "<td><a href=\"?p=inventory&sortby=last_modified&dir=1\">Order Date</a></td>";
-  echo "<td align=\"right\">Operations</td>";
   echo "</tr>";
   $count = 1;
   foreach ($orders as $order) {
     echo "<tr bgcolor=\"" . $bgcolor[$count % 2] . "\">";
     echo "<td><strong>" . $count . "</strong></td>";
-    echo "<td>cvuletich@gmail.com</td>";
-    echo "<td>\$120.00</td>";
-    echo "<td>Shipped</td>";
+    echo "<td>--</td>";
+    echo "<td>--</td>";
+    echo "<td>" . $order['fulfillment_id'] . "</td>";
+    echo "<td>" . $order['status'] . "</td>";
     echo "<td>" . date("M j, Y, g:i a", $order['timestamp']) . "</td>";
-    echo "<td align=\"right\">Link</td>";
     echo "</tr>";
     $count++;
   }

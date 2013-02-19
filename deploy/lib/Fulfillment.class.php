@@ -2,12 +2,25 @@
 class Fulfillment {
   public static function call($method, $action, $data = null) {
     $headers = array();
-    $headers[] = "storeToken: " . STORE_TOKEN;
-    $headers[] = "clientToken: " . CLIENT_TOKEN;
-    $headers[] = "Content-Type: application/json; charset=UTF-8";
-    $headers[] = "Accept: application/json";
-
-    $ch = curl_init(STORE_URL . $action);
+    if ($action == "migratecreate") {
+      $headers[] = "storeToken: " . PROD_STORE_TOKEN;
+      $headers[] = "clientToken: " . PROD_CLIENT_TOKEN;
+      $headers[] = "Content-Type: application/json; charset=UTF-8";
+      $headers[] = "Accept: application/json";
+      $ch = curl_init(PROD_STORE_URL . "product/create");
+    } else if ($action == "migrateupdate") {
+      $headers[] = "storeToken: " . PROD_STORE_TOKEN;
+      $headers[] = "clientToken: " . PROD_CLIENT_TOKEN;
+      $headers[] = "Content-Type: application/json; charset=UTF-8";
+      $headers[] = "Accept: application/json";
+      $ch = curl_init(PROD_STORE_URL . "product/update");
+    } else {
+      $headers[] = "storeToken: " . STORE_TOKEN;
+      $headers[] = "clientToken: " . CLIENT_TOKEN;
+      $headers[] = "Content-Type: application/json; charset=UTF-8";
+      $headers[] = "Accept: application/json";
+      $ch = curl_init(STORE_URL . $action);
+    }
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     if ($method === "post") {
       curl_setopt($ch, CURLOPT_POST, true);
@@ -50,6 +63,12 @@ class Fulfillment {
 
   public function getProduct($sku) {
     return self::call("get", "product/get/" . $sku);
+  }
+
+  public function migrate($data) {
+    self::call("post", "migratecreate", $data);
+    self::call("post", "migrateupdate", $data);
+    return true;
   }
 
   public function updateOrder($data) {

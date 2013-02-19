@@ -85,7 +85,7 @@ var cart = {
 var catalog = {
   multiview : {
     load : function(img) {
-      $('#gallery-image').attr('src', img);
+      $('.advance-link img').attr('src', img);
     }
   }
 }

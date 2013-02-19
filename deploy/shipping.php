@@ -4,7 +4,7 @@ $action = $_GET['a'] ? $_GET['a'] : null;
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] === "POST" || isset($action)) {
   if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    if (isRussian($_POST['firstname']) || isRussian($_POST['lastname']) || isRussian($_POST['address1']) || isRussian($_POST['address2']) || isRussian($_POST['district']) || isRussian($_POST['province']) || isRussian($_POST['postalcode']) || isRussian($_POST['country'])) {
+    if (isRussian($_POST['firstname']) || isRussian($_POST['lastname']) || isRussian($_POST['address1']) || isRussian($_POST['address2']) || isRussian($_POST['district']) || isRussian($_POST['province']) || isRussian($_POST['postalcode']) || isRussian($_POST['country']) || isRussian($_POST['email'])) {
       $errors[] = "Your address must be in English.";
     }
     if ($_POST['firstname'] == "") { $errors[] = "You must enter a first name."; }
@@ -12,6 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" || isset($action)) {
     if ($_POST['address1'] == "") { $errors[] = "You must enter an address."; }
     if ($_POST['postalcode'] == "") { $errors[] = "You must enter a postal code."; }
     if ($_POST['country'] == "") { $errors[] = "You must enter a country."; }
+    if (!$user->isLoggedIn()) {
+      if ($_POST['email'] == "") { $errors[] = "You must enter a valid email address."; }
+      $user->setEmail($_POST['email']);
+    }
   }
   if ($action == "save" && $user->isLoggedIn()) {
     if (count($errors) == 0) {
@@ -190,6 +194,16 @@ include("inc/header.php");
                                   </select>
                                 </td>
                               </tr>
+                              <?php
+                              if (!$user->isLoggedIn()) {
+                              ?>
+                              <tr>
+                                <td>Email</td>
+                                <td><input type="text" name="email" value="<?php echo $_POST['email']; ?>" /></td>
+                              </tr>
+                              <?php
+                              }
+                              ?>
                               <tr>
                                 <td>&nbsp;</td>
                                 <?php

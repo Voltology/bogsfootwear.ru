@@ -44,15 +44,23 @@ if ($paypaltoken == $cart->getPayPalToken()) {
     $item['SKU'] = $ordereditem['sku'];
     $item['QtyOrdered'] = $ordereditem['quantity'];
     $item['EachPrice'] = number_format($ordereditem['price'], 2);
+    $item['ProductOption'] = "Color: " . ucwords($ordereditem['color']) . ", Size: " . $ordereditem['size'];
     array_push($data['Items'], $item);
   }
 
   $data = json_encode($data);
-  Fulfillment::createOrder($data);
-  $cart->setCompletedOrder($user->getId(), $_SESSION['addressid']);
-  $cart->clearCart();
-  header("Location: /complete/");
+  $response = json_decode(Fulfillment::createOrder($data), true);
+  $_SESSION['fulfillment_response'] = $response;
+  if ($response['Status'] == 1) {
+    $cart->setCompletedOrder($user->getId(), $_SESSION['addressid'], $response['Order']);
+    $cart->clearCart();
+    header("Location: /complete/");
+  } else {
+    $cart->setCompletedOrder($user->getId(), $_SESSION['addressid'], $response['Order']);
+    $cart->clearCart();
+    header("Location: /error/?type=status");
+  }
 } else {
-  echo "There was an error in your order.  Please call contact us as soon as possible.";
+  header("Location: /error/?type=token");
 }
 ?>

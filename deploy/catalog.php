@@ -50,22 +50,26 @@ $group = $_GET['group'] ? $_GET['group'] : null;
                   ?>
                     <li>
                       <form id="form-<?php echo $item['id']; ?>">
-                        <a class="thumb" href="/img/catalog/<?php echo $item['sku']; ?>/1.jpg" alt="<?php echo $item['sku']; ?>" /><img src="/img/catalog/<?php echo $item['sku']; ?>/thumb.jpg" alt="<?php echo $item['sku']; ?>" /></a>
+                        <a class="thumb" href="/img/catalog/<?php echo $item['sku']; ?>/1.jpg" alt="<?php echo $item['sku']; ?>" /><img src="/img/catalog/<?php echo $item['sku']; ?>/1-thumb.jpg" alt="<?php echo $item['sku']; ?>" /></a>
                         <div class="caption">
+                          <?php if ($user->getRole() == 2) { echo "<span style=\"font-size: 12px; float: right;\"><a href=\"" . ADMIN_BASE_URL . "?p=inventory&a=edit&id=" . $item['id'] . "\">Edit Product</a></span>"; } ?>
                           <div class="image-title">
                           </div>
                           <div class="image-desc">
                             <table class="image-desc" width="300">
                               <tr>
                                 <td align="center" colspan="2">
-                                <!--
                                   <ul id="multiview-images">
-                                    <li class="thumb"><img src="/img/catalog/71055-202.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71055-202.jpg')" /></li>
-                                    <li class="thumb"><img src="/img/catalog/71063-001.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71063-001.jpg')" /></li>
-                                    <li class="thumb"><img src="/img/catalog/71055-202.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71055-202.jpg')" /></li>
-                                    <li class="thumb"><img src="/img/catalog/71063-001.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/71063-001.jpg')" /></li>
+                                    <?php
+                                    for ($i = 1; $i <= 5; $i++) {
+                                      if (file_exists("img/catalog/" . $item['sku'] . "/" . $i . "-thumb.jpg")) {
+                                      ?>
+                                      <li class="thumb"><img src="/img/catalog/<?php echo $item['sku']; ?>/<?php echo $i; ?>-thumb.jpg" alt="71141-300" onclick="catalog.multiview.load('/img/catalog/<?php echo $item['sku']; ?>/<?php echo $i; ?>.jpg')" /></li>
+                                      <?php
+                                      }
+                                    }
+                                    ?>
                                   </ul>
-                                  -->
                                 </td>
                               </tr>
                               <tr>
