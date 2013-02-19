@@ -609,7 +609,6 @@
 					// set alt and src
 					image.alt = imageData.title;
 					image.src = imageData.slideUrl;
-          image.id = "gallery-image";
 				}
 
 				// This causes the preloader (if still running) to relocate out from the currentIndex
@@ -627,8 +626,9 @@
 				var nextIndex = this.getNextIndex(imageData.index);
 
 				// Construct new hidden span for the image
+        $('.gallery-image').remove();
 				var newSlide = this.$imageContainer
-					.append('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'">&nbsp;</a></span>')
+					.append('<span class="gallery-image image-wrapper current"><a class="advance-link" rel="history" href="#" title="'+imageData.title+'">&nbsp;</a></span>')
 					.find('span.current').css('opacity', '0');
 				
 				newSlide.find('a')

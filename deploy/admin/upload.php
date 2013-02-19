@@ -73,7 +73,7 @@
                     $updates = 0;
                     $inserts = 0;
                     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                      if ($data[6] == "1" ) {
+                      if ($data[6] == "1") {
                         $sku = mysql_real_escape_string(trim($data[0]) . "-" . str_pad($data[2], 3, "0", STR_PAD_LEFT));
                         $query = sprintf("SELECT id FROM cart_inventory" . DB_EXT . " WHERE sku='" . $sku . "' LIMIT 1");
                         $query = mysql_query($query);
@@ -81,7 +81,7 @@
                           $updates++;
                           $query = "UPDATE cart_inventory" . DB_EXT . " SET sku='" . $sku . "'";
                           foreach ($update_fields as $key => $value) {
-                            $query .= ", `" . mysql_real_escape_string($key) . "`='" . mysql_real_escape_string(trim(strtolower($data[$value]))) . "'";
+                            $query .= ", `" . mysql_real_escape_string($key) . "`='" . mysql_real_escape_string(trim(strtolower(preg_replace('/,/', "", $data[$value])))) . "'";
                           }
                           $query .= ", last_modified='" . time() . "'";
                           $query .= " WHERE sku='" . $sku . "'";

@@ -34,7 +34,7 @@
           <?php
           if ($user->isLoggedIn()) {
             echo "<strong>" . t("Hello") . ", " . $user->getFirstName() . "</strong> -  <a href=\"/account\">" . t("My Account") . "</a>";
-            if ($user->getRole() == 2) { echo " | <a href=\"/admin/\">" . t("Admin Area") . "</a>"; }
+            if ($user->getRole() == 2) { echo " | <a href=\"" . ADMIN_BASE_URL . "\">" . t("Admin Area") . "</a>"; }
             echo " | <a href=\"/logout\">" . t("Log Out") . "</a>";
           } else {
             echo "<a href=\"/login/\">" . t("Sign In") . "</a> | <a href=\"/register/\">" . t("Register") . "</a>";

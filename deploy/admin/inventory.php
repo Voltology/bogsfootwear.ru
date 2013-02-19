@@ -57,7 +57,7 @@ if (!isset($action)) {
     echo "<td>" . ucwords($item['group']) . "</td>";
     echo "<td>" . ucwords($item['gender']) . "</td>";
     echo "<td>\$" . number_format($item['price'], 2) . "</td>";
-    echo "<td>" . ucwords($item['totalstock']) . "</td>";
+    echo "<td>" . number_format($item['totalstock'], 0) . "</td>";
     if ($item['active'] == 0) {
       echo "<td><span style=\"color: #CC0000;\">No</span></td>";
     } else {

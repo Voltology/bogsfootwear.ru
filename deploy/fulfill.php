@@ -35,7 +35,8 @@ if ($paypaltoken == $cart->getPayPalToken()) {
   $data['ShipToPhoneExt'] = '';
   $data['ShipToPhoneFax'] = '';
   $data['ShipToCustomerNotes'] = '';
-  $data['ReferenceID'] = '';
+  $ref = "BOGS-" . time() . "-" . rand(0,999);
+  $data['ReferenceID'] = $ref;
   $data['ShipMethodDesc'] = 'Standard';
   $data['Items'] = array();
 
