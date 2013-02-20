@@ -97,9 +97,28 @@ class Admin {
     return mysql_fetch_assoc($query);
   }
 
+  public function getOrderById($id) {
+    $orders = array();
+    $query = sprintf("SELECT cart_completed_orders.id,cart_completed_orders.user_id,cart_users.email,shipping_address_id,cart_shipping_addresses.firstname,cart_shipping_addresses.lastname,cart_shipping_addresses.address1,cart_shipping_addresses.address2,cart_shipping_addresses.district,cart_shipping_addresses.province,cart_shipping_addresses.postal_code,cart_shipping_addresses.country,tracking_number,fulfillment_id,reference_id,status,cart_completed_orders.timestamp FROM cart_completed_orders LEFT JOIN cart_users ON (cart_completed_orders.user_id = cart_users.id) LEFT JOIN cart_shipping_addresses ON (cart_completed_orders.shipping_address_id = cart_shipping_addresses.id) WHERE cart_completed_orders.id='%s' LIMIT 1",
+      mysql_real_escape_string($id));
+    $query = mysql_query($query);
+    return mysql_fetch_assoc($query);
+  }
+
+  public function getOrderedItemsById($id) {
+    $items = array();
+    $query = sprintf("SELECT item_id,quantity,cart_ordered_items.size,cart_ordered_items.price,cart_inventory" . DB_EXT . ".sku,cart_inventory" . DB_EXT . ".name,cart_inventory" . DB_EXT . ".color FROM cart_ordered_items LEFT JOIN cart_inventory" . DB_EXT . " ON (cart_ordered_items.item_id = cart_inventory" . DB_EXT . ".id) WHERE order_id='%s'",
+      mysql_real_escape_string($id));
+    $query = mysql_query($query);
+    while ($row = mysql_fetch_assoc($query)) {
+      array_push($items, $row);
+    }
+    return $items;
+  }
+
   public function getOrders($order, $dir) {
     $orders = array();
-    $query = sprintf("SELECT id,user_id,timestamp FROM cart_completed_orders ORDER BY `%s` %s",
+    $query = sprintf("SELECT cart_completed_orders.id,user_id,cart_users.email,shipping_address_id,tracking_number,fulfillment_id,reference_id,status,cart_completed_orders.timestamp FROM cart_completed_orders LEFT JOIN cart_users ON (cart_completed_orders.user_id = cart_users.id) ORDER BY `%s` %s",
       mysql_real_escape_string($order),
       mysql_real_escape_string($dir));
     $query = mysql_query($query);

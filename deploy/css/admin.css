@@ -185,6 +185,9 @@ table .table-header td {
   font-weight: bold;
   padding: 4px 4px;
 }
+table tr.item-row td {
+  border-top: 1px solid #ccc;
+}
 table .table-header td a {
   color: #000;
   text-decoration: none;

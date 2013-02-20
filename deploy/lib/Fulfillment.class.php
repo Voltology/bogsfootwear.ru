@@ -41,16 +41,16 @@ class Fulfillment {
     return $response;
   }
 
+  public function cancelOrder($id) {
+    return self::call("delete", "order/cancel/" . $data);
+  }
+
   public function createOrder($data) {
     return self::call("post", "order/create", $data);
   }
 
   public function createProduct($data) {
     return self::call("post", "product/create", $data);
-  }
-
-  public function deleteOrder($id) {
-    return self::call("delete", "order/cancel" . $id);
   }
 
   public function deleteProduct($sku) {
