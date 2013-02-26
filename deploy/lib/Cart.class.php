@@ -255,6 +255,8 @@ class Cart  {
   public function updateQuantity($id, $quantity) {
     if ($quantity > 20) {
       $quantity = 20;
+    } else if ($quantity < 1) {
+      $quantity = 1;
     }
     $query = sprintf("UPDATE cart_sessions SET quantity='%s' WHERE token='%s' AND id='%s'",
       mysql_real_escape_string($quantity),

@@ -41,6 +41,13 @@ class Admin {
     }
   }
 
+  public function cancelOrder($id) {
+    $query = sprintf("UPDATE cart_completed_orders SET status='Cancelled' WHERE fulfillment_id='%s'",
+      mysql_real_escape_string($id));
+    mysql_query($query);
+    Fulfillment::cancelOrder($id);
+  }
+
   public function getGenders() {
     $genders = array();
     $query = sprintf("SELECT `id`,`gender` FROM cart_genders ORDER BY gender ASC");

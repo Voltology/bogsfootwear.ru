@@ -42,7 +42,7 @@ class Fulfillment {
   }
 
   public function cancelOrder($id) {
-    return self::call("delete", "order/cancel/" . $data);
+    return self::call("delete", "order/cancel/" . $id);
   }
 
   public function createOrder($data) {

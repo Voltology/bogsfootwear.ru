@@ -1,6 +1,7 @@
 <?php
 require(".local.inc.php");
 require(LIB_PATH . "Fulfillment.class.php");
+require(LIB_PATH . "PayPal.class.php");
 $paypaltoken = $_GET['token'];
 if ($paypaltoken == $cart->getPayPalToken()) {
   $address = $user->getShippingAddressById($_SESSION['addressid']);
@@ -48,16 +49,18 @@ if ($paypaltoken == $cart->getPayPalToken()) {
     $item['ProductOption'] = "Color: " . ucwords($ordereditem['color']) . ", Size: " . $ordereditem['size'];
     array_push($data['Items'], $item);
   }
-
+  $paypal = new PayPal();
+  $ppresp = $paypal->complete($_GET['token'], $_GET['PayerID'], $cart->getSubTotal());
   $data = json_encode($data);
-  $response = json_decode(Fulfillment::createOrder($data), true);
-  $_SESSION['fulfillment_response'] = $response;
-  if ($response['Status'] == 1) {
-    $cart->setCompletedOrder($user->getId(), $_SESSION['addressid'], $response['Order']);
+  $ffresp = json_decode(Fulfillment::createOrder($data), true);
+
+  if (strtolower($ppresp['ACK']) == "success") {
+  //&& $ppresp['Status'] == 1
+    $cart->setCompletedOrder($user->getId(), $_SESSION['addressid'], $ffresp['Order']);
     $cart->clearCart();
     header("Location: /complete/");
   } else {
-    $cart->setCompletedOrder($user->getId(), $_SESSION['addressid'], $response['Order']);
+    $cart->setCompletedOrder($user->getId(), $_SESSION['addressid'], $ffresp['Order']);
     $cart->clearCart();
     header("Location: /error/?type=status");
   }

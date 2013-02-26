@@ -4,6 +4,41 @@ class PayPal {
   private $_paymenttype = "Sale";
   private $_method = "SetExpressCheckout";
 
+  public function complete($token, $payerid, $amount) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, PAYPAL_API);
+    curl_setopt($ch, CURLOPT_VERBOSE, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+
+    $req = "METHOD=" . urlencode("DoExpressCheckoutPayment");
+    $req .= "&VERSION=" . urlencode(PAYPAL_VER);
+    $req .= "&PWD=" . urlencode(PAYPAL_PASS);
+    $req .= "&USER=" . urlencode(PAYPAL_USER);
+    $req .= "&SIGNATURE=" . urlencode(PAYPAL_SIG);
+    $req .= "&TOKEN=" . urlencode($token);
+    $req .= "&PAYERID=" . urlencode($payerid);
+    $req .= "&AMT=" . urlencode($amount);
+    $req .= "&PAYMENTACTION=" . urlencode("Sale");
+    $req .= $url;
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
+
+    $response = curl_exec($ch);
+    $nvpresponse = $this->process($response);
+    $nvprequest = $this->process($req);
+    $_SESSION['nvprequest'] = $nvprequest;
+
+    if (curl_errno($ch)) {
+        $_SESSION['curl_error_no'] = curl_errno($ch) ;
+        $_SESSION['curl_error_msg'] = curl_error($ch);
+    } else {
+        curl_close($ch);
+    }
+    return $nvpresponse;
+  }
+
   public function connect($url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, PAYPAL_API);

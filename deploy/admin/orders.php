@@ -1,5 +1,8 @@
 <?php
 if (!isset($action)) {
+  if ($_GET['t'] == "cancel") {
+    Admin::cancelOrder($_GET['id']);
+  }
   $sortby = $_GET['sortby'] ? $_GET['sortby'] : "timestamp";
   $dir = $_GET['dir'] == "0" ? "ASC" : "DESC";
   echo "<h3>Orders</h3>";
@@ -94,7 +97,7 @@ if (!isset($action)) {
     </tr>
     <tr><td class="editLabel">Subtotal</td><td class="editField">$<?php echo number_format($subtotal, 2);  ?></td></tr>
   </table>
-  <p class="addnew"><a href="#" onclick="admin.delete('?p=order&a=cancel&id=<?php echo $order['id']; ?>');"><img src="/img/cross.png" />&nbsp;Cancel This Order</a></p>
+  <p class="addnew"><a href="#" onclick="admin.delete('?p=orders&t=cancel&id=<?php echo $order['fulfillment_id']; ?>');"><img src="/img/cross.png" />&nbsp;Cancel This Order</a></p>
   <?
 }
 ?>

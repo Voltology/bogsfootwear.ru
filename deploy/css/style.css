@@ -71,6 +71,7 @@ input[type='submit'], input[type='button'] {
 #multiview-images {
   list-style-image: none;
   list-style-type: none;
+  display: inline-block;
   margin: 0;
   padding: 0;
 }
@@ -83,8 +84,12 @@ input[type='submit'], input[type='button'] {
   overflow: hidden;
   padding: 0;
   width: 36px;
+  vertical-align: top;
+  *display:inline; /*IE7*/
+  *zoom:1; /*IE7*/
 }
 #multiview-images .thumb img {
+  display: inline-block;
   width: 100%;
 }
 #navigation {

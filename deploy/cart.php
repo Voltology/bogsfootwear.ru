@@ -40,7 +40,7 @@ include("inc/header.php");
                         <select onchange="cart.update('<?php echo $item['id']; ?>', this.options[this.selectedIndex].value)">
                           <?php
                           for ($i = 1; $i <= 20; $i++) {
-                            echo "<option";
+                            echo "<option value=\"" . $i . "\"";
                             if ($item['quantity'] == $i) { echo " selected"; }
                             echo ">" . $i . "</option>";
                           }

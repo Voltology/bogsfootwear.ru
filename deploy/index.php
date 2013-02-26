@@ -35,7 +35,6 @@ include("inc/header.php");
     <a href="http://www.bogsfootwear.com" target="_blank"><img style="margin:10px 0 0 0; padding: 0; border: none;" src="img/us.jpg" width="325" height="233" alt="us" /></a>
     <a href="/pdf/ru-tech-sheets.pdf" target="_blank"><img style="margin:10px 0 0 8px; padding: 0; border: none;" src="img/tech-sheets.jpg" width="325" height="233" alt="tech-sheets" /></a>
   </div>
-</div>
 <?php
 $catalogguide = true;
 include("inc/footer.php");
